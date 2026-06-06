@@ -1,0 +1,95 @@
+Diagnosis 5 — Decoder Attention Analysis (which INP token does defect region use?)
+
+=== CAN ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.0194       0.1374   0.1413  clean
+      1       0.0213       0.1260   0.1690  clean
+      2       0.0133       0.1245   0.1069  clean
+      3       0.0127       0.1011   0.1261  clean
+      4       0.0178       0.1223   0.1457  clean
+      5       0.0135       0.1030   0.1307  clean
+  → 0/6 INP tokens contaminated  | mean ratio=0.1366
+
+=== FABRIC ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.0342       0.1022   0.3344  clean
+      1       0.0266       0.0729   0.3645  clean
+      2       0.0378       0.1228   0.3076  clean
+      3       0.0269       0.0739   0.3642  clean
+      4       0.0427       0.1234   0.3464  clean
+      5       0.0331       0.0994   0.3333  clean
+  → 0/6 INP tokens contaminated  | mean ratio=0.3417
+
+=== FRUIT_JELLY ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.1429       0.1047   1.3648  ⚠ CONTAMINATED
+      1       0.1439       0.1309   1.0986  ⚠ CONTAMINATED
+      2       0.0907       0.1461   0.6206  clean
+      3       0.0919       0.1655   0.5552  clean
+      4       0.1309       0.1430   0.9156  ⚠ CONTAMINATED
+      5       0.1240       0.1348   0.9198  ⚠ CONTAMINATED
+  → 4/6 INP tokens contaminated  | mean ratio=0.9124
+
+=== RICE ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.2454       0.2674   0.9178  ⚠ CONTAMINATED
+      1       0.1676       0.1873   0.8951  ⚠ CONTAMINATED
+      2       0.1456       0.1590   0.9158  ⚠ CONTAMINATED
+      3       0.1475       0.1674   0.8813  ⚠ CONTAMINATED
+      4       0.2395       0.2644   0.9056  ⚠ CONTAMINATED
+      5       0.1364       0.1760   0.7752  clean
+  → 5/6 INP tokens contaminated  | mean ratio=0.8818
+
+=== SHEET_METAL ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.0716       0.1552   0.4614  clean
+      1       0.0977       0.2242   0.4357  clean
+      2       0.0840       0.1750   0.4802  clean
+      3       0.0829       0.1697   0.4888  clean
+      4       0.0811       0.1699   0.4777  clean
+      5       0.0838       0.1527   0.5490  clean
+  → 0/6 INP tokens contaminated  | mean ratio=0.4821
+
+=== VIAL ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.1135       0.0632   1.7942  ⚠ CONTAMINATED
+      1       0.1163       0.0872   1.3345  ⚠ CONTAMINATED
+      2       0.1194       0.0946   1.2623  ⚠ CONTAMINATED
+      3       0.0758       0.1192   0.6360  clean
+      4       0.1369       0.1284   1.0663  ⚠ CONTAMINATED
+      5       0.1293       0.1132   1.1429  ⚠ CONTAMINATED
+  → 5/6 INP tokens contaminated  | mean ratio=1.2060
+
+=== WALLPLUGS ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.0507       0.0936   0.5416  clean
+      1       0.0616       0.1060   0.5811  clean
+      2       0.0403       0.1023   0.3940  clean
+      3       0.0223       0.0725   0.3070  clean
+      4       0.0493       0.1101   0.4478  clean
+      5       0.0574       0.1295   0.4436  clean
+  → 0/6 INP tokens contaminated  | mean ratio=0.4525
+
+=== WALNUTS ===
+    INP  Attn@defect  Attn@normal    Ratio  Verdict
+      0       0.0926       0.0740   1.2511  ⚠ CONTAMINATED
+      1       0.0467       0.0527   0.8862  ⚠ CONTAMINATED
+      2       0.0333       0.0776   0.4294  clean
+      3       0.0373       0.0380   0.9832  ⚠ CONTAMINATED
+      4       0.0698       0.0777   0.8982  ⚠ CONTAMINATED
+      5       0.0533       0.0608   0.8778  ⚠ CONTAMINATED
+  → 5/6 INP tokens contaminated  | mean ratio=0.8876
+
+=================================================================
+Category          Mean ratio  Contaminated INPs  Verdict
+=================================================================
+can                   0.1366            0/6      clean
+fabric                0.3417            0/6      clean
+fruit_jelly           0.9124            4/6      ⚠ CONTAMINATED
+rice                  0.8818            5/6      ⚠ CONTAMINATED
+sheet_metal           0.4821            0/6      clean
+vial                  1.2060            5/6      ⚠ CONTAMINATED
+wallplugs             0.4525            0/6      clean
+walnuts               0.8876            5/6      ⚠ CONTAMINATED
+
+Visualizations saved to: ./diagnosis/diagnosis5_decoder_attention

@@ -1,0 +1,55 @@
+Diagnosis 4 — INP Contamination Analysis
+
+=== CAN ===
+  INP attn on defect region  : mean=0.0179  std=0.0176
+  INP attn on normal region  : mean=0.0357  std=0.0059
+  Contamination ratio (def/norm attn): 0.5020  OK
+
+=== FABRIC ===
+  INP attn on defect region  : mean=0.0355  std=0.0752
+  INP attn on normal region  : mean=0.0226  std=0.0041
+  Contamination ratio (def/norm attn): 1.5717  ⚠ HIGH
+
+=== FRUIT_JELLY ===
+  INP attn on defect region  : mean=0.0704  std=0.1084
+  INP attn on normal region  : mean=0.0277  std=0.0031
+  Contamination ratio (def/norm attn): 2.5445  ⚠ HIGH
+
+=== RICE ===
+  INP attn on defect region  : mean=0.0569  std=0.1130
+  INP attn on normal region  : mean=0.0165  std=0.0035
+  Contamination ratio (def/norm attn): 3.4435  ⚠ HIGH
+
+=== SHEET_METAL ===
+  INP attn on defect region  : mean=0.0141  std=0.0241
+  INP attn on normal region  : mean=0.0173  std=0.0045
+  Contamination ratio (def/norm attn): 0.8115  ⚠ HIGH
+
+=== VIAL ===
+  INP attn on defect region  : mean=0.0503  std=0.0380
+  INP attn on normal region  : mean=0.0262  std=0.0050
+  Contamination ratio (def/norm attn): 1.9191  ⚠ HIGH
+
+=== WALLPLUGS ===
+  INP attn on defect region  : mean=0.0147  std=0.0209
+  INP attn on normal region  : mean=0.0279  std=0.0045
+  Contamination ratio (def/norm attn): 0.5283  OK
+
+=== WALNUTS ===
+  INP attn on defect region  : mean=0.0547  std=0.0597
+  INP attn on normal region  : mean=0.0324  std=0.0068
+  Contamination ratio (def/norm attn): 1.6869  ⚠ HIGH
+
+======================================================================
+Category         Attn@defect  Attn@normal   Contam.ratio  Verdict
+======================================================================
+can                   0.0179       0.0357         0.5020  clean
+fabric                0.0355       0.0226         1.5717  ⚠ CONTAMINATED
+fruit_jelly           0.0704       0.0277         2.5445  ⚠ CONTAMINATED
+rice                  0.0569       0.0165         3.4435  ⚠ CONTAMINATED
+sheet_metal           0.0141       0.0173         0.8115  ⚠ CONTAMINATED
+vial                  0.0503       0.0262         1.9191  ⚠ CONTAMINATED
+wallplugs             0.0147       0.0279         0.5283  clean
+walnuts               0.0547       0.0324         1.6869  ⚠ CONTAMINATED
+
+Visualizations saved to: ./diagnosis/diagnosis4_inp_contamination
