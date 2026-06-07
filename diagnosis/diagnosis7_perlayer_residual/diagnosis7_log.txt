@@ -1,0 +1,89 @@
+Diagnosis 7 — Per-layer Residual Contribution
+
+=== CAN ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.8172     0.8179   0.0007  ⚠ LOW GAP
+       1     0.8186     0.8196   0.0009  ⚠ LOW GAP
+       2     0.8220     0.8226   0.0005  ⚠ LOW GAP
+       3     0.8059     0.8072   0.0013  ⚠ LOW GAP
+       4     0.7975     0.7988   0.0013  ⚠ LOW GAP
+       5     0.7902     0.7920   0.0018  ⚠ LOW GAP
+       6     0.8068     0.8093   0.0024  ⚠ LOW GAP
+       7     0.8683     0.8761   0.0078  ⚠ LOW GAP
+
+=== FABRIC ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.8349     0.8341  -0.0008  ⚠ LOW GAP
+       1     0.8421     0.8411  -0.0010  ⚠ LOW GAP
+       2     0.8404     0.8406   0.0002  ⚠ LOW GAP
+       3     0.8255     0.8274   0.0019  ⚠ LOW GAP
+       4     0.8229     0.8243   0.0013  ⚠ LOW GAP
+       5     0.8170     0.8182   0.0012  ⚠ LOW GAP
+       6     0.7930     0.7949   0.0019  ⚠ LOW GAP
+       7     0.7983     0.7997   0.0015  ⚠ LOW GAP
+
+=== FRUIT_JELLY ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.8034     0.8037   0.0003  ⚠ LOW GAP
+       1     0.8382     0.8398   0.0016  ⚠ LOW GAP
+       2     0.8298     0.8317   0.0019  ⚠ LOW GAP
+       3     0.8136     0.8156   0.0021  ⚠ LOW GAP
+       4     0.8034     0.8054   0.0020  ⚠ LOW GAP
+       5     0.8037     0.8060   0.0022  ⚠ LOW GAP
+       6     0.8032     0.8050   0.0018  ⚠ LOW GAP
+       7     0.8048     0.8067   0.0019  ⚠ LOW GAP
+
+=== RICE ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.7731     0.7737   0.0006  ⚠ LOW GAP
+       1     0.7722     0.7733   0.0011  ⚠ LOW GAP
+       2     0.7648     0.7661   0.0013  ⚠ LOW GAP
+       3     0.7554     0.7563   0.0009  ⚠ LOW GAP
+       4     0.7336     0.7344   0.0008  ⚠ LOW GAP
+       5     0.7129     0.7138   0.0009  ⚠ LOW GAP
+       6     0.7005     0.7014   0.0009  ⚠ LOW GAP
+       7     0.6835     0.6844   0.0008  ⚠ LOW GAP
+
+=== SHEET_METAL ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.7734     0.7736   0.0002  ⚠ LOW GAP
+       1     0.7569     0.7570   0.0000  ⚠ LOW GAP
+       2     0.7499     0.7498  -0.0001  ⚠ LOW GAP
+       3     0.7359     0.7359  -0.0000  ⚠ LOW GAP
+       4     0.7081     0.7081   0.0000  ⚠ LOW GAP
+       5     0.6964     0.6962  -0.0001  ⚠ LOW GAP
+       6     0.6836     0.6837   0.0001  ⚠ LOW GAP
+       7     0.6832     0.6835   0.0003  ⚠ LOW GAP
+
+=== VIAL ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.8227     0.8230   0.0003  ⚠ LOW GAP
+       1     0.8237     0.8243   0.0005  ⚠ LOW GAP
+       2     0.8292     0.8298   0.0007  ⚠ LOW GAP
+       3     0.8274     0.8279   0.0005  ⚠ LOW GAP
+       4     0.8153     0.8155   0.0002  ⚠ LOW GAP
+       5     0.8201     0.8204   0.0003  ⚠ LOW GAP
+       6     0.8262     0.8249  -0.0013  ⚠ LOW GAP
+       7     0.8221     0.8213  -0.0008  ⚠ LOW GAP
+
+=== WALLPLUGS ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.9062     0.9096   0.0034  ⚠ LOW GAP
+       1     0.9010     0.9055   0.0045  ⚠ LOW GAP
+       2     0.9016     0.9053   0.0037  ⚠ LOW GAP
+       3     0.8921     0.8946   0.0024  ⚠ LOW GAP
+       4     0.8849     0.8872   0.0023  ⚠ LOW GAP
+       5     0.8959     0.8983   0.0024  ⚠ LOW GAP
+       6     0.9451     0.9477   0.0026  ⚠ LOW GAP
+       7     0.9058     0.9081   0.0023  ⚠ LOW GAP
+
+=== WALNUTS ===
+   Layer     Normal     Defect      Gap  Verdict
+       0     0.9452     0.9466   0.0014  ⚠ LOW GAP
+       1     0.9364     0.9360  -0.0004  ⚠ LOW GAP
+       2     0.9247     0.9246  -0.0001  ⚠ LOW GAP
+       3     0.9083     0.9071  -0.0012  ⚠ LOW GAP
+       4     0.8977     0.8972  -0.0005  ⚠ LOW GAP
+       5     0.8912     0.8863  -0.0049  ⚠ LOW GAP
+       6     0.8713     0.8690  -0.0023  ⚠ LOW GAP
+       7     0.8816     0.8754  -0.0062  ⚠ LOW GAP

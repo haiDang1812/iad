@@ -1,0 +1,49 @@
+Diagnosis 8 — Normal Training Data Diversity & Feature Space Overlap
+
+=== CAN ===
+  Train-normal vs Test-normal centroid sim : 0.9955
+  Train-normal vs Test-defect centroid sim : 0.9935
+  Test-normal  vs Test-defect centroid sim : 0.9958  ⚠ NEAR IDENTICAL — defect indistinguishable in feature space
+  Defect points within 2σ of normal distribution (PCA50): 3.3%
+
+=== FABRIC ===
+  Train-normal vs Test-normal centroid sim : 0.9979
+  Train-normal vs Test-defect centroid sim : 0.9956
+  Test-normal  vs Test-defect centroid sim : 0.9948  ⚠ NEAR IDENTICAL — defect indistinguishable in feature space
+  Defect points within 2σ of normal distribution (PCA50): 0.0%
+
+=== FRUIT_JELLY ===
+  Train-normal vs Test-normal centroid sim : 0.9966
+  Train-normal vs Test-defect centroid sim : 0.9954
+  Test-normal  vs Test-defect centroid sim : 0.9963  ⚠ NEAR IDENTICAL — defect indistinguishable in feature space
+  Defect points within 2σ of normal distribution (PCA50): 0.0%
+
+=== RICE ===
+  Train-normal vs Test-normal centroid sim : 0.9986
+  Train-normal vs Test-defect centroid sim : 0.9979
+  Test-normal  vs Test-defect centroid sim : 0.9986  ⚠ NEAR IDENTICAL — defect indistinguishable in feature space
+  Defect points within 2σ of normal distribution (PCA50): 0.0%
+
+=== SHEET_METAL ===
+  Train-normal vs Test-normal centroid sim : 0.9934
+  Train-normal vs Test-defect centroid sim : 0.9950
+  Test-normal  vs Test-defect centroid sim : 0.9962  ⚠ NEAR IDENTICAL — defect indistinguishable in feature space
+  Defect points within 2σ of normal distribution (PCA50): 0.0%
+
+=== VIAL ===
+  Train-normal vs Test-normal centroid sim : 0.9973
+  Train-normal vs Test-defect centroid sim : 0.9979
+  Test-normal  vs Test-defect centroid sim : 0.9978  ⚠ NEAR IDENTICAL — defect indistinguishable in feature space
+  Defect points within 2σ of normal distribution (PCA50): 0.0%
+
+=== WALLPLUGS ===
+  Train-normal vs Test-normal centroid sim : 0.9813
+  Train-normal vs Test-defect centroid sim : 0.9929
+  Test-normal  vs Test-defect centroid sim : 0.9886  ⚠ NEAR IDENTICAL — defect indistinguishable in feature space
+  Defect points within 2σ of normal distribution (PCA50): 7.8%
+
+=== WALNUTS ===
+  Train-normal vs Test-normal centroid sim : 0.9929
+  Train-normal vs Test-defect centroid sim : 0.9750
+  Test-normal  vs Test-defect centroid sim : 0.9601
+  Defect points within 2σ of normal distribution (PCA50): 3.3%

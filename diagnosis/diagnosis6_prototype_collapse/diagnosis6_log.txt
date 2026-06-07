@@ -1,0 +1,33 @@
+Diagnosis 6 — Prototype Collapse in Feature Space
+
+=== CAN ===
+  Prototype pairwise cosine sim (normal): mean=-0.0912  max=0.6491  min=-0.2980
+  Normal vs Defect prototype sim per INP: mean=0.9972  min=0.9940  max=0.9990  ⚠ INDISTINGUISHABLE
+
+=== FABRIC ===
+  Prototype pairwise cosine sim (normal): mean=-0.1312  max=0.0165  min=-0.2639
+  Normal vs Defect prototype sim per INP: mean=0.9985  min=0.9955  max=0.9995  ⚠ INDISTINGUISHABLE
+
+=== FRUIT_JELLY ===
+  Prototype pairwise cosine sim (normal): mean=-0.0636  max=0.0429  min=-0.2583
+  Normal vs Defect prototype sim per INP: mean=0.9991  min=0.9984  max=0.9999  ⚠ INDISTINGUISHABLE
+
+=== RICE ===
+  Prototype pairwise cosine sim (normal): mean=-0.0769  max=0.0635  min=-0.2474
+  Normal vs Defect prototype sim per INP: mean=0.9999  min=0.9999  max=1.0000  ⚠ INDISTINGUISHABLE
+
+=== SHEET_METAL ===
+  Prototype pairwise cosine sim (normal): mean=-0.0318  max=0.1102  min=-0.1402
+  Normal vs Defect prototype sim per INP: mean=0.9997  min=0.9993  max=0.9999  ⚠ INDISTINGUISHABLE
+
+=== VIAL ===
+  Prototype pairwise cosine sim (normal): mean=-0.0997  max=0.0993  min=-0.2274
+  Normal vs Defect prototype sim per INP: mean=0.9971  min=0.9940  max=0.9998  ⚠ INDISTINGUISHABLE
+
+=== WALLPLUGS ===
+  Prototype pairwise cosine sim (normal): mean=-0.1091  max=0.3511  min=-0.2589
+  Normal vs Defect prototype sim per INP: mean=0.9992  min=0.9976  max=0.9999  ⚠ INDISTINGUISHABLE
+
+=== WALNUTS ===
+  Prototype pairwise cosine sim (normal): mean=-0.1521  max=-0.0106  min=-0.3512
+  Normal vs Defect prototype sim per INP: mean=0.9941  min=0.9708  max=0.9998  ⚠ INDISTINGUISHABLE
