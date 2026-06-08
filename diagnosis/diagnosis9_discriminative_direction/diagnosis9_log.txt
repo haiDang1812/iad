@@ -1,0 +1,121 @@
+Diagnosis 9 — Discriminative Direction Analysis
+
+=== CAN ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [18, 1, 14, 9, 8] | t-scores: ['0.915', '0.661', '0.614', '0.587', '0.527']
+    LDA direction AUROC: 1.0000  gap=14.4790  ✓ SEPARABLE
+
+=== FABRIC ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [1, 4, 5, 16, 15] | t-scores: ['1.054', '0.623', '0.576', '0.551', '0.550']
+    LDA direction AUROC: 1.0000  gap=40.3538  ✓ SEPARABLE
+
+=== FRUIT_JELLY ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [4, 11, 8, 10, 16] | t-scores: ['1.618', '1.501', '0.842', '0.598', '0.455']
+    LDA direction AUROC: 1.0000  gap=49.9728  ✓ SEPARABLE
+
+=== RICE ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [2, 9, 15, 3, 10] | t-scores: ['1.089', '1.033', '0.707', '0.696', '0.525']
+    LDA direction AUROC: 1.0000  gap=33.5177  ✓ SEPARABLE
+
+=== SHEET_METAL ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [4, 5, 10, 15, 21] | t-scores: ['1.224', '1.187', '0.917', '0.801', '0.620']
+    LDA direction AUROC: 1.0000  gap=87.4348  ✓ SEPARABLE
+
+=== VIAL ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [5, 21, 10, 8, 4] | t-scores: ['1.046', '0.983', '0.776', '0.761', '0.717']
+    LDA direction AUROC: 1.0000  gap=24.7576  ✓ SEPARABLE
+
+=== WALLPLUGS ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [10, 3, 6, 11, 27] | t-scores: ['1.017', '0.883', '0.599', '0.578', '0.508']
+    LDA direction AUROC: 1.0000  gap=13.2151  ✓ SEPARABLE
+
+=== WALNUTS ===
+  --- Per encoder layer LDA AUROC ---
+    Layer 2: AUROC=1.0000  ✓ BEST
+    Layer 3: AUROC=1.0000  ✓ BEST
+    Layer 4: AUROC=1.0000  ✓ BEST
+    Layer 5: AUROC=1.0000  ✓ BEST
+    Layer 6: AUROC=1.0000  ✓ BEST
+    Layer 7: AUROC=1.0000  ✓ BEST
+    Layer 8: AUROC=1.0000  ✓ BEST
+    Layer 9: AUROC=1.0000  ✓ BEST
+  → Most discriminative encoder layer: 2 (AUROC=1.0000)
+  --- Image-level feature analysis (last encoder layer) ---
+    Top-5 discriminative PCs: [0, 1, 2, 12, 3] | t-scores: ['0.974', '0.632', '0.614', '0.580', '0.535']
+    LDA direction AUROC: 1.0000  gap=38.7476  ✓ SEPARABLE
