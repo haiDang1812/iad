@@ -168,3 +168,102 @@ class Prototype_Block(nn.Module):
             return x, attn
         else:
             return x
+        
+        
+class LocalContrastExtractor(nn.Module):
+    """
+    Compute local contrast features for each patch token.
+    For each patch, compute difference between patch feature
+    and weighted average of its spatial neighbors.
+    Preserves local anomaly signal that global aggregation destroys.
+    """
+    def __init__(self, dim, neighborhood_sizes=[3, 5], learnable_weight=True):
+        super().__init__()
+        self.neighborhood_sizes = neighborhood_sizes
+        self.learnable_weight = learnable_weight
+
+        # Learnable fusion of original + contrast features
+        self.fusion = nn.Sequential(
+            nn.Linear(dim * (1 + len(neighborhood_sizes)), dim),
+            nn.GELU(),
+            nn.Linear(dim, dim)
+        )
+        self.norm = nn.LayerNorm(dim)
+
+        # Learnable scale per neighborhood size
+        if learnable_weight:
+            self.contrast_scale = nn.Parameter(
+                torch.ones(len(neighborhood_sizes)) * 0.1
+            )
+        else:
+            self.register_buffer(
+                'contrast_scale',
+                torch.ones(len(neighborhood_sizes)) * 0.1
+            )
+
+    def forward(self, x, side):
+        """
+        x: [B, N, C] patch tokens (N = side*side)
+        side: sqrt(N)
+        Returns: [B, N, C] contrast-enhanced features
+        """
+        B, N, C = x.shape
+        assert N == side * side
+
+        # Reshape to spatial grid
+        x_2d = x.reshape(B, side, side, C).permute(0, 3, 1, 2)  # [B, C, H, W]
+
+        contrast_list = [x]  # original features
+
+        for k, ks in enumerate(self.neighborhood_sizes):
+            pad = ks // 2
+            # Average pooling over neighborhood
+            neighbor_avg = F.avg_pool2d(
+                x_2d, kernel_size=ks, stride=1, padding=pad
+            )  # [B, C, H, W]
+
+            # Local contrast = patch - neighborhood average
+            contrast = x_2d - neighbor_avg  # [B, C, H, W]
+            contrast = contrast * self.contrast_scale[k]
+
+            # Reshape back to sequence
+            contrast_seq = contrast.permute(0, 2, 3, 1).reshape(B, N, C)
+            contrast_list.append(contrast_seq)
+
+        # Concatenate and fuse
+        fused = torch.cat(contrast_list, dim=-1)  # [B, N, C*(1+K)]
+        out = self.fusion(fused)                   # [B, N, C]
+        out = self.norm(out)
+        return out
+
+
+class OrthogonalPrototypeLoss(nn.Module):
+    """
+    Encourage INP prototype tokens to be orthogonal to each other.
+    Orthogonal prototypes cover different subspaces of feature space,
+    preserving discriminative directions that cross-attention would average out.
+    """
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, prototype):
+        """
+        prototype: [B, K, C] — K prototype tokens
+        Returns scalar loss
+        """
+        B, K, C = prototype.shape
+
+        # Normalize prototypes
+        proto_norm = F.normalize(prototype, dim=-1)  # [B, K, C]
+
+        # Gram matrix: [B, K, K]
+        gram = torch.bmm(proto_norm, proto_norm.transpose(1, 2))
+
+        # Off-diagonal elements should be 0 (orthogonal)
+        # On-diagonal elements should be 1 (normalized)
+        identity = torch.eye(K, device=prototype.device).unsqueeze(0)
+        off_diag = gram - identity
+
+        # Loss = mean squared off-diagonal elements
+        loss = (off_diag ** 2).sum(dim=(1, 2)) / (K * (K - 1) + 1e-8)
+        return loss.mean()

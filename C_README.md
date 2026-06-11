@@ -1,3 +1,10 @@
+# Huggingface hub
+```bash
+hf auth login
+hf repo create <name> --type <type>
+hf upload <username>/<repo_name> <local_dir> <remote_dir>
+```
+
 # Env
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
