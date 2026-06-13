@@ -1,0 +1,86 @@
+
+=== CAN ===
+    Normal  : n=  72  mean=0.2345  std=0.0838
+               p0=0.1009  p1=0.1039  p5=0.1228  p10=0.1490  p25=0.1728  p50=0.2104  p75=0.2806  p90=0.3843  p95=0.3936  p99=0.4095  p100=0.4202
+    Defect  : n=  90  mean=0.2348  std=0.0796
+               p0=0.1106  p1=0.1188  p5=0.1301  p10=0.1489  p25=0.1869  p50=0.2072  p75=0.2882  p90=0.3798  p95=0.4046  p99=0.4170  p100=0.4239
+  Gap     : 0.0003
+  Overlap : 98.9%   (% defect-image co score < max(normal-score))
+  Mode    : A — Miss (overlap cao, model khong phan biet duoc)
+
+=== FABRIC ===
+    Normal  : n=  66  mean=0.1604  std=0.0237
+               p0=0.1422  p1=0.1424  p5=0.1432  p10=0.1436  p25=0.1457  p50=0.1575  p75=0.1658  p90=0.1756  p95=0.1777  p99=0.2779  p100=0.2856
+    Defect  : n=  90  mean=0.1852  std=0.0564
+               p0=0.1476  p1=0.1478  p5=0.1498  p10=0.1521  p25=0.1580  p50=0.1657  p75=0.1825  p90=0.2193  p95=0.3588  p99=0.4175  p100=0.4183
+  Gap     : 0.0248
+  Overlap : 93.3%   (% defect-image co score < max(normal-score))
+  Mode    : A — Miss (overlap cao, model khong phan biet duoc)
+
+=== FRUIT_JELLY ===
+    Normal  : n=  20  mean=0.2379  std=0.0205
+               p0=0.2147  p1=0.2148  p5=0.2150  p10=0.2166  p25=0.2232  p50=0.2340  p75=0.2400  p90=0.2748  p95=0.2771  p99=0.2780  p100=0.2783
+    Defect  : n=  60  mean=0.2831  std=0.0375
+               p0=0.2333  p1=0.2345  p5=0.2361  p10=0.2379  p25=0.2443  p50=0.2758  p75=0.3191  p90=0.3311  p95=0.3500  p99=0.3514  p100=0.3517
+  Gap     : 0.0452
+  Overlap : 53.3%   (% defect-image co score < max(normal-score))
+  Mode    : C — Mixed
+
+=== RICE ===
+    Normal  : n=  42  mean=0.1977  std=0.0058
+               p0=0.1858  p1=0.1862  p5=0.1889  p10=0.1900  p25=0.1933  p50=0.1987  p75=0.2021  p90=0.2043  p95=0.2067  p99=0.2087  p100=0.2099
+    Defect  : n=  90  mean=0.2122  std=0.0234
+               p0=0.1924  p1=0.1932  p5=0.1941  p10=0.1952  p25=0.1990  p50=0.2052  p75=0.2139  p90=0.2268  p95=0.2822  p99=0.3025  p100=0.3112
+  Gap     : 0.0145
+  Overlap : 61.1%   (% defect-image co score < max(normal-score))
+  Mode    : A — Miss (overlap cao, model khong phan biet duoc)
+
+=== SHEET_METAL ===
+    Normal  : n=  24  mean=0.2205  std=0.0153
+               p0=0.1887  p1=0.1890  p5=0.1904  p10=0.1974  p25=0.2152  p50=0.2194  p75=0.2269  p90=0.2424  p95=0.2460  p99=0.2467  p100=0.2469
+    Defect  : n=  90  mean=0.2544  std=0.0498
+               p0=0.1992  p1=0.2004  p5=0.2031  p10=0.2081  p25=0.2197  p50=0.2374  p75=0.2672  p90=0.3622  p95=0.3666  p99=0.3713  p100=0.3776
+  Gap     : 0.0339
+  Overlap : 58.9%   (% defect-image co score < max(normal-score))
+  Mode    : C — Mixed
+
+=== VIAL ===
+    Normal  : n=  35  mean=0.2463  std=0.0478
+               p0=0.1619  p1=0.1625  p5=0.1640  p10=0.1687  p25=0.2209  p50=0.2416  p75=0.2721  p90=0.3074  p95=0.3212  p99=0.3481  p100=0.3526
+    Defect  : n= 105  mean=0.3395  std=0.0626
+               p0=0.2059  p1=0.2076  p5=0.2433  p10=0.2607  p25=0.2970  p50=0.3289  p75=0.3923  p90=0.4272  p95=0.4329  p99=0.4384  p100=0.4461
+  Gap     : 0.0932
+  Overlap : 57.1%   (% defect-image co score < max(normal-score))
+  Mode    : B — False Positive (normal score phan tan, FP cao)
+
+=== WALLPLUGS ===
+    Normal  : n=  60  mean=0.2697  std=0.0512
+               p0=0.1890  p1=0.1898  p5=0.1917  p10=0.1965  p25=0.2343  p50=0.2685  p75=0.3143  p90=0.3351  p95=0.3473  p99=0.3775  p100=0.4178
+    Defect  : n=  90  mean=0.2581  std=0.0449
+               p0=0.1866  p1=0.1874  p5=0.1900  p10=0.2007  p25=0.2216  p50=0.2623  p75=0.2989  p90=0.3216  p95=0.3250  p99=0.3377  p100=0.3433
+  Gap     : -0.0115
+  Overlap : 100.0%   (% defect-image co score < max(normal-score))
+  Mode    : A — Miss (overlap cao, model khong phan biet duoc)
+
+=== WALNUTS ===
+    Normal  : n=  60  mean=0.2007  std=0.0679
+               p0=0.1295  p1=0.1304  p5=0.1335  p10=0.1394  p25=0.1565  p50=0.1626  p75=0.2755  p90=0.3122  p95=0.3288  p99=0.3333  p100=0.3335
+    Defect  : n=  90  mean=0.2626  std=0.0594
+               p0=0.1535  p1=0.1541  p5=0.1725  p10=0.1815  p25=0.2010  p50=0.2802  p75=0.3215  p90=0.3295  p95=0.3345  p99=0.3401  p100=0.3407
+  Gap     : 0.0620
+  Overlap : 93.3%   (% defect-image co score < max(normal-score))
+  Mode    : A — Miss (overlap cao, model khong phan biet duoc)
+
+====================================================================================================
+Cat               N_mean   N_std   D_mean   D_std      Gap  Overlap%  Mode
+can               0.2345  0.0838   0.2348  0.0796   0.0003     98.9%  A — Miss (overlap cao, model khong phan biet duoc)
+fabric            0.1604  0.0237   0.1852  0.0564   0.0248     93.3%  A — Miss (overlap cao, model khong phan biet duoc)
+fruit_jelly       0.2379  0.0205   0.2831  0.0375   0.0452     53.3%  C — Mixed
+rice              0.1977  0.0058   0.2122  0.0234   0.0145     61.1%  A — Miss (overlap cao, model khong phan biet duoc)
+sheet_metal       0.2205  0.0153   0.2544  0.0498   0.0339     58.9%  C — Mixed
+vial              0.2463  0.0478   0.3395  0.0626   0.0932     57.1%  B — False Positive (normal score phan tan, FP cao)
+wallplugs         0.2697  0.0512   0.2581  0.0449  -0.0115    100.0%  A — Miss (overlap cao, model khong phan biet duoc)
+walnuts           0.2007  0.0679   0.2626  0.0594   0.0620     93.3%  A — Miss (overlap cao, model khong phan biet duoc)
+
+Log file : diagnosis3_score_dist/diagnosis3_log.txt
+Per-image CSVs and plots in: diagnosis3_score_dist

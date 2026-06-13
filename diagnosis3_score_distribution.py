@@ -1,14 +1,16 @@
 # diagnosis3_score_distribution.py
+import sys
 import torch
 import torch.nn as nn
 import numpy as np
 import os
 import argparse
+import matplotlib
+matplotlib.use('Agg')  # tránh hang/crash trên server không có display
 import matplotlib.pyplot as plt
 from functools import partial
 from tqdm import tqdm
 from torch.nn import functional as F
-import math
 
 from dataset import MVTecAD2Dataset, get_data_transforms
 from models import vit_encoder
@@ -18,6 +20,11 @@ from utils import get_gaussian_kernel, cal_anomaly_maps
 
 import warnings
 warnings.filterwarnings("ignore")
+
+
+def log(msg, logfile):
+    print(msg, flush=True)
+    print(msg, file=logfile, flush=True)
 
 
 def load_model(args, device):
@@ -56,9 +63,9 @@ def get_scores(model, dataloader, device, max_ratio=0.01, resize_mask=256):
     gaussian_kernel = get_gaussian_kernel(kernel_size=5, sigma=4).to(device)
     scores, labels = [], []
     with torch.no_grad():
-        for img, gt, label, _ in tqdm(dataloader, ncols=80):
+        for img, gt, label, _ in tqdm(dataloader, ncols=80, file=sys.stdout):
             img = img.to(device)
-            en, de, _ = model(img)  # unpack g_loss
+            en, de, _ = model(img)
             anomaly_map, _ = cal_anomaly_maps(en, de, img.shape[-1])
             if resize_mask:
                 anomaly_map = F.interpolate(anomaly_map, size=resize_mask,
@@ -75,39 +82,25 @@ def get_scores(model, dataloader, device, max_ratio=0.01, resize_mask=256):
     return np.concatenate(scores), np.concatenate(labels)
 
 
-def plot_distribution(scores, labels, cat, out_dir):
-    normal_scores = scores[labels == 0]
-    defect_scores = scores[labels == 1]
-
-    fig, ax = plt.subplots(figsize=(7, 4))
-    ax.hist(normal_scores, bins=40, alpha=0.6, color='steelblue',
-            label=f'Normal (n={len(normal_scores)})')
-    ax.hist(defect_scores, bins=40, alpha=0.6, color='tomato',
-            label=f'Defect (n={len(defect_scores)})')
-
-    gap = defect_scores.mean() - normal_scores.mean() if len(defect_scores) else 0
-    overlap_pct = (defect_scores < normal_scores.max()).mean() * 100 if len(defect_scores) else 0
-    ax.set_title(f'[{cat}]  mean_gap={gap:.4f}  overlap={overlap_pct:.1f}%')
-    ax.set_xlabel('Anomaly score')
-    ax.set_ylabel('Count')
-    ax.legend()
-    plt.tight_layout()
-    os.makedirs(out_dir, exist_ok=True)
-    plt.savefig(os.path.join(out_dir, f'{cat}_score_dist.png'), dpi=120)
-    plt.close()
-    return normal_scores, defect_scores
+def percentile_table(arr, name, logfile):
+    pcts = [0, 1, 5, 10, 25, 50, 75, 90, 95, 99, 100]
+    vals = np.percentile(arr, pcts)
+    row = "  ".join(f"p{p}={v:.4f}" for p, v in zip(pcts, vals))
+    log(f"    {name:<8}: n={len(arr):4d}  mean={arr.mean():.4f}  std={arr.std():.4f}", logfile)
+    log(f"               {row}", logfile)
 
 
 def classify_failure_mode(normal_s, defect_s):
+    if len(defect_s) == 0:
+        return 'N/A — no defect samples', 0.0, 0.0
     overlap_pct = (defect_s < normal_s.max()).mean() * 100
     gap = defect_s.mean() - normal_s.mean()
     normal_std = normal_s.std()
-    defect_std = defect_s.std()
 
     if overlap_pct > 60:
-        mode = 'A — Miss (overlap cao, model không phân biệt được)'
+        mode = 'A — Miss (overlap cao, model khong phan biet duoc)'
     elif normal_std > 0.5 * gap:
-        mode = 'B — False Positive (normal score phân tán, FP cao)'
+        mode = 'B — False Positive (normal score phan tan, FP cao)'
     else:
         mode = 'C — Mixed'
     return mode, gap, overlap_pct
@@ -116,8 +109,11 @@ def classify_failure_mode(normal_s, defect_s):
 def main(args):
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
     data_transform, gt_transform = get_data_transforms(args.input_size, args.crop_size)
-    out_dir = os.path.join(args.ckpt_dir, '..', 'diagnosis3_score_dist')
-    out_dir = os.path.normpath(out_dir)
+    out_dir = os.path.normpath(os.path.join(args.ckpt_dir, '..', 'diagnosis3_score_dist'))
+    os.makedirs(out_dir, exist_ok=True)
+
+    logfile_path = os.path.join(out_dir, 'diagnosis3_log.txt')
+    logfile = open(logfile_path, 'w')
 
     VALID_CATEGORIES = {'can', 'fabric', 'fruit_jelly', 'rice',
                         'sheet_metal', 'vial', 'wallplugs', 'walnuts'}
@@ -126,10 +122,10 @@ def main(args):
     for cat in sorted(VALID_CATEGORIES):
         ckpt = os.path.join(args.ckpt_dir, cat, 'model.pth')
         if not os.path.exists(ckpt):
-            print(f'[SKIP] {cat} — checkpoint not found at {ckpt}')
+            log(f'[SKIP] {cat} — checkpoint not found at {ckpt}', logfile)
             continue
 
-        print(f'\n=== {cat.upper()} ===')
+        log(f'\n=== {cat.upper()} ===', logfile)
         args.item = cat
         test_data = MVTecAD2Dataset(
             root=os.path.join(args.data_path, cat),
@@ -142,37 +138,68 @@ def main(args):
 
         model = load_model(args, device)
         scores, labels = get_scores(model, loader, device)
-        normal_s, defect_s = plot_distribution(scores, labels, cat, out_dir)
+
+        normal_s = scores[labels == 0]
+        defect_s = scores[labels == 1]
+
+        # --- dump per-image CSV ---
+        csv_path = os.path.join(out_dir, f'{cat}_scores.csv')
+        np.savetxt(csv_path, np.column_stack([labels, scores]),
+                   delimiter=',', header='label,score', comments='', fmt='%.6f')
+
+        # --- text stats (luon co, du plot co loi hay khong) ---
+        percentile_table(normal_s, "Normal", logfile)
+        if len(defect_s) > 0:
+            percentile_table(defect_s, "Defect", logfile)
+        else:
+            log("    Defect  : n=0  (KHONG CO ANH DEFECT trong test set nay!)", logfile)
 
         mode, gap, overlap_pct = classify_failure_mode(normal_s, defect_s)
+        log(f'  Gap     : {gap:.4f}', logfile)
+        log(f'  Overlap : {overlap_pct:.1f}%   '
+            f'(% defect-image co score < max(normal-score))', logfile)
+        log(f'  Mode    : {mode}', logfile)
 
-        print(f'  Normal : mean={normal_s.mean():.4f}  std={normal_s.std():.4f}')
-        print(f'  Defect : mean={defect_s.mean():.4f}  std={defect_s.std():.4f}')
-        print(f'  Gap    : {gap:.4f}')
-        print(f'  Overlap: {overlap_pct:.1f}%')
-        print(f'  Mode   : {mode}')
+        # --- plot (best-effort, khong lam crash mat log) ---
+        try:
+            fig, ax = plt.subplots(figsize=(7, 4))
+            ax.hist(normal_s, bins=40, alpha=0.6, color='steelblue',
+                    label=f'Normal (n={len(normal_s)})')
+            if len(defect_s) > 0:
+                ax.hist(defect_s, bins=40, alpha=0.6, color='tomato',
+                        label=f'Defect (n={len(defect_s)})')
+            ax.set_title(f'[{cat}]  gap={gap:.4f}  overlap={overlap_pct:.1f}%')
+            ax.legend()
+            plt.tight_layout()
+            plt.savefig(os.path.join(out_dir, f'{cat}_score_dist.png'), dpi=120)
+            plt.close(fig)
+        except Exception as e:
+            log(f'  [WARN] plot failed: {e}', logfile)
+
         summary.append((cat, normal_s.mean(), normal_s.std(),
-                        defect_s.mean(), defect_s.std(), gap, overlap_pct, mode))
+                        defect_s.mean() if len(defect_s) else float('nan'),
+                        defect_s.std() if len(defect_s) else float('nan'),
+                        gap, overlap_pct, mode))
 
-    print('\n' + '=' * 90)
-    print(f'{"Cat":<15} {"N_mean":>8} {"N_std":>7} {"D_mean":>8} {"D_std":>7} '
-          f'{"Gap":>8} {"Overlap%":>9}  Mode')
+    log('\n' + '=' * 100, logfile)
+    log(f'{"Cat":<15} {"N_mean":>8} {"N_std":>7} {"D_mean":>8} {"D_std":>7} '
+        f'{"Gap":>8} {"Overlap%":>9}  Mode', logfile)
     for r in summary:
-        print(f'{r[0]:<15} {r[1]:>8.4f} {r[2]:>7.4f} {r[3]:>8.4f} {r[4]:>7.4f} '
-              f'{r[5]:>8.4f} {r[6]:>8.1f}%  {r[7]}')
-    print(f'\nPlots saved to: {out_dir}')
+        log(f'{r[0]:<15} {r[1]:>8.4f} {r[2]:>7.4f} {r[3]:>8.4f} {r[4]:>7.4f} '
+            f'{r[5]:>8.4f} {r[6]:>8.1f}%  {r[7]}', logfile)
+    log(f'\nLog file : {logfile_path}', logfile)
+    log(f'Per-image CSVs and plots in: {out_dir}', logfile)
+    logfile.close()
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_path',   type=str, default=r'E:\dataset\mvtecad2')
-    parser.add_argument('--ckpt_dir',    type=str, default='./reproduced_results',
-                        help='Folder chứa các subfolder category, mỗi cái có model.pth')
+    parser.add_argument('--ckpt_dir',    type=str, default='./reproduced_results')
     parser.add_argument('--encoder',     type=str, default='dinov2reg_vit_base_14')
     parser.add_argument('--input_size',  type=int, default=448)
     parser.add_argument('--crop_size',   type=int, default=392)
     parser.add_argument('--INP_num',     type=int, default=6)
-    parser.add_argument('--batch_size',  type=int, default=16,
-                        help='Batch size inference, 16GB VRAM dùng 16 là ổn')
+    parser.add_argument('--batch_size',  type=int, default=16)
     args = parser.parse_args()
     main(args)
