@@ -36,15 +36,22 @@ from dataset import MVTecAD2Dataset, get_data_transforms
 from models import vit_encoder
 from models.uad import INP_Former
 from models.vision_transformer import Mlp, Aggregation_Block, Prototype_Block
-from utils import cal_anomaly_maps, ader_evaluator, get_gaussian_kernel
+from sklearn.metrics import average_precision_score
+from scipy.stats import rankdata
+from utils import cal_anomaly_maps, ader_evaluator, get_gaussian_kernel, get_logger
 
 warnings.filterwarnings("ignore")
 
 VALID_CATEGORIES = ['can', 'fabric', 'fruit_jelly', 'rice',
                     'sheet_metal', 'vial', 'wallplugs', 'walnuts']
 
-METRIC_NAMES = ['I-AUROC', 'I-AP', 'I-F1', 'P-AUROC', 'P-AP',
-                'P-F1(SegF1)', 'AUPRO', 'AUPRO0.05', 'AUPRO0.30']
+# QUAN TRỌNG: tên phải khớp đúng chuỗi mà ader_evaluator nhận diện
+# (nó dùng startswith('I-F1_max') / startswith('P-F1_max') / == 'AUPRO0.05' ...).
+# Sai tên -> metric bị bỏ qua -> list trả về thiếu phần tử -> IndexError.
+# Thứ tự 9 metric: idx0 I-AUROC, 1 I-AP, 2 I-F1_max, 3 P-AUROC, 4 P-AP,
+#                  5 P-F1_max(SegF1), 6 AUPRO, 7 AUPRO0.05, 8 AUPRO0.30
+METRIC_NAMES = ['I-AUROC', 'I-AP', 'I-F1_max', 'P-AUROC', 'P-AP',
+                'P-F1_max', 'AUPRO', 'AUPRO0.05', 'AUPRO0.30']
 
 
 # ----------------------------------------------------------------------------
@@ -197,6 +204,26 @@ def global_minmax(maps, p_lo=1.0, p_hi=99.0):
     return np.clip((maps - lo) / (hi - lo), 0, 1)
 
 
+def rank_norm(maps):
+    # chuẩn hoá theo thứ hạng toàn cục về [0,1] (bất biến thang đo, giữ thứ tự)
+    shp = maps.shape
+    r = rankdata(maps.reshape(-1), method='average')
+    return (r / r.max()).reshape(shp)
+
+
+def make_fusion(mode, nr, nd, alpha=0.5):
+    # nr, nd: map đã chuẩn hoá [0,1] của RECON và DIST
+    if mode == 'convex':                       # trung bình lồi (pha loãng đỉnh)
+        return alpha * nr + (1 - alpha) * nd
+    if mode == 'max':                          # GIỮ ĐỈNH: lấy max từng pixel
+        return np.maximum(nr, nd)
+    if mode == 'rank':                          # gộp theo thứ hạng (peak-preserving)
+        return 0.5 * (rank_norm(nr) + rank_norm(nd))
+    if mode == 'gmean':                         # nhấn đồng thuận (thường hại AUPRO0.05)
+        return np.sqrt(np.clip(nr, 0, None) * np.clip(nd, 0, None))
+    raise ValueError(mode)
+
+
 def sp_score_from_map(map_2d, max_ratio=0.01):
     # map_2d: [H, W] -> điểm ảnh (mean top max_ratio pixel)
     flat = map_2d.reshape(-1)
@@ -205,10 +232,29 @@ def sp_score_from_map(map_2d, max_ratio=0.01):
 
 
 def evaluate_maps(px_maps, gt_px, max_ratio=0.01):
-    # px_maps, gt_px: np [Ntest, H, W]
+    # px_maps, gt_px: np [Ntest, H, W]  -> bộ 9 metric đầy đủ (CHẬM: có AUPRO CPU)
     pr_sp = np.array([sp_score_from_map(m, max_ratio) for m in px_maps])
     gt_sp = np.array([1 if g.sum() > 0 else 0 for g in gt_px])
     return ader_evaluator(px_maps, pr_sp, gt_px, gt_sp, use_metrics=METRIC_NAMES)
+
+
+def fast_pixel_ap(px_maps, gt_px, max_neg=3_000_000):
+    # Proxy NHANH để chọn alpha (pixel-level Average Precision, vectorized).
+    # AUPRO0.05 tính bằng regionprops trên CPU quá chậm để quét nhiều alpha,
+    # nên ta chọn alpha bằng pixel-AP (tương quan tốt với chất lượng segmentation)
+    # rồi mới tính bộ metric đầy đủ cho nhánh thắng.
+    y = gt_px.reshape(-1).astype(np.uint8)
+    s = px_maps.reshape(-1)
+    if y.sum() == 0 or y.sum() == y.size:
+        return 0.0
+    # subsample bớt pixel âm để tránh tốn RAM/thời gian khi map lớn
+    pos = np.flatnonzero(y == 1)
+    neg = np.flatnonzero(y == 0)
+    if neg.size > max_neg:
+        rng = np.random.default_rng(0)
+        neg = rng.choice(neg, size=max_neg, replace=False)
+    idx = np.concatenate([pos, neg])
+    return average_precision_score(y[idx], s[idx])
 
 
 # ----------------------------------------------------------------------------
@@ -282,23 +328,15 @@ def evaluate_category(args, device, cat, print_fn):
     recon_n = global_minmax(recon_maps)
     dist_n  = global_minmax(dist_maps)
 
+    # Tất cả fusion đều SẠCH (không tune trên test): convex dùng alpha cố định,
+    # max/rank không có tham số. Đây là phần method peak-preserving.
     results = {}
     results['RECON'] = evaluate_maps(recon_maps, gt_maps, args.max_ratio)
     results['DIST']  = evaluate_maps(dist_maps,  gt_maps, args.max_ratio)
+    for mode in args.fusion_modes:
+        fmap = make_fusion(mode, recon_n, dist_n, args.fixed_alpha)
+        results[f'FUSE_{mode}'] = evaluate_maps(fmap, gt_maps, args.max_ratio)
 
-    # Quét alpha cho FUSION, chọn theo metric chính của benchmark MVTec AD 2:
-    # AUPRO0.05 (METRIC_NAMES index 7). Đây là metric threshold-independent đầu bảng
-    # theo paper dataset (Heckler-Kram et al., IJCV 2026, Sec 4.2/4.3).
-    sel = args.select_idx
-    best_alpha, best_fused, best_score = None, None, -1
-    for alpha in args.alphas:
-        fused = alpha * recon_n + (1 - alpha) * dist_n
-        r = evaluate_maps(fused, gt_maps, args.max_ratio)
-        if r[sel] > best_score:
-            best_score, best_alpha, best_fused = r[sel], alpha, r
-    results[f'FUSION(a={best_alpha})'] = best_fused
-
-    # In bảng cho category
     print_fn(f'\n  === {cat.upper()} ===')
     print_fn('  {:<16} '.format('Branch') + ' '.join(f'{m:>11}' for m in METRIC_NAMES))
     for name, r in results.items():
@@ -327,16 +365,30 @@ def main():
     parser.add_argument('--alphas', type=float, nargs='+',
                         default=[0.0, 0.1, 0.25, 0.4, 0.5, 0.6, 0.75, 0.9, 1.0],
                         help='trọng số RECON; 0=chỉ DIST, 1=chỉ RECON')
-    parser.add_argument('--select_idx', type=int, default=7,
-                        help='index metric để chọn alpha tốt nhất. '
-                             '7=AUPRO0.05 (mặc định, metric chính MVTec AD 2), '
-                             '5=P-F1, 6=AUPRO, 8=AUPRO0.30')
+    parser.add_argument('--fixed_alpha', type=float, default=0.5,
+                        help='alpha cố định cho fusion convex (không tune trên test)')
+    parser.add_argument('--fusion_modes', type=str, nargs='+',
+                        default=['convex', 'max', 'rank'],
+                        help='kiểu fusion: convex (lồi), max/rank (peak-preserving), gmean')
 
     parser.add_argument('--categories', type=str, nargs='+', default=VALID_CATEGORIES)
+    parser.add_argument('--out_dir', type=str, default='./diagnosis_fusion_distance',
+                        help='folder lưu log.txt + results.csv')
     args = parser.parse_args()
 
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-    print_fn = print
+
+    # Logger: vừa in ra màn hình vừa ghi <out_dir>/log.txt (giống quy ước diagnosis)
+    out_dir = os.path.join(args.out_dir, args.scorer)
+    os.makedirs(out_dir, exist_ok=True)
+    logger = get_logger(f'fusion_{args.scorer}', out_dir)
+    print_fn = logger.info
+
+    print_fn('=' * 70)
+    print_fn(f'EVAL FUSION | scorer={args.scorer} | fusion_modes={args.fusion_modes} '
+             f'| convex_alpha={args.fixed_alpha}')
+    print_fn(f'data_path={args.data_path} | ckpt_dir={args.ckpt_dir} | encoder={args.encoder}')
+    print_fn('=' * 70)
 
     all_res = {}
     for cat in args.categories:
@@ -349,16 +401,27 @@ def main():
     print_fn('\n' + '=' * 70)
     print_fn('MEAN ACROSS CATEGORIES (theo loại nhánh)')
     print_fn('=' * 70)
-    # Gom FUSION lại bất kể alpha
     agg = {}
     for cat, res in all_res.items():
         for name, r in res.items():
-            key = 'FUSION' if name.startswith('FUSION') else name
-            agg.setdefault(key, []).append(r)
+            agg.setdefault(name, []).append(r)
     print_fn('{:<10} '.format('Branch') + ' '.join(f'{m:>11}' for m in METRIC_NAMES))
     for key, rows in agg.items():
         mean_r = np.array(rows).mean(0)
         print_fn('{:<10} '.format(key) + ' '.join(f'{v:>11.4f}' for v in mean_r))
+
+    # Lưu results.csv: mỗi dòng = (category, branch, 9 metrics)
+    csv_path = os.path.join(out_dir, 'results.csv')
+    with open(csv_path, 'w') as f:
+        f.write('category,branch,' + ','.join(METRIC_NAMES) + '\n')
+        for cat, res in all_res.items():
+            for name, r in res.items():
+                f.write(f'{cat},{name},' + ','.join(f'{v:.4f}' for v in r) + '\n')
+        for key, rows in agg.items():
+            mean_r = np.array(rows).mean(0)
+            f.write(f'MEAN,{key},' + ','.join(f'{v:.4f}' for v in mean_r) + '\n')
+    print_fn(f'\nĐã lưu: {csv_path}')
+    print_fn(f'Đã lưu log: {os.path.join(out_dir, "log.txt")}')
 
 
 if __name__ == '__main__':
