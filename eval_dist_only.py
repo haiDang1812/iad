@@ -131,6 +131,34 @@ def fit_patchcore(train_feats, coreset_ratio, device, proj_dim=128):
     return bank[selected].to(device)
 
 
+# ---- Region-coherence (nhắm TRỰC TIẾP low-FPR / AUPRO0.05) ----
+# AUPRO là metric THEO VÙNG. Defect thật liền khối -> lân cận cùng cao;
+# spike giả lẻ tẻ -> lân cận thấp. Làm nổi vùng liền khối, dập spike đơn lẻ.
+#   mult/gmean : nhân điểm với trung bình lân cận (mềm)
+#   median/open: lọc median / grey-opening (cứng, xoá spike nhỏ)
+# Áp ở lưới patch [B,1,side,side]. LƯU Ý: có thể hại defect cực nhỏ (1 patch).
+@torch.no_grad()
+def region_coherence(score_map, mode, k):
+    if mode == 'none':
+        return score_map
+    if mode in ('mult', 'gmean'):
+        local = F.avg_pool2d(score_map, kernel_size=k, stride=1, padding=k // 2)
+        if mode == 'mult':
+            return score_map * local
+        return torch.sqrt(torch.clamp(score_map * local, min=0.0))
+    if mode in ('median', 'open'):
+        from scipy import ndimage
+        arr = score_map.cpu().numpy()
+        out = np.empty_like(arr)
+        for b in range(arr.shape[0]):
+            if mode == 'median':
+                out[b, 0] = ndimage.median_filter(arr[b, 0], size=k)
+            else:
+                out[b, 0] = ndimage.grey_opening(arr[b, 0], size=(k, k))
+        return torch.tensor(out, device=score_map.device)
+    raise ValueError(mode)
+
+
 @torch.no_grad()
 def patchcore_map(feats, bank, device, chunk=4096):
     B, N, C = feats.shape
@@ -186,6 +214,7 @@ def evaluate_category(args, device, cat, encoder, layers, n_reg, gk, print_fn):
             side = int(math.sqrt(feats.shape[1]))
             scores = patchcore_map(feats, bank, device)
             m = scores.reshape(scores.shape[0], 1, side, side)
+            m = region_coherence(m, args.region_mode, args.region_k)
             if use_fg:
                 w = foreground_weight(feats_raw, side, args.fg_border,
                                       args.fg_percentile, args.fg_bg_w)
@@ -240,6 +269,11 @@ def main():
                         help='độ rộng viền dùng làm prototype nền')
     parser.add_argument('--fg_bg_w', type=float, default=0.1,
                         help='trọng số giữ lại cho vùng nền (0=xoá hẳn)')
+    parser.add_argument('--region_mode', type=str, default='none',
+                        choices=['none', 'mult', 'gmean', 'median', 'open'],
+                        help='region-coherence post-proc nhắm low-FPR (áp ở lưới patch)')
+    parser.add_argument('--region_k', type=int, default=3,
+                        help='kích thước cửa sổ lân cận cho region-coherence')
     parser.add_argument('--categories', type=str, nargs='+', default=VALID_CATEGORIES)
     parser.add_argument('--out_dir', type=str, default='./diagnosis_distonly')
     args = parser.parse_args()
@@ -255,7 +289,9 @@ def main():
     print_fn('=' * 70)
     print_fn(f'DIST-ONLY | encoder={args.encoder} | layers={layers} '
              f'| coreset={args.coreset_ratio} | whiten={args.whiten}'
-             + (f'(dim={args.whiten_dim},eps={args.whiten_eps})' if args.whiten == 'pca' else ''))
+             + (f'(dim={args.whiten_dim},eps={args.whiten_eps})' if args.whiten == 'pca' else '')
+             + f' | region={args.region_mode}(k={args.region_k})'
+             + (f' | fg_mask={args.fg_categories}' if args.fg_mask else ''))
     print_fn(f'data_path={args.data_path}')
     print_fn('=' * 70)
 

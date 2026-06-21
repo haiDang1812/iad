@@ -1,0 +1,44 @@
+======================================================================
+DIST-ONLY | encoder=dinov2reg_vit_base_14 | layers=[2, 3, 4, 5, 6, 7, 8, 9] | coreset=0.25 | whiten=none | region=open(k=3)
+data_path=../data
+======================================================================
+  [can] trích feature train (412 ảnh)...
+  === CAN ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.5637      0.5062      0.6195      0.6050      0.0000      0.0002      0.2174     -0.0000      0.2128
+  [fabric] trích feature train (387 ảnh)...
+  === FABRIC ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.6281      0.6752      0.7500      0.9129      0.2077      0.3573      0.3632      0.0327      0.3620
+  [fruit_jelly] trích feature train (263 ảnh)...
+  === FRUIT_JELLY ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.5825      0.8306      0.8571      0.9183      0.3989      0.4585      0.5156      0.1293      0.5116
+  [rice] trích feature train (313 ảnh)...
+  === RICE ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.6515      0.8100      0.7814      0.8824      0.2783      0.4127      0.5482      0.2067      0.5215
+  [sheet_metal] trích feature train (137 ảnh)...
+  === SHEET_METAL ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.6458      0.8887      0.8955      0.7830      0.1218      0.2788      0.3589      0.1136      0.3290
+  [vial] trích feature train (291 ảnh)...
+  === VIAL ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.8574      0.9526      0.8936      0.9363      0.3332      0.3281      0.8555      0.5107      0.8532
+  [wallplugs] trích feature train (293 ảnh)...
+  === WALLPLUGS ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.4165      0.5412      0.7500      0.7748      0.0139      0.0684      0.2466      0.0592      0.2327
+  [walnuts] trích feature train (432 ảnh)...
+  === WALNUTS ===
+      I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+       0.8944      0.9291      0.8539      0.9672      0.6825      0.6843      0.6566      0.3191      0.6494
+
+======================================================================
+MEAN ACROSS CATEGORIES
+======================================================================
+                 I-AUROC        I-AP    I-F1_max     P-AUROC        P-AP    P-F1_max       AUPRO   AUPRO0.05   AUPRO0.30
+DIST-only         0.6550      0.7667      0.8001      0.8475      0.2545      0.3235      0.4703      0.1714      0.4590
+
+Đã lưu: ./diagnosis_novelty/diagnosis_region_open/results.csv
