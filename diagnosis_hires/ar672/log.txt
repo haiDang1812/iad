@@ -1,0 +1,78 @@
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] aspect-preserve grid = 48x105 patch
+  [can] cache train (412 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+======================================================================
+MULTI-SCALE HI-RES | enc=dinovs2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] aspect-preserve grid = 48x105 patch
+  [can] cache train (412 ảnh)...
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] aspect-preserve grid = 48x105 patch
+  [can] cache train (412 ảnh)...
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] aspect-preserve grid = 48x105 patch
+  [can] cache train (412 ảnh)...
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] aspect-preserve grid = 48x105 patch
+  [can] cache train (412 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === CAN (multi) === I-AUROC:0.5256 I-AP:0.5474 I-F1_max:0.7417 P-AUROC:0.8889 P-AP:0.0004 P-F1_max:0.0026 AUPRO:0.5107 AUPRO0.05:0.1669 AUPRO0.30:0.4766
+  [fabric] aspect-preserve grid = 48x57 patch
+  [fabric] cache train (387 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === FABRIC (multi) === I-AUROC:0.7010 I-AP:0.7125 I-F1_max:0.7921 P-AUROC:0.8401 P-AP:0.0604 P-F1_max:0.1329 AUPRO:0.8636 AUPRO0.05:0.6328 AUPRO0.30:0.8114
+  [fruit_jelly] aspect-preserve grid = 48x66 patch
+  [fruit_jelly] cache train (263 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === FRUIT_JELLY (multi) === I-AUROC:0.8208 I-AP:0.9198 I-F1_max:0.9333 P-AUROC:0.9477 P-AP:0.2007 P-F1_max:0.3026 AUPRO:0.8240 AUPRO0.05:0.5152 AUPRO0.30:0.7990
+  [rice] aspect-preserve grid = 48x57 patch
+  [rice] cache train (313 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === RICE (multi) === I-AUROC:0.6249 I-AP:0.8068 I-F1_max:0.8108 P-AUROC:0.9598 P-AP:0.0932 P-F1_max:0.2473 AUPRO:0.8428 AUPRO0.05:0.5974 AUPRO0.30:0.7863
+  [sheet_metal] aspect-preserve grid = 48x192 patch
+  [sheet_metal] cache train (137 ảnh)...
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] aspect-preserve grid = 48x105 patch
+  [can] cache train (412 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === CAN (multi) === I-AUROC:0.5186 I-AP:0.5470 I-F1_max:0.7317 P-AUROC:0.8804 P-AP:0.0003 P-F1_max:0.0017 AUPRO:0.5069 AUPRO0.05:0.1759 AUPRO0.30:0.4825
+  [fabric] aspect-preserve grid = 48x57 patch
+  [fabric] cache train (387 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === FABRIC (multi) === I-AUROC:0.7296 I-AP:0.7411 I-F1_max:0.8254 P-AUROC:0.8285 P-AP:0.0595 P-F1_max:0.1337 AUPRO:0.8637 AUPRO0.05:0.6402 AUPRO0.30:0.8192
+  [fruit_jelly] aspect-preserve grid = 48x66 patch
+  [fruit_jelly] cache train (263 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === FRUIT_JELLY (multi) === I-AUROC:0.8292 I-AP:0.9304 I-F1_max:0.9333 P-AUROC:0.9481 P-AP:0.2010 P-F1_max:0.3068 AUPRO:0.8232 AUPRO0.05:0.5101 AUPRO0.30:0.7932
+  [rice] aspect-preserve grid = 48x57 patch
+  [rice] cache train (313 ảnh)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === RICE (multi) === I-AUROC:0.5955 I-AP:0.7904 I-F1_max:0.8108 P-AUROC:0.9594 P-AP:0.0952 P-F1_max:0.2501 AUPRO:0.8423 AUPRO0.05:0.6020 AUPRO0.30:0.7861
+  [sheet_metal] aspect-preserve grid = 48x192 patch
+  [sheet_metal] cache train (137 ảnh)...

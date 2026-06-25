@@ -1,0 +1,33 @@
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=single | bank=50000 | morph=0
+======================================================================
+  [can] cache train (412 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === CAN (single) === I-AUROC:0.4936 I-AP:0.5420 I-F1_max:0.7258 P-AUROC:0.8479 P-AP:0.0003 P-F1_max:0.0018 AUPRO:0.4674 AUPRO0.05:0.1797 AUPRO0.30:0.3754
+  [fabric] cache train (387 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === FABRIC (single) === I-AUROC:0.6510 I-AP:0.7084 I-F1_max:0.7788 P-AUROC:0.9057 P-AP:0.0887 P-F1_max:0.2427 AUPRO:0.8452 AUPRO0.05:0.5426 AUPRO0.30:0.7866
+  [fruit_jelly] cache train (263 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === FRUIT_JELLY (single) === I-AUROC:0.7642 I-AP:0.8764 I-F1_max:0.9008 P-AUROC:0.9323 P-AP:0.1292 P-F1_max:0.2667 AUPRO:0.8240 AUPRO0.05:0.4883 AUPRO0.30:0.7657
+  [rice] cache train (313 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === RICE (single) === I-AUROC:0.6172 I-AP:0.7736 I-F1_max:0.8108 P-AUROC:0.9678 P-AP:0.0712 P-F1_max:0.2523 AUPRO:0.8241 AUPRO0.05:0.5100 AUPRO0.30:0.7566
+  [sheet_metal] cache train (137 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === SHEET_METAL (single) === I-AUROC:0.8185 I-AP:0.9513 I-F1_max:0.9045 P-AUROC:0.8880 P-AP:0.0862 P-F1_max:0.2743 AUPRO:0.7497 AUPRO0.05:0.4457 AUPRO0.30:0.6650
+  [vial] cache train (291 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === VIAL (single) === I-AUROC:0.9556 I-AP:0.9857 I-F1_max:0.9375 P-AUROC:0.9483 P-AP:0.2490 P-F1_max:0.3379 AUPRO:0.9425 AUPRO0.05:0.7076 AUPRO0.30:0.9263
+  [wallplugs] cache train (293 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === WALLPLUGS (single) === I-AUROC:0.4474 I-AP:0.5663 I-F1_max:0.7500 P-AUROC:0.9247 P-AP:0.0268 P-F1_max:0.0932 AUPRO:0.7496 AUPRO0.05:0.3273 AUPRO0.30:0.7190
+  [walnuts] cache train (432 ảnh, res=672)...
+    bank[all] = (50000, 768)
+  === WALNUTS (single) === I-AUROC:0.8166 I-AP:0.8179 I-F1_max:0.8673 P-AUROC:0.9704 P-AP:0.2882 P-F1_max:0.5364 AUPRO:0.8036 AUPRO0.05:0.4870 AUPRO0.30:0.7621
+
+======================================================================
+                I-AUROC       I-AP   I-F1_max    P-AUROC       P-AP   P-F1_max      AUPRO  AUPRO0.05  AUPRO0.30
+MEAN[single]     0.6955     0.7777     0.8344     0.9231     0.1175     0.2506     0.7758     0.4610     0.7196
+
+Đã lưu: ./diagnosis_hires/single672/results.csv

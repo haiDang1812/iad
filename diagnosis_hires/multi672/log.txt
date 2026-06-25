@@ -1,0 +1,52 @@
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] cache train (412 ảnh, res=672)...
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] cache train (412 ảnh, res=672)...
+======================================================================
+MULTI-SCALE HI-RES | enc=dinov2reg_vit_base_14 | res=672 (lưới 48x48) | mode=multi | bank=50000 | morph=0
+fine=[2, 3, 4, 5]  coarse=[6, 7, 8, 9]
+======================================================================
+  [can] cache train (412 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === CAN (multi) === I-AUROC:0.5105 I-AP:0.5420 I-F1_max:0.7258 P-AUROC:0.8773 P-AP:0.0006 P-F1_max:0.0042 AUPRO:0.5053 AUPRO0.05:0.2131 AUPRO0.30:0.4223
+  [fabric] cache train (387 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === FABRIC (multi) === I-AUROC:0.7293 I-AP:0.7365 I-F1_max:0.8020 P-AUROC:0.8469 P-AP:0.0669 P-F1_max:0.1388 AUPRO:0.8404 AUPRO0.05:0.6168 AUPRO0.30:0.7918
+  [fruit_jelly] cache train (263 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === FRUIT_JELLY (multi) === I-AUROC:0.8442 I-AP:0.9392 I-F1_max:0.8966 P-AUROC:0.9463 P-AP:0.2034 P-F1_max:0.3068 AUPRO:0.8354 AUPRO0.05:0.5550 AUPRO0.30:0.8070
+  [rice] cache train (313 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === RICE (multi) === I-AUROC:0.6161 I-AP:0.8006 I-F1_max:0.8108 P-AUROC:0.9610 P-AP:0.0985 P-F1_max:0.2525 AUPRO:0.8289 AUPRO0.05:0.5378 AUPRO0.30:0.7797
+  [sheet_metal] cache train (137 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === SHEET_METAL (multi) === I-AUROC:0.7653 I-AP:0.9245 I-F1_max:0.9000 P-AUROC:0.8501 P-AP:0.1281 P-F1_max:0.2532 AUPRO:0.6847 AUPRO0.05:0.4298 AUPRO0.30:0.6642
+  [vial] cache train (291 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === VIAL (multi) === I-AUROC:0.9624 I-AP:0.9875 I-F1_max:0.9484 P-AUROC:0.9449 P-AP:0.2806 P-F1_max:0.3581 AUPRO:0.9442 AUPRO0.05:0.7450 AUPRO0.30:0.9309
+  [wallplugs] cache train (293 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === WALLPLUGS (multi) === I-AUROC:0.4706 I-AP:0.5689 I-F1_max:0.7500 P-AUROC:0.9121 P-AP:0.0586 P-F1_max:0.1479 AUPRO:0.7697 AUPRO0.05:0.4092 AUPRO0.30:0.7396
+  [walnuts] cache train (432 ảnh, res=672)...
+    bank[fine] = (50000, 768)
+    bank[coarse] = (50000, 768)
+  === WALNUTS (multi) === I-AUROC:0.9563 I-AP:0.9738 I-F1_max:0.9171 P-AUROC:0.9682 P-AP:0.4563 P-F1_max:0.6249 AUPRO:0.8184 AUPRO0.05:0.5486 AUPRO0.30:0.7851
+
+======================================================================
+                I-AUROC       I-AP   I-F1_max    P-AUROC       P-AP   P-F1_max      AUPRO  AUPRO0.05  AUPRO0.30
+MEAN[multi]      0.7318     0.8091     0.8438     0.9134     0.1616     0.2608     0.7784     0.5069     0.7401
+
+Đã lưu: ./diagnosis_hires/multi672/results.csv
