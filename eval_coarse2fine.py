@@ -95,17 +95,28 @@ def nn_dist(feats, bank, device, chunk=4096):
 
 def build_bank(paths, encoder, args, n_reg, device, kind):
     # kind='coarse' -> full@coarse_res ; kind='fine' -> T×T tile@tile_res
-    keep = max(256, (args.bank_size * 4) // max(1, len(paths)))
-    acc = []
+    # Gộp tile qua encoder theo enc_batch (streaming buffer -> chặn RAM, GPU no đủ).
+    per = 1 if kind == 'coarse' else args.tiles ** 2
+    keep = max(64, (args.bank_size * 4) // max(1, len(paths) * per))
+    acc, buf = [], []
+
+    def flush():
+        if not buf:
+            return
+        f = extract(encoder, torch.stack(buf), args.layers, n_reg, device)
+        flat = f.reshape(-1, f.shape[-1])
+        acc.append(subsample(flat, len(buf) * keep).cpu())
+        buf.clear()
+
     for p in tqdm(paths, ncols=80, desc=f'  bank-{kind}'):
         pil = Image.open(p)
-        if kind == 'coarse':
-            batch = [to_tensor(pil, args.coarse_res)]
-        else:
-            batch = [to_tensor(t, args.tile_res) for t in tile_pils(pil, args.tiles)]
-        f = extract(encoder, torch.stack(batch), args.layers, n_reg, device)
-        flat = f.reshape(-1, f.shape[-1])
-        acc.append(subsample(flat, len(batch) * keep).cpu())
+        tens = ([to_tensor(pil, args.coarse_res)] if kind == 'coarse'
+                else [to_tensor(t, args.tile_res) for t in tile_pils(pil, args.tiles)])
+        for t in tens:
+            buf.append(t)
+            if len(buf) >= args.enc_batch:
+                flush()
+    flush()
     return subsample(torch.cat(acc, 0), args.bank_size).to(device)
 
 
@@ -126,51 +137,60 @@ def evaluate_category(args, device, cat, encoder, n_reg, gk, print_fn):
     fg = args.tiles * ts                   # full canvas grid side
     T = args.tiles
 
+    paths, gpaths, labels = list(ds.img_paths), list(ds.gt_paths), list(ds.labels)
     pr_maps, gt_maps, fine_tiles_used = [], [], []
-    for idx in tqdm(range(len(ds.img_paths)), ncols=80, desc=f'  test-{args.mode}'):
-        ipath, gpath, label = ds.img_paths[idx], ds.gt_paths[idx], ds.labels[idx]
-        pil = Image.open(ipath)
+    for s in tqdm(range(0, len(paths), args.img_batch), ncols=80, desc=f'  test-{args.mode}'):
+        cidx = list(range(s, min(s + args.img_batch, len(paths))))
+        pils = [Image.open(paths[k]) for k in cidx]
 
-        # --- coarse pass (full ảnh) ---
-        cfeat = extract(encoder, to_tensor(pil, args.coarse_res).unsqueeze(0), args.layers, n_reg, device)
-        cmap = nn_dist(cfeat, coarse_bank, device).reshape(scs, scs)          # [scs,scs]
-        canvas = F.interpolate(cmap[None, None], size=(fg, fg), mode='bilinear',
-                               align_corners=False)[0, 0]                      # bắt đầu từ coarse
+        # --- coarse pass (batch ảnh) ---
+        cstack = torch.stack([to_tensor(p, args.coarse_res) for p in pils])
+        cfeat = extract(encoder, cstack, args.layers, n_reg, device)            # [b, Nc, C]
+        cdist = nn_dist(cfeat, coarse_bank, device).reshape(len(pils), scs, scs)
+        canvases = F.interpolate(cdist[:, None], size=(fg, fg), mode='bilinear',
+                                 align_corners=False)[:, 0]                      # [b, fg, fg]
 
-        n_fine = 0
-        if args.mode != 'coarse':
-            # chọn tile ứng viên
-            tile_score = F.adaptive_max_pool2d(cmap[None, None], (T, T))[0, 0]  # [T,T] max coarse score/tile
-            if args.mode == 'full_tile':
-                cand = torch.ones(T, T, dtype=torch.bool)
-            else:  # c2f: tile có đỉnh coarse vượt mean+k*std (per-image, không leakage)
-                thr = cmap.mean() + args.k_std * cmap.std()
-                cand = tile_score > thr
-                if not cand.any():
-                    ci = torch.argmax(tile_score)
-                    cand.view(-1)[ci] = True                                   # luôn giữ tile đỉnh nhất
+        # --- chọn tile ứng viên (per-image) + gom fine-job cả chunk ---
+        jobs = []   # (bi, i, j, tile_tensor)
+        for bi in range(len(pils)):
+            n_fine = 0
+            if args.mode != 'coarse':
+                cm = cdist[bi]
+                tile_score = F.adaptive_max_pool2d(cm[None, None], (T, T))[0, 0]
+                if args.mode == 'full_tile':
+                    cand = torch.ones(T, T, dtype=torch.bool, device=cm.device)
+                else:
+                    thr = cm.mean() + args.k_std * cm.std()
+                    cand = tile_score > thr
+                    if not cand.any():
+                        cand.view(-1)[torch.argmax(tile_score)] = True
+                tiles = tile_pils(pils[bi], T)
+                for i in range(T):
+                    for j in range(T):
+                        if cand[i, j]:
+                            jobs.append((bi, i, j, to_tensor(tiles[i * T + j], args.tile_res)))
+                            n_fine += 1
+            fine_tiles_used.append(n_fine)
 
-            tiles = tile_pils(pil, T)
-            sel = [(i, j) for i in range(T) for j in range(T) if cand[i, j]]
-            n_fine = len(sel)
-            if sel:
-                batch = torch.stack([to_tensor(tiles[i * T + j], args.tile_res) for (i, j) in sel])
-                ffeat = extract(encoder, batch, args.layers, n_reg, device)    # [k,N,C]
-                fd = nn_dist(ffeat, fine_bank, device).reshape(len(sel), ts, ts)
-                for m, (i, j) in enumerate(sel):
-                    canvas[i * ts:(i + 1) * ts, j * ts:(j + 1) * ts] = fd[m]
-        fine_tiles_used.append(n_fine)
+        # --- fine pass (gộp enc_batch tile cả chunk) ---
+        for fs in range(0, len(jobs), args.enc_batch):
+            sub = jobs[fs:fs + args.enc_batch]
+            ff = extract(encoder, torch.stack([t for (_, _, _, t) in sub]), args.layers, n_reg, device)
+            fd = nn_dist(ff, fine_bank, device).reshape(len(sub), ts, ts)
+            for m, (bi, i, j, _) in enumerate(sub):
+                canvases[bi, i * ts:(i + 1) * ts, j * ts:(j + 1) * ts] = fd[m]
 
-        amap = F.interpolate(canvas[None, None], size=args.resize_mask, mode='bilinear', align_corners=False)
-        amap = gk(amap)[0, 0].cpu().numpy()
-
-        # gt
-        if label == 0 or not (isinstance(gpath, str) and os.path.exists(gpath)):
-            gt = np.zeros((args.resize_mask, args.resize_mask), dtype=np.uint8)
-        else:
-            g = Image.open(gpath).convert('L').resize((args.resize_mask, args.resize_mask), Image.NEAREST)
-            gt = (np.asarray(g) > 127).astype(np.uint8)
-        pr_maps.append(amap); gt_maps.append(gt)
+        amaps = F.interpolate(canvases[:, None], size=args.resize_mask, mode='bilinear', align_corners=False)
+        amaps = gk(amaps)[:, 0].cpu().numpy()
+        for bi, k in enumerate(cidx):
+            pr_maps.append(amaps[bi])
+            gpath, label = gpaths[k], labels[k]
+            if label == 0 or not (isinstance(gpath, str) and os.path.exists(gpath)):
+                gt = np.zeros((args.resize_mask, args.resize_mask), dtype=np.uint8)
+            else:
+                g = Image.open(gpath).convert('L').resize((args.resize_mask, args.resize_mask), Image.NEAREST)
+                gt = (np.asarray(g) > 127).astype(np.uint8)
+            gt_maps.append(gt)
 
     pr = np.stack(pr_maps, 0); gt = np.stack(gt_maps, 0)
     pr_sp = np.array([np.sort(m.reshape(-1))[::-1][:max(1, int(m.size * args.max_ratio))].mean() for m in pr])
@@ -193,6 +213,8 @@ def main():
     ap.add_argument('--tiles', type=int, default=2, help='T: chia ảnh T×T tile (eff res = T*tile_res)')
     ap.add_argument('--k_std', type=float, default=1.0, help='ngưỡng chọn tile c2f: mean+k*std')
     ap.add_argument('--bank_size', type=int, default=50000)
+    ap.add_argument('--img_batch', type=int, default=8, help='số ảnh/batch ở coarse pass (tận dụng GPU)')
+    ap.add_argument('--enc_batch', type=int, default=16, help='số tile/batch qua encoder (bank + fine pass)')
     ap.add_argument('--resize_mask', type=int, default=256)
     ap.add_argument('--max_ratio', type=float, default=0.01)
     ap.add_argument('--mode', type=str, default='c2f', choices=['coarse', 'full_tile', 'c2f'])

@@ -1,0 +1,26 @@
+======================================================================
+COARSE2FINE | mode=c2f | coarse_res=392 tile_res=392 tiles=4 (eff 1568) | k_std=2.5
+======================================================================
+  [can] build banks (train=412)...
+  === CAN (c2f) === I-AUROC:0.5687 I-AP:0.5671 I-F1_max:0.6987 P-AUROC:0.7830 P-AP:0.0002 P-F1_max:0.0018 AUPRO:0.4030 AUPRO0.05:0.1940 AUPRO0.30:0.4017  | avg_fine_tiles/img=3.78/16
+  [fabric] build banks (train=387)...
+  === FABRIC (c2f) === I-AUROC:0.7751 I-AP:0.7610 I-F1_max:0.7822 P-AUROC:0.7792 P-AP:0.0773 P-F1_max:0.1594 AUPRO:0.8247 AUPRO0.05:0.6825 AUPRO0.30:0.8239  | avg_fine_tiles/img=4.12/16
+  [fruit_jelly] build banks (train=263)...
+  === FRUIT_JELLY (c2f) === I-AUROC:0.7900 I-AP:0.8886 I-F1_max:0.8906 P-AUROC:0.9209 P-AP:0.2027 P-F1_max:0.2714 AUPRO:0.7331 AUPRO0.05:0.4726 AUPRO0.30:0.7330  | avg_fine_tiles/img=1.64/16
+  [rice] build banks (train=313)...
+  === RICE (c2f) === I-AUROC:0.6984 I-AP:0.8651 I-F1_max:0.8108 P-AUROC:0.9581 P-AP:0.6810 P-F1_max:0.6901 AUPRO:0.8125 AUPRO0.05:0.6536 AUPRO0.30:0.8084  | avg_fine_tiles/img=4.01/16
+  [sheet_metal] build banks (train=137)...
+  === SHEET_METAL (c2f) === I-AUROC:0.7917 I-AP:0.9439 I-F1_max:0.8867 P-AUROC:0.7352 P-AP:0.1233 P-F1_max:0.2108 AUPRO:0.5503 AUPRO0.05:0.3838 AUPRO0.30:0.5448  | avg_fine_tiles/img=2.46/16
+  [vial] build banks (train=291)...
+  === VIAL (c2f) === I-AUROC:0.9763 I-AP:0.9926 I-F1_max:0.9505 P-AUROC:0.9435 P-AP:0.3756 P-F1_max:0.3696 AUPRO:0.9365 AUPRO0.05:0.7840 AUPRO0.30:0.9360  | avg_fine_tiles/img=5.29/16
+  [wallplugs] build banks (train=293)...
+  === WALLPLUGS (c2f) === I-AUROC:0.4669 I-AP:0.5580 I-F1_max:0.7692 P-AUROC:0.9175 P-AP:0.0867 P-F1_max:0.1740 AUPRO:0.6572 AUPRO0.05:0.4379 AUPRO0.30:0.6550  | avg_fine_tiles/img=4.77/16
+  [walnuts] build banks (train=432)...
+  === WALNUTS (c2f) === I-AUROC:0.9141 I-AP:0.9540 I-F1_max:0.8757 P-AUROC:0.9647 P-AP:0.6506 P-F1_max:0.6700 AUPRO:0.7664 AUPRO0.05:0.5327 AUPRO0.30:0.7653  | avg_fine_tiles/img=4.20/16
+
+======================================================================
+              I-AUROC       I-AP   I-F1_max    P-AUROC       P-AP   P-F1_max      AUPRO  AUPRO0.05  AUPRO0.30
+MEAN[c2f]      0.7476     0.8163     0.8331     0.8753     0.2747     0.3184     0.7105     0.5177     0.7085
+avg fine-tiles/img (mean over cats): 3.78 / 16
+
+Đã lưu: ./diagnosis_c2f/c2f_t4k25/results.csv
