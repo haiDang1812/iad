@@ -1,0 +1,38 @@
+======================================================================
+COARSE2FINE | mode=c2f | coarse_res=392 tile_res=392 tiles=4 (eff 1568) | thresh=global k_std=1.0 global_pct=95.0
+======================================================================
+  [can] build banks (train=412)...
+======================================================================
+COARSE2FINE | mode=c2f | coarse_res=392 tile_res=392 tiles=4 (eff 1568) | thresh=global k_std=1.0 global_pct=95.0
+======================================================================
+  [can] build banks (train=412)...
+  [global thresh] tau(p95.0)=7.0129
+  === CAN (c2f) === I-AUROC:0.5319 I-AP:0.5412 I-F1_max:0.6857 P-AUROC:0.7740 P-AP:0.0001 P-F1_max:0.0008 AUPRO:0.3566 AUPRO0.05:0.1523 AUPRO0.30:0.3564  | tiles/img all=3.06 norm=2.95 def=3.17 /16
+  [fabric] build banks (train=387)...
+  [global thresh] tau(p95.0)=7.2709
+  === FABRIC (c2f) === I-AUROC:0.7695 I-AP:0.7622 I-F1_max:0.7957 P-AUROC:0.7262 P-AP:0.0576 P-F1_max:0.1303 AUPRO:0.8200 AUPRO0.05:0.6862 AUPRO0.30:0.8188  | tiles/img all=3.40 norm=2.75 def=3.95 /16
+  [fruit_jelly] build banks (train=263)...
+  [global thresh] tau(p95.0)=7.6182
+  === FRUIT_JELLY (c2f) === I-AUROC:0.7842 I-AP:0.8915 I-F1_max:0.8906 P-AUROC:0.9268 P-AP:0.2136 P-F1_max:0.2603 AUPRO:0.7265 AUPRO0.05:0.4795 AUPRO0.30:0.7264  | tiles/img all=3.01 norm=2.05 def=3.33 /16
+  [rice] build banks (train=313)...
+  [global thresh] tau(p95.0)=7.2715
+  === RICE (c2f) === I-AUROC:0.7320 I-AP:0.8750 I-F1_max:0.8108 P-AUROC:0.9567 P-AP:0.6675 P-F1_max:0.6828 AUPRO:0.7899 AUPRO0.05:0.5890 AUPRO0.30:0.7896  | tiles/img all=1.82 norm=1.74 def=1.86 /16
+  [sheet_metal] build banks (train=137)...
+  [global thresh] tau(p95.0)=6.9178
+  === SHEET_METAL (c2f) === I-AUROC:0.7625 I-AP:0.9275 I-F1_max:0.8867 P-AUROC:0.7245 P-AP:0.1198 P-F1_max:0.2075 AUPRO:0.5463 AUPRO0.05:0.4006 AUPRO0.30:0.5376  | tiles/img all=4.25 norm=3.29 def=4.50 /16
+  [vial] build banks (train=291)...
+  [global thresh] tau(p95.0)=7.4848
+  === VIAL (c2f) === I-AUROC:0.9831 I-AP:0.9943 I-F1_max:0.9677 P-AUROC:0.9488 P-AP:0.3931 P-F1_max:0.3769 AUPRO:0.9433 AUPRO0.05:0.8011 AUPRO0.30:0.9428  | tiles/img all=3.46 norm=1.94 def=3.96 /16
+  [wallplugs] build banks (train=293)...
+  [global thresh] tau(p95.0)=7.3885
+  === WALLPLUGS (c2f) === I-AUROC:0.4493 I-AP:0.5482 I-F1_max:0.7500 P-AUROC:0.9160 P-AP:0.0818 P-F1_max:0.1637 AUPRO:0.6424 AUPRO0.05:0.4240 AUPRO0.30:0.6402  | tiles/img all=5.79 norm=6.48 def=5.33 /16
+  [walnuts] build banks (train=432)...
+  [global thresh] tau(p95.0)=7.8175
+  === WALNUTS (c2f) === I-AUROC:0.9017 I-AP:0.9483 I-F1_max:0.8556 P-AUROC:0.9631 P-AP:0.6355 P-F1_max:0.6632 AUPRO:0.8197 AUPRO0.05:0.5735 AUPRO0.30:0.8169  | tiles/img all=4.67 norm=2.85 def=5.88 /16
+
+======================================================================
+              I-AUROC       I-AP   I-F1_max    P-AUROC       P-AP   P-F1_max      AUPRO  AUPRO0.05  AUPRO0.30
+MEAN[c2f]      0.7393     0.8110     0.8304     0.8670     0.2711     0.3107     0.7056     0.5133     0.7036
+fine-tiles/img (mean cats): all=3.68 norm=3.01 def=4.00 / 16
+
+Đã lưu: ./diagnosis_c2f/c2f_g95/results.csv

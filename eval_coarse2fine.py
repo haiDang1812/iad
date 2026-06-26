@@ -137,6 +137,21 @@ def evaluate_category(args, device, cat, encoder, n_reg, gk, print_fn):
     fg = args.tiles * ts                   # full canvas grid side
     T = args.tiles
 
+    # Ngưỡng GLOBAL: calibrate từ coarse-score của train (ảnh normal -> ~0 fine tile)
+    tau = None
+    if args.mode == 'c2f' and args.thresh == 'global':
+        ts_all = []
+        with torch.no_grad():
+            for s in range(0, len(train_paths), args.img_batch):
+                pl = [Image.open(p) for p in train_paths[s:s + args.img_batch]]
+                cs = torch.stack([to_tensor(p, args.coarse_res) for p in pl])
+                cf = extract(encoder, cs, args.layers, n_reg, device)
+                cd = nn_dist(cf, coarse_bank, device).reshape(len(pl), scs, scs)
+                tsc = F.adaptive_max_pool2d(cd[:, None], (T, T)).reshape(len(pl), -1)
+                ts_all.append(tsc.flatten().cpu())
+        tau = torch.quantile(torch.cat(ts_all), args.global_pct / 100.0).item()
+        print_fn(f'  [global thresh] tau(p{args.global_pct})={tau:.4f}')
+
     paths, gpaths, labels = list(ds.img_paths), list(ds.gt_paths), list(ds.labels)
     pr_maps, gt_maps, fine_tiles_used = [], [], []
     for s in tqdm(range(0, len(paths), args.img_batch), ncols=80, desc=f'  test-{args.mode}'):
@@ -160,8 +175,10 @@ def evaluate_category(args, device, cat, encoder, n_reg, gk, print_fn):
                 if args.mode == 'full_tile':
                     cand = torch.ones(T, T, dtype=torch.bool, device=cm.device)
                 else:
-                    thr = cm.mean() + args.k_std * cm.std()
-                    cand = tile_score > thr
+                    if args.thresh == 'global':
+                        cand = tile_score > tau
+                    else:
+                        cand = tile_score > (cm.mean() + args.k_std * cm.std())
                     if not cand.any():
                         cand.view(-1)[torch.argmax(tile_score)] = True
                 tiles = tile_pils(pils[bi], T)
@@ -196,11 +213,14 @@ def evaluate_category(args, device, cat, encoder, n_reg, gk, print_fn):
     pr_sp = np.array([np.sort(m.reshape(-1))[::-1][:max(1, int(m.size * args.max_ratio))].mean() for m in pr])
     gt_sp = np.array([1 if g.sum() > 0 else 0 for g in gt])
     r = ader_evaluator(pr, pr_sp, gt, gt_sp, use_metrics=METRIC_NAMES)
-    avg_tiles = float(np.mean(fine_tiles_used))
+    fine = np.array(fine_tiles_used, dtype=float)
+    avg_all = float(fine.mean())
+    avg_norm = float(fine[gt_sp == 0].mean()) if (gt_sp == 0).any() else 0.0
+    avg_def = float(fine[gt_sp == 1].mean()) if (gt_sp == 1).any() else 0.0
     print_fn(f'  === {cat.upper()} ({args.mode}) === ' +
              ' '.join(f'{n}:{v:.4f}' for n, v in zip(METRIC_NAMES, r)) +
-             f'  | avg_fine_tiles/img={avg_tiles:.2f}/{T*T}')
-    return r, avg_tiles
+             f'  | tiles/img all={avg_all:.2f} norm={avg_norm:.2f} def={avg_def:.2f} /{T*T}')
+    return r, (avg_all, avg_norm, avg_def)
 
 
 def main():
@@ -211,7 +231,11 @@ def main():
     ap.add_argument('--coarse_res', type=int, default=392, help='res screen (chia hết 14)')
     ap.add_argument('--tile_res', type=int, default=392, help='res mỗi tile (chia hết 14)')
     ap.add_argument('--tiles', type=int, default=2, help='T: chia ảnh T×T tile (eff res = T*tile_res)')
-    ap.add_argument('--k_std', type=float, default=1.0, help='ngưỡng chọn tile c2f: mean+k*std')
+    ap.add_argument('--k_std', type=float, default=1.0, help='ngưỡng c2f per-image: mean+k*std')
+    ap.add_argument('--thresh', type=str, default='global', choices=['perimg', 'global'],
+                    help="c2f chọn tile: 'global' (calibrate từ train, ảnh normal ~0 tile) hoặc 'perimg' (mean+k*std)")
+    ap.add_argument('--global_pct', type=float, default=99.0,
+                    help='percentile coarse-score của train để đặt ngưỡng global')
     ap.add_argument('--bank_size', type=int, default=50000)
     ap.add_argument('--img_batch', type=int, default=8, help='số ảnh/batch ở coarse pass (tận dụng GPU)')
     ap.add_argument('--enc_batch', type=int, default=16, help='số tile/batch qua encoder (bank + fine pass)')
@@ -235,7 +259,8 @@ def main():
     print_fn = logger.info
     print_fn('=' * 70)
     print_fn(f'COARSE2FINE | mode={args.mode} | coarse_res={args.coarse_res} tile_res={args.tile_res} '
-             f'tiles={args.tiles} (eff {args.tiles*args.tile_res}) | k_std={args.k_std}')
+             f'tiles={args.tiles} (eff {args.tiles*args.tile_res}) | thresh={args.thresh} '
+             f'k_std={args.k_std} global_pct={args.global_pct}')
     print_fn('=' * 70)
 
     encoder = vit_encoder.load(args.encoder).to(device).eval()
@@ -251,15 +276,17 @@ def main():
     mean_r = np.array(list(all_res.values())).mean(0)
     print_fn('{:<10} '.format('') + ' '.join(f'{m:>10}' for m in METRIC_NAMES))
     print_fn('{:<10} '.format(f'MEAN[{args.mode}]') + ' '.join(f'{v:>10.4f}' for v in mean_r))
-    print_fn(f'avg fine-tiles/img (mean over cats): {np.mean(list(all_tiles.values())):.2f} / {args.tiles**2}')
+    tiles_arr = np.array(list(all_tiles.values()))            # [ncat, 3] = (all, norm, def)
+    mt_all, mt_norm, mt_def = tiles_arr.mean(0)
+    print_fn(f'fine-tiles/img (mean cats): all={mt_all:.2f} norm={mt_norm:.2f} def={mt_def:.2f} / {args.tiles**2}')
 
     csv = os.path.join(args.out_dir, 'results.csv')
     with open(csv, 'w') as f:
-        f.write('category,' + ','.join(METRIC_NAMES) + ',avg_fine_tiles\n')
+        f.write('category,' + ','.join(METRIC_NAMES) + ',tiles_all,tiles_norm,tiles_def\n')
         for cat in all_res:
-            f.write(f'{cat},' + ','.join(f'{v:.4f}' for v in all_res[cat]) + f',{all_tiles[cat]:.2f}\n')
-        f.write('MEAN,' + ','.join(f'{v:.4f}' for v in mean_r) +
-                f',{np.mean(list(all_tiles.values())):.2f}\n')
+            a, n, d = all_tiles[cat]
+            f.write(f'{cat},' + ','.join(f'{v:.4f}' for v in all_res[cat]) + f',{a:.2f},{n:.2f},{d:.2f}\n')
+        f.write('MEAN,' + ','.join(f'{v:.4f}' for v in mean_r) + f',{mt_all:.2f},{mt_norm:.2f},{mt_def:.2f}\n')
     print_fn(f'\nĐã lưu: {csv}')
 
 
