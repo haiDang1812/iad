@@ -1,0 +1,12 @@
+======================================================================
+COARSE2FINE | mode=full_tile | coarse_res=392 tile_res=392 tiles=5 (eff 1960) | thresh=global k_std=1.0 global_pct=99.0
+======================================================================
+  [can] build banks (train=412)...
+  === CAN (full_tile) === I-AUROC:0.5235 I-AP:0.5028 I-F1_max:0.6960 P-AUROC:0.8582 P-AP:0.0025 P-F1_max:0.0295 AUPRO:0.5756 AUPRO0.05:0.2383 AUPRO0.30:0.5587  | tiles/img all=25.00 norm=25.00 def=25.00 /25
+
+======================================================================
+              I-AUROC       I-AP   I-F1_max    P-AUROC       P-AP   P-F1_max      AUPRO  AUPRO0.05  AUPRO0.30
+MEAN[full_tile]     0.5235     0.5028     0.6960     0.8582     0.0025     0.0295     0.5756     0.2383     0.5587
+fine-tiles/img (mean cats): all=25.00 norm=25.00 def=25.00 / 25
+
+Đã lưu: ./diagnosis_c2f/full_t5_can/results.csv

@@ -132,10 +132,11 @@ def scale_map(encoder, pil, T, bank, args, n_reg, device, gk):
 
 
 def gpnorm(stack, lo=1.0, hi=99.0):
-    # chuẩn hoá GLOBAL theo toàn bộ test set của 1 scale (giữ khác biệt magnitude giữa ảnh
-    # -> điểm ảnh-level biến thiên, tránh score_min==score_max làm adeval assert chết)
+    # chuẩn hoá GLOBAL affine theo toàn bộ test set của 1 scale (giữ khác biệt magnitude giữa ảnh).
+    # KHÔNG clip -> tránh bão hoà nhiều pixel=1.0 (đặc biệt nhánh MAX) làm điểm ảnh-level đồng nhất
+    # -> tránh score_min==score_max khiến adeval assert chết.
     a, b = np.percentile(stack, lo), np.percentile(stack, hi)
-    return np.clip((stack - a) / (b - a + 1e-12), 0.0, 1.0)
+    return (stack - a) / (b - a + 1e-12)
 
 
 def sp_score(m, r=0.01):
@@ -184,6 +185,8 @@ def evaluate_category(args, device, cat, encoder, n_reg, gk, print_fn):
     for b in branches:
         arr = arrs[b]
         sp = np.array([sp_score(m, args.max_ratio) for m in arr])
+        if float(sp.max() - sp.min()) < 1e-9:                     # guard: tránh adeval assert
+            sp = sp + np.random.default_rng(0).normal(0, 1e-6, sp.shape)
         r = ader_evaluator(arr, sp, gt, gt_sp, use_metrics=METRIC_NAMES)
         res[b] = r
         print_fn(f'  [{cat}/{b}] AUPRO0.05={r[7]:.4f} AUPRO={r[6]:.4f} P-AUROC={r[3]:.4f}')
@@ -198,7 +201,7 @@ def main():
     ap.add_argument('--tile_res', type=int, default=392, help='res mỗi tile (chia hết 14)')
     ap.add_argument('--scales', type=int, nargs='+', default=[1, 2, 4], help='các mức tiling T')
     ap.add_argument('--bank_size', type=int, default=50000)
-    ap.add_argument('--enc_batch', type=int, default=128)
+    ap.add_argument('--enc_batch', type=int, default=64)
     ap.add_argument('--resize_mask', type=int, default=256)
     ap.add_argument('--max_ratio', type=float, default=0.01)
     ap.add_argument('--categories', type=str, nargs='+', default=VALID_CATEGORIES)

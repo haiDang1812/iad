@@ -1,0 +1,52 @@
+==============================================================================
+DIAGNOSIS 10 — memory-bank failure @ low-FPR | crop=392 k=5
+AUROC patch-level: d1 (NN distance) vs d1/dk (relative isolation, bounded)
+HARD = defect vs top-5% normal theo d1 (= các FP ở low-FPR)
+==============================================================================
+
+=== CAN ===  defect-patch%=0.01  hard-normal=6350
+  FULL : AUROC(d1)=0.6969  AUROC(d1/dk)=0.4106
+  HARD : AUROC(d1)=0.0000  AUROC(d1/dk)=0.0139   -> reliso KHÔNG giúp
+
+=== FABRIC ===  defect-patch%=0.69  hard-normal=6074
+  FULL : AUROC(d1)=0.8112  AUROC(d1/dk)=0.6505
+  HARD : AUROC(d1)=0.2715  AUROC(d1/dk)=0.4011   -> reliso GỠ được FP
+
+=== FRUIT_JELLY ===  defect-patch%=1.01  hard-normal=3105
+  FULL : AUROC(d1)=0.9206  AUROC(d1/dk)=0.7536
+  HARD : AUROC(d1)=0.3826  AUROC(d1/dk)=0.4266   -> reliso GỠ được FP
+
+=== RICE ===  defect-patch%=0.20  hard-normal=5164
+  FULL : AUROC(d1)=0.9666  AUROC(d1/dk)=0.5809
+  HARD : AUROC(d1)=0.7970  AUROC(d1/dk)=0.3948   -> reliso KHÔNG giúp
+
+=== SHEET_METAL ===  defect-patch%=0.57  hard-normal=4444
+  FULL : AUROC(d1)=0.8358  AUROC(d1/dk)=0.7405
+  HARD : AUROC(d1)=0.5568  AUROC(d1/dk)=0.5688   -> reliso KHÔNG giúp
+
+=== VIAL ===  defect-patch%=2.14  hard-normal=5371
+  FULL : AUROC(d1)=0.9385  AUROC(d1/dk)=0.6985
+  HARD : AUROC(d1)=0.4059  AUROC(d1/dk)=0.4607   -> reliso GỠ được FP
+
+=== WALLPLUGS ===  defect-patch%=0.15  hard-normal=5871
+  FULL : AUROC(d1)=0.9246  AUROC(d1/dk)=0.7536
+  HARD : AUROC(d1)=0.5581  AUROC(d1/dk)=0.4500   -> reliso KHÔNG giúp
+
+=== WALNUTS ===  defect-patch%=1.14  hard-normal=5814
+  FULL : AUROC(d1)=0.9639  AUROC(d1/dk)=0.7834
+  HARD : AUROC(d1)=0.6495  AUROC(d1/dk)=0.4567   -> reliso KHÔNG giúp
+
+==============================================================================
+cat            AUROC_d1 AUROC_d1/dk     HARD_d1    HARD_d1/dk
+can              0.6969      0.4106      0.0000        0.0139
+fabric           0.8112      0.6505      0.2715        0.4011
+fruit_jelly      0.9206      0.7536      0.3826        0.4266
+rice             0.9666      0.5809      0.7970        0.3948
+sheet_metal      0.8358      0.7405      0.5568        0.5688
+vial             0.9385      0.6985      0.4059        0.4607
+wallplugs        0.9246      0.7536      0.5581        0.4500
+walnuts          0.9639      0.7834      0.6495        0.4567
+MEAN             0.8823      0.6715      0.4527        0.3966
+
+ĐỌC: nếu HARD_d1/dk >> HARD_d1 (~0.5) -> relative-isolation tách được FP rare-normal -> đáng build.
+     nếu HARD_d1/dk ~ HARD_d1 ~0.5      -> bank fail không do rare-normal/isolation -> đổi hướng.

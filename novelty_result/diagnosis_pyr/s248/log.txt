@@ -1,0 +1,62 @@
+======================================================================
+SCALE-PYRAMID | scales=[2, 4, 8] (eff [784, 1568, 3136]) | layers=[2, 3, 4, 5, 6, 7, 8, 9] | bank=50000
+Branch MAX = cross-scale peak-preserving (method). Mốc: full_t4 single-scale = 0.600
+======================================================================
+  [can] build banks scales=[2, 4, 8] (train=412)...
+  [can/T2] AUPRO0.05=0.1719 AUPRO=0.4497 P-AUROC=0.7784
+  [can/T4] AUPRO0.05=0.2458 AUPRO=0.5409 P-AUROC=0.8622
+  [can/T8] AUPRO0.05=0.2956 AUPRO=0.5815 P-AUROC=0.8999
+  [can/MEAN] AUPRO0.05=0.2477 AUPRO=0.5329 P-AUROC=0.8731
+  [can/MAX] AUPRO0.05=0.2727 AUPRO=0.5702 P-AUROC=0.8948
+  [fabric] build banks scales=[2, 4, 8] (train=387)...
+  [fabric/T2] AUPRO0.05=0.7073 AUPRO=0.8436 P-AUROC=0.7949
+  [fabric/T4] AUPRO0.05=0.8838 AUPRO=0.9569 P-AUROC=0.7363
+  [fabric/T8] AUPRO0.05=0.8814 AUPRO=0.9574 P-AUROC=0.6853
+  [fabric/MEAN] AUPRO0.05=0.8636 AUPRO=0.9534 P-AUROC=0.7637
+  [fabric/MAX] AUPRO0.05=0.8782 AUPRO=0.9628 P-AUROC=0.7659
+  [fruit_jelly] build banks scales=[2, 4, 8] (train=263)...
+  [fruit_jelly/T2] AUPRO0.05=0.5355 AUPRO=0.8186 P-AUROC=0.9211
+  [fruit_jelly/T4] AUPRO0.05=0.5055 AUPRO=0.8320 P-AUROC=0.9155
+  [fruit_jelly/T8] AUPRO0.05=0.4443 AUPRO=0.8510 P-AUROC=0.9195
+  [fruit_jelly/MEAN] AUPRO0.05=0.5335 AUPRO=0.8557 P-AUROC=0.9257
+  [fruit_jelly/MAX] AUPRO0.05=0.5310 AUPRO=0.8581 P-AUROC=0.9263
+  [rice] build banks scales=[2, 4, 8] (train=313)...
+  [rice/T2] AUPRO0.05=0.5835 AUPRO=0.7922 P-AUROC=0.9653
+  [rice/T4] AUPRO0.05=0.6578 AUPRO=0.8374 P-AUROC=0.9588
+  [rice/T8] AUPRO0.05=0.5235 AUPRO=0.7796 P-AUROC=0.9423
+  [rice/MEAN] AUPRO0.05=0.6637 AUPRO=0.8591 P-AUROC=0.9671
+  [rice/MAX] AUPRO0.05=0.6568 AUPRO=0.8553 P-AUROC=0.9658
+  [sheet_metal] build banks scales=[2, 4, 8] (train=137)...
+  [sheet_metal/T2] AUPRO0.05=0.5065 AUPRO=0.6711 P-AUROC=0.7453
+  [sheet_metal/T4] AUPRO0.05=0.5211 AUPRO=0.7486 P-AUROC=0.6723
+  [sheet_metal/T8] AUPRO0.05=0.2755 AUPRO=0.5914 P-AUROC=0.6887
+  [sheet_metal/MEAN] AUPRO0.05=0.5275 AUPRO=0.7403 P-AUROC=0.7118
+  [sheet_metal/MAX] AUPRO0.05=0.5612 AUPRO=0.7632 P-AUROC=0.7505
+  [vial] build banks scales=[2, 4, 8] (train=291)...
+  [vial/T2] AUPRO0.05=0.7721 AUPRO=0.9389 P-AUROC=0.9426
+  [vial/T4] AUPRO0.05=0.7634 AUPRO=0.9346 P-AUROC=0.9350
+  [vial/T8] AUPRO0.05=0.7215 AUPRO=0.9248 P-AUROC=0.9278
+  [vial/MEAN] AUPRO0.05=0.7880 AUPRO=0.9418 P-AUROC=0.9389
+  [vial/MAX] AUPRO0.05=0.7660 AUPRO=0.9362 P-AUROC=0.9337
+  [wallplugs] build banks scales=[2, 4, 8] (train=293)...
+  [wallplugs/T2] AUPRO0.05=0.5417 AUPRO=0.8165 P-AUROC=0.9253
+  [wallplugs/T4] AUPRO0.05=0.6566 AUPRO=0.8318 P-AUROC=0.9044
+  [wallplugs/T8] AUPRO0.05=0.5915 AUPRO=0.7835 P-AUROC=0.8491
+  [wallplugs/MEAN] AUPRO0.05=0.6433 AUPRO=0.8380 P-AUROC=0.9127
+  [wallplugs/MAX] AUPRO0.05=0.6227 AUPRO=0.8328 P-AUROC=0.9069
+  [walnuts] build banks scales=[2, 4, 8] (train=432)...
+  [walnuts/T2] AUPRO0.05=0.5628 AUPRO=0.7652 P-AUROC=0.9559
+  [walnuts/T4] AUPRO0.05=0.5742 AUPRO=0.8143 P-AUROC=0.9514
+  [walnuts/T8] AUPRO0.05=0.5560 AUPRO=0.8097 P-AUROC=0.9425
+  [walnuts/MEAN] AUPRO0.05=0.5895 AUPRO=0.8074 P-AUROC=0.9543
+  [walnuts/MAX] AUPRO0.05=0.5746 AUPRO=0.8207 P-AUROC=0.9497
+
+======================================================================
+Branch      I-AUROC       I-AP   I-F1_max    P-AUROC       P-AP   P-F1_max      AUPRO  AUPRO0.05  AUPRO0.30
+T2           0.7439     0.8107     0.8422     0.8786     0.2563     0.3054     0.7620     0.5476     0.7575
+T4           0.7329     0.8123     0.8419     0.8670     0.2533     0.2967     0.8121     0.6010     0.8082
+T8           0.7219     0.8131     0.8420     0.8569     0.2181     0.2543     0.7849     0.5362     0.7791
+MEAN         0.7451     0.8187     0.8551     0.8809     0.2782     0.3196     0.8161     0.6071     0.8095
+MAX          0.7505     0.8183     0.8457     0.8867     0.2593     0.3058     0.8249     0.6079     0.8228
+
+Đã lưu: ./diagnosis_pyr/s248/results.csv

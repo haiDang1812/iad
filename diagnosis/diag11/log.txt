@@ -1,0 +1,44 @@
+======================================================================
+DIAGNOSIS 11 — ORACLE (logistic, CV) tách rare-normal vs defect?
+FULL = normal vs defect | HARD = top-5% normal theo d1 vs defect
+======================================================================
+
+=== CAN === defect%=0.01
+  ORACLE  FULL=1.0000   HARD=0.9998   -> signal TỒN TẠI (cần nhãn)
+
+=== FABRIC === defect%=0.69
+  ORACLE  FULL=0.9878   HARD=0.9876   -> signal TỒN TẠI (cần nhãn)
+
+=== FRUIT_JELLY === defect%=1.01
+  ORACLE  FULL=0.9795   HARD=0.9669   -> signal TỒN TẠI (cần nhãn)
+
+=== RICE === defect%=0.20
+  ORACLE  FULL=0.9815   HARD=0.9645   -> signal TỒN TẠI (cần nhãn)
+
+=== SHEET_METAL === defect%=0.57
+  ORACLE  FULL=0.8817   HARD=0.9005   -> signal TỒN TẠI (cần nhãn)
+
+=== VIAL === defect%=2.14
+  ORACLE  FULL=0.9327   HARD=0.7867   -> signal TỒN TẠI (cần nhãn)
+
+=== WALLPLUGS === defect%=0.15
+  ORACLE  FULL=0.9042   HARD=0.9095   -> signal TỒN TẠI (cần nhãn)
+
+=== WALNUTS === defect%=1.14
+  ORACLE  FULL=0.9759   HARD=0.9334   -> signal TỒN TẠI (cần nhãn)
+
+======================================================================
+cat             ORACLE_FULL   ORACLE_HARD
+can                  1.0000        0.9998
+fabric               0.9878        0.9876
+fruit_jelly          0.9795        0.9669
+rice                 0.9815        0.9645
+sheet_metal          0.8817        0.9005
+vial                 0.9327        0.7867
+wallplugs            0.9042        0.9095
+walnuts              0.9759        0.9334
+MEAN                 0.9554        0.9311
+
+ĐỌC: ORACLE_HARD cao (>0.7) -> rare-normal vs defect TÁCH ĐƯỢC bằng giám sát
+     -> mở đường few-shot/weakly-supervised (dùng ít nhãn) = NOVELTY có cơ sở.
+     ORACLE_HARD ~0.5 -> fundamental, không tách được -> analysis paper thuần.

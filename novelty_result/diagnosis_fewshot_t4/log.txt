@@ -1,0 +1,20 @@
+==============================================================================
+FEW-SHOT | tiles=4 (eff 1568) | shots=[0, 5, 10, 16]
+UNSUP=distance | HEAD=logistic(k ảnh nhãn) | FUSE=rank(d)+prob. Báo AUPRO0.05 & P-F1max.
+==============================================================================
+
+==============================================================================
+shot/branch      AUPRO0.05     P-F1max
+0-UNSUP             0.6104      0.2877
+5-FMULT             0.5312      0.3623
+5-FUSE              0.6467      0.3679
+5-HEAD              0.4868      0.3467
+10-FMULT            0.6252      0.4366
+10-FUSE             0.6273      0.4351
+10-HEAD             0.5401      0.4588
+16-FMULT            0.6635      0.4646
+16-FUSE             0.6465      0.4689
+16-HEAD             0.5558      0.4842
+
+Đã lưu: ./diagnosis_fewshot_t4/results.csv
+ĐỌC: HEAD/FUSE ở k nhỏ có vượt 0-UNSUP không (nhất là P-F1max=proxy SegF1). Lift mạnh -> few-shot phá trần FP = NOVELTY.

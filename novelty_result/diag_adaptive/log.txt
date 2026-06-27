@@ -1,0 +1,74 @@
+================================================================================
+CATEGORY-ADAPTIVE | tiles=2 | k=10 | head_w=0.7 | morph=3
+candidates=['UNSUP', 'HEAD', 'FUSE', 'MIX', 'FMULT'] | select_by=f1 | folds=5
+================================================================================
+  [can] OOF f1: UNSUP=0.001 HEAD=0.145 FUSE=0.254 MIX=0.209 FMULT=0.314  -> chọn FMULT
+  [can] computing AUPRO eval (CPU)...
+  [can] UNSUP AUPRO05=0.2271 F1=0.0050
+  [can] HEAD  AUPRO05=0.6898 F1=0.2160
+  [can] FUSE  AUPRO05=0.8063 F1=0.2826
+  [can] MIX   AUPRO05=0.8015 F1=0.2552
+  [can] FMULT AUPRO05=0.6953 F1=0.3267 <== ADAPTIVE
+  [fabric] OOF f1: UNSUP=0.094 HEAD=0.038 FUSE=0.039 MIX=0.039 FMULT=0.038  -> chọn UNSUP
+  [fabric] computing AUPRO eval (CPU)...
+  [fabric] UNSUP AUPRO05=0.6745 F1=0.1932 <== ADAPTIVE
+  [fabric] HEAD  AUPRO05=0.3183 F1=0.6326
+  [fabric] FUSE  AUPRO05=0.5189 F1=0.4543
+  [fabric] MIX   AUPRO05=0.4216 F1=0.5726
+  [fabric] FMULT AUPRO05=0.5537 F1=0.3302
+  [fruit_jelly] OOF f1: UNSUP=0.323 HEAD=0.488 FUSE=0.544 MIX=0.519 FMULT=0.538  -> chọn FUSE
+  [fruit_jelly] computing AUPRO eval (CPU)...
+  [fruit_jelly] UNSUP AUPRO05=0.6059 F1=0.2613
+  [fruit_jelly] HEAD  AUPRO05=0.8337 F1=0.5897
+  [fruit_jelly] FUSE  AUPRO05=0.8564 F1=0.6101 <== ADAPTIVE
+  [fruit_jelly] MIX   AUPRO05=0.8485 F1=0.6097
+  [fruit_jelly] FMULT AUPRO05=0.8598 F1=0.6133
+  [rice] OOF f1: UNSUP=0.300 HEAD=0.545 FUSE=0.572 MIX=0.562 FMULT=0.590  -> chọn FMULT
+  [rice] computing AUPRO eval (CPU)...
+  [rice] UNSUP AUPRO05=0.6730 F1=0.6722
+  [rice] HEAD  AUPRO05=0.7230 F1=0.3516
+  [rice] FUSE  AUPRO05=0.8224 F1=0.4481
+  [rice] MIX   AUPRO05=0.8151 F1=0.3803
+  [rice] FMULT AUPRO05=0.7192 F1=0.3849 <== ADAPTIVE
+  [sheet_metal] OOF f1: UNSUP=0.201 HEAD=0.704 FUSE=0.706 MIX=0.714 FMULT=0.647  -> chọn MIX
+  [sheet_metal] computing AUPRO eval (CPU)...
+  [sheet_metal] UNSUP AUPRO05=0.4548 F1=0.1801
+  [sheet_metal] HEAD  AUPRO05=0.6232 F1=0.2909
+  [sheet_metal] FUSE  AUPRO05=0.6447 F1=0.3042
+  [sheet_metal] MIX   AUPRO05=0.6479 F1=0.3059 <== ADAPTIVE
+  [sheet_metal] FMULT AUPRO05=0.6577 F1=0.3112
+  [vial] OOF f1: UNSUP=0.431 HEAD=0.186 FUSE=0.243 MIX=0.216 FMULT=0.245  -> chọn UNSUP
+  [vial] computing AUPRO eval (CPU)...
+  [vial] UNSUP AUPRO05=0.7375 F1=0.3551 <== ADAPTIVE
+  [vial] HEAD  AUPRO05=0.5589 F1=0.4669
+  [vial] FUSE  AUPRO05=0.7230 F1=0.4975
+  [vial] MIX   AUPRO05=0.6611 F1=0.5086
+  [vial] FMULT AUPRO05=0.7386 F1=0.4716
+  [wallplugs] OOF f1: UNSUP=0.336 HEAD=0.442 FUSE=0.454 MIX=0.451 FMULT=0.451  -> chọn FUSE
+  [wallplugs] computing AUPRO eval (CPU)...
+  [wallplugs] UNSUP AUPRO05=0.6455 F1=0.1618
+  [wallplugs] HEAD  AUPRO05=0.7615 F1=0.3441
+  [wallplugs] FUSE  AUPRO05=0.8150 F1=0.3770 <== ADAPTIVE
+  [wallplugs] MIX   AUPRO05=0.7928 F1=0.3645
+  [wallplugs] FMULT AUPRO05=0.7960 F1=0.3803
+  [walnuts] OOF f1: UNSUP=0.660 HEAD=0.774 FUSE=0.784 MIX=0.781 FMULT=0.783  -> chọn FUSE
+  [walnuts] computing AUPRO eval (CPU)...
+  [walnuts] UNSUP AUPRO05=0.6766 F1=0.5781
+  [walnuts] HEAD  AUPRO05=0.6913 F1=0.6881
+  [walnuts] FUSE  AUPRO05=0.7190 F1=0.6677 <== ADAPTIVE
+  [walnuts] MIX   AUPRO05=0.7064 F1=0.6822
+  [walnuts] FMULT AUPRO05=0.7253 F1=0.6605
+
+================================================================================
+branch               AUPRO0.05     P-F1max
+fixed-UNSUP             0.5869      0.3009
+fixed-HEAD              0.6500      0.4475
+fixed-FUSE              0.7382      0.4552
+fixed-MIX               0.7119      0.4599
+fixed-FMULT             0.7182      0.4348
+ADAPTIVE                0.7331      0.4026   <== category-adaptive
+
+Branch chọn theo cat: can:FMULT, fabric:UNSUP, fruit_jelly:FUSE, rice:FMULT, sheet_metal:MIX, vial:UNSUP, wallplugs:FUSE, walnuts:FUSE
+
+Đã lưu: ./diag_adaptive/results.csv
+ĐỌC: ADAPTIVE có > mọi fixed branch ở P-F1max (và giữ AUPRO) không. Nếu có -> category-adaptive là đòn bẩy + contribution.

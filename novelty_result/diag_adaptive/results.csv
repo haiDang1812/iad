@@ -1,0 +1,17 @@
+branch,AUPRO0.05,P-F1max
+fixed-UNSUP,0.5869,0.3009
+fixed-HEAD,0.6500,0.4475
+fixed-FUSE,0.7382,0.4552
+fixed-MIX,0.7119,0.4599
+fixed-FMULT,0.7182,0.4348
+ADAPTIVE,0.7331,0.4026
+
+cat,selected_branch
+can,FMULT
+fabric,UNSUP
+fruit_jelly,FUSE
+rice,FMULT
+sheet_metal,MIX
+vial,UNSUP
+wallplugs,FUSE
+walnuts,FUSE

@@ -1,0 +1,5 @@
+======================================================================
+SCALE-PYRAMID | scales=[1, 2, 4, 8] (eff [392, 784, 1568, 3136]) | layers=[2, 3, 4, 5, 6, 7, 8, 9] | bank=50000
+Branch MAX = cross-scale peak-preserving (method). Mốc: full_t4 single-scale = 0.600
+======================================================================
+  [can] build banks scales=[1, 2, 4, 8] (train=412)...

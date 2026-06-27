@@ -1,0 +1,63 @@
+==============================================================================
+EVAL PUBLIC SegF1 | tiles=2 | shots=[10] | head_w=0.7 | morph=3
+branches=['UNSUP', 'FUSE', 'MIX', 'HEAD', 'FMULT'] | so AUPRO0.05 & P-F1max
+==============================================================================
+  [can] k=10 UNSUP AUPRO05=0.2271 F1=0.0050
+  [can] k=10: head trained, computing AUPRO (CPU)...
+  [can] k=10 FUSE  AUPRO05=0.8068 F1=0.2608
+  [can] k=10 MIX   AUPRO05=0.8021 F1=0.2355
+  [can] k=10 HEAD  AUPRO05=0.6891 F1=0.2003
+  [can] k=10 FMULT AUPRO05=0.6947 F1=0.2967
+  [fabric] k=10 UNSUP AUPRO05=0.6745 F1=0.1932
+  [fabric] k=10: head trained, computing AUPRO (CPU)...
+  [fabric] k=10 FUSE  AUPRO05=0.4472 F1=0.4356
+  [fabric] k=10 MIX   AUPRO05=0.3572 F1=0.5678
+  [fabric] k=10 HEAD  AUPRO05=0.2739 F1=0.6421
+  [fabric] k=10 FMULT AUPRO05=0.4514 F1=0.3136
+  [fruit_jelly] k=10 UNSUP AUPRO05=0.6059 F1=0.2613
+  [fruit_jelly] k=10: head trained, computing AUPRO (CPU)...
+  [fruit_jelly] k=10 FUSE  AUPRO05=0.8486 F1=0.5881
+  [fruit_jelly] k=10 MIX   AUPRO05=0.8454 F1=0.5841
+  [fruit_jelly] k=10 HEAD  AUPRO05=0.8243 F1=0.5635
+  [fruit_jelly] k=10 FMULT AUPRO05=0.8551 F1=0.5915
+  [rice] k=10 UNSUP AUPRO05=0.6730 F1=0.6722
+  [rice] k=10: head trained, computing AUPRO (CPU)...
+  [rice] k=10 FUSE  AUPRO05=0.8246 F1=0.4555
+  [rice] k=10 MIX   AUPRO05=0.8180 F1=0.3814
+  [rice] k=10 HEAD  AUPRO05=0.7376 F1=0.3501
+  [rice] k=10 FMULT AUPRO05=0.7364 F1=0.3868
+  [sheet_metal] k=10 UNSUP AUPRO05=0.4548 F1=0.1801
+  [sheet_metal] k=10: head trained, computing AUPRO (CPU)...
+  [sheet_metal] k=10 FUSE  AUPRO05=0.5850 F1=0.3013
+  [sheet_metal] k=10 MIX   AUPRO05=0.5838 F1=0.3023
+  [sheet_metal] k=10 HEAD  AUPRO05=0.5519 F1=0.2792
+  [sheet_metal] k=10 FMULT AUPRO05=0.6012 F1=0.3078
+  [vial] k=10 UNSUP AUPRO05=0.7375 F1=0.3551
+  [vial] k=10: head trained, computing AUPRO (CPU)...
+  [vial] k=10 FUSE  AUPRO05=0.7255 F1=0.5120
+  [vial] k=10 MIX   AUPRO05=0.6612 F1=0.5239
+  [vial] k=10 HEAD  AUPRO05=0.5553 F1=0.4817
+  [vial] k=10 FMULT AUPRO05=0.7374 F1=0.4860
+  [wallplugs] k=10 UNSUP AUPRO05=0.6455 F1=0.1618
+  [wallplugs] k=10: head trained, computing AUPRO (CPU)...
+  [wallplugs] k=10 FUSE  AUPRO05=0.7609 F1=0.3633
+  [wallplugs] k=10 MIX   AUPRO05=0.7177 F1=0.3612
+  [wallplugs] k=10 HEAD  AUPRO05=0.6557 F1=0.3418
+  [wallplugs] k=10 FMULT AUPRO05=0.6936 F1=0.3637
+  [walnuts] k=10 UNSUP AUPRO05=0.6766 F1=0.5781
+  [walnuts] k=10: head trained, computing AUPRO (CPU)...
+  [walnuts] k=10 FUSE  AUPRO05=0.7272 F1=0.6578
+  [walnuts] k=10 MIX   AUPRO05=0.7083 F1=0.6747
+  [walnuts] k=10 HEAD  AUPRO05=0.6849 F1=0.6823
+  [walnuts] k=10 FMULT AUPRO05=0.7359 F1=0.6526
+
+==============================================================================
+shot/branch      AUPRO0.05     P-F1max
+10-FMULT            0.6882      0.4249
+10-FUSE             0.7157      0.4468
+10-HEAD             0.6216      0.4426
+10-MIX              0.6867      0.4539
+10-UNSUP            0.5869      0.3009
+
+Đã lưu: ./diag_segf1/results.csv
+ĐỌC: so P-F1max của MIX/HEAD/FMULT vs FUSE. Cao hơn -> operating point đó đáng dùng cho SegF1.

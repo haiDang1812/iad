@@ -1,2 +1,2 @@
-python eval_scalepyramid.py --data_path ../data --scales 1 2 4 --enc_batch 64 --categories can --out_dir ./diagnosis_pyr/s124_can
-python eval_scalepyramid.py --data_path ../data --scales 1 2 4 --enc_batch 64 --out_dir ./diagnosis_pyr/s124
+uv run python eval_scalepyramid.py --data_path ../data --scales 2 4 8 --enc_batch 64 --out_dir ./diagnosis_pyr/s248
+uv run python eval_scalepyramid.py --data_path ../data --scales 1 2 4 8 --enc_batch 64 --out_dir ./diagnosis_pyr/s1248

@@ -1,0 +1,36 @@
+======================================================================
+LOCAL-CALIB | scales=[1, 2, 4] | layers=[2, 3, 4, 5, 6, 7, 8, 9] | bank=50000
+So RAW-MAX (mốc 0.611) vs CALIB-MAX (d / local-normal-scale)
+======================================================================
+  [can] build banks + local-scale scales=[1, 2, 4] (train=412)
+======================================================================
+LOCAL-CALIB | scales=[1, 2, 4] | layers=[2, 3, 4, 5, 6, 7, 8, 9] | bank=50000
+So RAW-MAX (mốc 0.611) vs CALIB-MAX (d / local-normal-scale)
+======================================================================
+  [can] build banks + local-scale scales=[1, 2, 4] (train=412)
+======================================================================
+LOCAL-CALIB | scales=[1, 2, 4] | layers=[2, 3, 4, 5, 6, 7, 8, 9] | bank=50000
+So RAW-MAX (mốc 0.611) vs CALIB-MAX (d / local-normal-scale)
+======================================================================
+  [can] build banks + local-scale scales=[1, 2, 4] (train=412)
+  [can/RAW-MAX] AUPRO0.05=0.2619 AUPRO=0.5415 P-F1max=0.0042 P-AUROC=0.8536
+  [can/CALIB-MAX] AUPRO0.05=0.0004 AUPRO=0.1221 P-F1max=0.0001 P-AUROC=0.5447
+  [fabric] build banks + local-scale scales=[1, 2, 4] (train=387)
+  [fabric/RAW-MAX] AUPRO0.05=0.8557 AUPRO=0.9516 P-F1max=0.2320 P-AUROC=0.8502
+  [fabric/CALIB-MAX] AUPRO0.05=0.5011 AUPRO=0.8633 P-F1max=0.1605 P-AUROC=0.8168
+  [fruit_jelly] build banks + local-scale scales=[1, 2, 4] (train=263)
+  [fruit_jelly/RAW-MAX] AUPRO0.05=0.5326 AUPRO=0.8363 P-F1max=0.2753 P-AUROC=0.9217
+  [fruit_jelly/CALIB-MAX] AUPRO0.05=0.0245 AUPRO=0.2876 P-F1max=0.0326 P-AUROC=0.6554
+  [rice] build banks + local-scale scales=[1, 2, 4] (train=313)
+  [rice/RAW-MAX] AUPRO0.05=0.7177 AUPRO=0.8571 P-F1max=0.6586 P-AUROC=0.9707
+  [rice/CALIB-MAX] AUPRO0.05=0.5647 AUPRO=0.7958 P-F1max=0.4887 P-AUROC=0.9573
+  [sheet_metal] build banks + local-scale scales=[1, 2, 4] (train=137)
+  [sheet_metal/RAW-MAX] AUPRO0.05=0.5849 AUPRO=0.7745 P-F1max=0.2757 P-AUROC=0.8525
+  [sheet_metal/CALIB-MAX] AUPRO0.05=0.0081 AUPRO=0.3332 P-F1max=0.0779 P-AUROC=0.8829
+  [vial] build banks + local-scale scales=[1, 2, 4] (train=291)
+  [vial/RAW-MAX] AUPRO0.05=0.7728 AUPRO=0.9386 P-F1max=0.3618 P-AUROC=0.9407
+  [vial/CALIB-MAX] AUPRO0.05=-0.0000 AUPRO=0.1382 P-F1max=0.0543 P-AUROC=0.4930
+  [wallplugs] build banks + local-scale scales=[1, 2, 4] (train=293)
+  [wallplugs/RAW-MAX] AUPRO0.05=0.6052 AUPRO=0.8307 P-F1max=0.1782 P-AUROC=0.9188
+  [wallplugs/CALIB-MAX] AUPRO0.05=0.0691 AUPRO=0.4940 P-F1max=0.0237 P-AUROC=0.8529
+  [walnuts] build banks + local-scale scales=[1, 2, 4] (train=432)
