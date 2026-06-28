@@ -1,0 +1,20 @@
+================================================================================
+FEW-SHOT BB | model=v3_huge patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[5, 8, 11, 13, 16, 19, 21, 24] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+================================================================================
+FEW-SHOT BB | model=v3_huge patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[5, 8, 11, 13, 16, 19, 21, 24] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+================================================================================
+FEW-SHOT BB | model=v3_huge patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[5, 8, 11, 13, 16, 19, 21, 24] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+================================================================================
+FEW-SHOT BB | model=v3_huge patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[5, 8, 11, 13, 16, 19, 21, 24] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.3346 F1=0.0092
+  [can] k=10 HEAD  AUPRO05=0.6922 F1=0.2341
+  [can] k=10 FUSE  AUPRO05=0.8668 F1=0.2886
+  [can] k=10 FMULT AUPRO05=0.6953 F1=0.3063

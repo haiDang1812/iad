@@ -1,0 +1,66 @@
+====================================================================================
+SoftPRO vs BCE | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | k=10 head_w=[0.5, 0.6, 0.7] | steps=400 q=0.95 temp=0.5 w_bce=0.3
+====================================================================================
+====================================================================================
+SoftPRO vs BCE | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | k=10 head_w=[0.5, 0.6, 0.7] | steps=400 q=0.95 temp=0.5 w_bce=0.3
+====================================================================================
+  [can] BCE     hw0.50 AUPRO05=0.9578 SegF1=0.1549
+  [can] BCE     hw0.60 AUPRO05=0.9741 SegF1=0.3493
+  [can] BCE     hw0.70 AUPRO05=0.9754 SegF1=0.5053
+  [can] SOFTPRO hw0.50 AUPRO05=0.9427 SegF1=0.2603
+  [can] SOFTPRO hw0.60 AUPRO05=0.9591 SegF1=0.4348
+  [can] SOFTPRO hw0.70 AUPRO05=0.9644 SegF1=0.4580
+  [fabric] BCE     hw0.50 AUPRO05=0.7223 SegF1=0.7388
+  [fabric] BCE     hw0.60 AUPRO05=0.6402 SegF1=0.8013
+  [fabric] BCE     hw0.70 AUPRO05=0.5570 SegF1=0.8456
+  [fabric] SOFTPRO hw0.50 AUPRO05=0.7925 SegF1=0.8270
+  [fabric] SOFTPRO hw0.60 AUPRO05=0.7902 SegF1=0.8689
+  [fabric] SOFTPRO hw0.70 AUPRO05=0.7496 SegF1=0.8880
+  [fruit_jelly] BCE     hw0.50 AUPRO05=0.8738 SegF1=0.7559
+  [fruit_jelly] BCE     hw0.60 AUPRO05=0.8804 SegF1=0.7793
+  [fruit_jelly] BCE     hw0.70 AUPRO05=0.8840 SegF1=0.7934
+  [fruit_jelly] SOFTPRO hw0.50 AUPRO05=0.8778 SegF1=0.7518
+  [fruit_jelly] SOFTPRO hw0.60 AUPRO05=0.8854 SegF1=0.7655
+  [fruit_jelly] SOFTPRO hw0.70 AUPRO05=0.8929 SegF1=0.7758
+  [rice] BCE     hw0.50 AUPRO05=0.9062 SegF1=0.7495
+  [rice] BCE     hw0.60 AUPRO05=0.9175 SegF1=0.7565
+  [rice] BCE     hw0.70 AUPRO05=0.9335 SegF1=0.7630
+  [rice] SOFTPRO hw0.50 AUPRO05=0.8449 SegF1=0.7087
+  [rice] SOFTPRO hw0.60 AUPRO05=0.8630 SegF1=0.7041
+  [rice] SOFTPRO hw0.70 AUPRO05=0.8766 SegF1=0.6975
+  [sheet_metal] BCE     hw0.50 AUPRO05=0.6047 SegF1=0.3853
+  [sheet_metal] BCE     hw0.60 AUPRO05=0.5983 SegF1=0.4453
+  [sheet_metal] BCE     hw0.70 AUPRO05=0.5889 SegF1=0.4764
+  [sheet_metal] SOFTPRO hw0.50 AUPRO05=0.6326 SegF1=0.4458
+  [sheet_metal] SOFTPRO hw0.60 AUPRO05=0.6459 SegF1=0.4753
+  [sheet_metal] SOFTPRO hw0.70 AUPRO05=0.6453 SegF1=0.4886
+  [vial] BCE     hw0.50 AUPRO05=0.8596 SegF1=0.6131
+  [vial] BCE     hw0.60 AUPRO05=0.8517 SegF1=0.6454
+  [vial] BCE     hw0.70 AUPRO05=0.8449 SegF1=0.6637
+  [vial] SOFTPRO hw0.50 AUPRO05=0.8702 SegF1=0.6084
+  [vial] SOFTPRO hw0.60 AUPRO05=0.8660 SegF1=0.6315
+  [vial] SOFTPRO hw0.70 AUPRO05=0.8626 SegF1=0.6440
+  [wallplugs] BCE     hw0.50 AUPRO05=0.7888 SegF1=0.4451
+  [wallplugs] BCE     hw0.60 AUPRO05=0.7631 SegF1=0.4612
+  [wallplugs] BCE     hw0.70 AUPRO05=0.7282 SegF1=0.4656
+  [wallplugs] SOFTPRO hw0.50 AUPRO05=0.8316 SegF1=0.4877
+  [wallplugs] SOFTPRO hw0.60 AUPRO05=0.8255 SegF1=0.4965
+  [wallplugs] SOFTPRO hw0.70 AUPRO05=0.8090 SegF1=0.5007
+  [walnuts] BCE     hw0.50 AUPRO05=0.8852 SegF1=0.7622
+  [walnuts] BCE     hw0.60 AUPRO05=0.8870 SegF1=0.7638
+  [walnuts] BCE     hw0.70 AUPRO05=0.8842 SegF1=0.7648
+  [walnuts] SOFTPRO hw0.50 AUPRO05=0.8519 SegF1=0.7724
+  [walnuts] SOFTPRO hw0.60 AUPRO05=0.8600 SegF1=0.7713
+  [walnuts] SOFTPRO hw0.70 AUPRO05=0.8647 SegF1=0.7709
+
+====================================================================================
+head/head_w          AUPRO0.05       SegF1
+BCE-hw0.50              0.8248      0.5756
+BCE-hw0.60              0.8141      0.6253
+BCE-hw0.70              0.7995      0.6597
+SOFTPRO-hw0.50          0.8305      0.6078
+SOFTPRO-hw0.60          0.8369      0.6435
+SOFTPRO-hw0.70          0.8332      0.6529
+
+Đã lưu: ./diag_softpro/results.csv | model=v3_large
+ĐỌC: SOFTPRO > BCE ở AUPRO0.05 (nhất fabric/sheet_metal/wallplugs) -> objective low-FPR = novelty thật.

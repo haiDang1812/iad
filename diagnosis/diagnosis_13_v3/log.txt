@@ -1,0 +1,32 @@
+========================================================================================
+DIAG13 BACKBONE SWEEP | grid=28 (cùng granularity) | layers=[2, 3, 4, 5, 6, 7, 8, 9]
+models=['v3_base', 'v3_large'] | UNSUP=distance, ORACLE=logistic CÓ NHÃN (k-fold ảnh) | metric AUPRO0.05
+========================================================================================
+
+########## v3_base | input=448 (grid 28×28, patch 16) | layers=[2, 3, 4, 5, 6, 7, 8, 9] ##########
+  *[can        ] UNSUP05=0.0504  ORACLE05=0.9947  gap=+0.9443
+   [fabric     ] UNSUP05=0.6875  ORACLE05=0.9471  gap=+0.2595
+   [fruit_jelly] UNSUP05=0.6227  ORACLE05=0.9142  gap=+0.2915
+   [rice       ] UNSUP05=0.7881  ORACLE05=0.9420  gap=+0.1540
+  *[sheet_metal] UNSUP05=0.4586  ORACLE05=0.7723  gap=+0.3137
+   [vial       ] UNSUP05=0.7268  ORACLE05=0.7718  gap=+0.0449
+  *[wallplugs  ] UNSUP05=0.4292  ORACLE05=0.8587  gap=+0.4294
+   [walnuts    ] UNSUP05=0.6459  ORACLE05=0.9197  gap=+0.2738
+
+########## v3_large | input=448 (grid 28×28, patch 16) | layers=[4, 6, 8, 10, 12, 14, 16, 18] ##########
+  *[can        ] UNSUP05=0.0776  ORACLE05=0.9930  gap=+0.9155
+   [fabric     ] UNSUP05=0.7313  ORACLE05=0.9723  gap=+0.2409
+   [fruit_jelly] UNSUP05=0.6330  ORACLE05=0.8905  gap=+0.2575
+   [rice       ] UNSUP05=0.7803  ORACLE05=0.9783  gap=+0.1980
+  *[sheet_metal] UNSUP05=0.4725  ORACLE05=0.7217  gap=+0.2492
+   [vial       ] UNSUP05=0.7423  ORACLE05=0.8123  gap=+0.0700
+  *[wallplugs  ] UNSUP05=0.5174  ORACLE05=0.9437  gap=+0.4263
+   [walnuts    ] UNSUP05=0.6927  ORACLE05=0.9569  gap=+0.2642
+
+========================================================================================
+model           UNSUP05   ORACLE05   HARD-UNSUP  HARD-ORACLE
+v3_base          0.5512     0.8901       0.3127       0.8752
+v3_large         0.5809     0.9086       0.3558       0.8861
+
+Đã lưu: ./diagnosis/diagnosis_13_v3/results.csv
+ĐỌC: HARD-ORACLE là then chốt. Backbone nào nâng nó rõ -> đáng dùng. Mọi backbone đều thấp -> trần do supervision. v3≈v2 -> đòn bẩy là granularity (Swin).

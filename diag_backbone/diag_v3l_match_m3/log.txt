@@ -1,0 +1,37 @@
+================================================================================
+FEW-SHOT BB | model=v3_large patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[4, 6, 8, 10, 12, 14, 16, 18] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.2834 F1=0.0084
+  [can] k=10 hw0.50 AUPRO05=0.9478 F1=0.2166
+  [can] k=10 hw0.70 AUPRO05=0.9588 F1=0.5787
+  [fabric] k=0 UNSUP AUPRO05=0.6756 F1=0.2408
+  [fabric] k=10 hw0.50 AUPRO05=0.6057 F1=0.6228
+  [fabric] k=10 hw0.70 AUPRO05=0.4632 F1=0.7152
+  [fruit_jelly] k=0 UNSUP AUPRO05=0.6176 F1=0.3291
+  [fruit_jelly] k=10 hw0.50 AUPRO05=0.8332 F1=0.7369
+  [fruit_jelly] k=10 hw0.70 AUPRO05=0.8290 F1=0.7396
+  [rice] k=0 UNSUP AUPRO05=0.7034 F1=0.6859
+  [rice] k=10 hw0.50 AUPRO05=0.9578 F1=0.7461
+  [rice] k=10 hw0.70 AUPRO05=0.9750 F1=0.6620
+  [sheet_metal] k=0 UNSUP AUPRO05=0.4736 F1=0.2425
+  [sheet_metal] k=10 hw0.50 AUPRO05=0.6806 F1=0.3264
+  [sheet_metal] k=10 hw0.70 AUPRO05=0.6671 F1=0.3277
+  [vial] k=0 UNSUP AUPRO05=0.7599 F1=0.3694
+  [vial] k=10 hw0.50 AUPRO05=0.7999 F1=0.5383
+  [vial] k=10 hw0.70 AUPRO05=0.7484 F1=0.5726
+  [wallplugs] k=0 UNSUP AUPRO05=0.7241 F1=0.2495
+  [wallplugs] k=10 hw0.50 AUPRO05=0.8165 F1=0.3855
+  [wallplugs] k=10 hw0.70 AUPRO05=0.7822 F1=0.3677
+  [walnuts] k=0 UNSUP AUPRO05=0.6731 F1=0.6079
+  [walnuts] k=10 hw0.50 AUPRO05=0.7894 F1=0.7219
+  [walnuts] k=10 hw0.70 AUPRO05=0.7586 F1=0.7180
+
+================================================================================
+shot/branch      AUPRO0.05     P-F1max
+0-UNSUP             0.6138      0.3417
+10-hw0.50           0.8039      0.5368
+10-hw0.70           0.7728      0.5852
+
+Đã lưu: ./diag_v3l_match_m3/results.csv  | model=v3_large
+ĐỌC: so 10-FUSE của model này với v2_base 0.7181. Cao hơn rõ -> swap backbone cho method.

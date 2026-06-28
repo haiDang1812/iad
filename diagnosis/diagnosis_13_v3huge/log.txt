@@ -1,0 +1,21 @@
+========================================================================================
+DIAG13 BACKBONE SWEEP | grid=28 (cùng granularity) | layers=[2, 3, 4, 5, 6, 7, 8, 9]
+models=['v3_huge'] | UNSUP=distance, ORACLE=logistic CÓ NHÃN (k-fold ảnh) | metric AUPRO0.05
+========================================================================================
+
+########## v3_huge | input=448 (grid 28×28, patch 16) | layers=[5, 8, 11, 13, 16, 19, 21, 24] ##########
+  *[can        ] UNSUP05=-0.0000  ORACLE05=0.9974  gap=+0.9974
+   [fabric     ] UNSUP05=0.7364  ORACLE05=0.9668  gap=+0.2305
+   [fruit_jelly] UNSUP05=0.5911  ORACLE05=0.9182  gap=+0.3271
+   [rice       ] UNSUP05=0.6892  ORACLE05=0.9645  gap=+0.2753
+  *[sheet_metal] UNSUP05=0.4632  ORACLE05=0.8003  gap=+0.3370
+   [vial       ] UNSUP05=0.7445  ORACLE05=0.7965  gap=+0.0519
+  *[wallplugs  ] UNSUP05=0.6174  ORACLE05=0.9049  gap=+0.2876
+   [walnuts    ] UNSUP05=0.7003  ORACLE05=0.9687  gap=+0.2684
+
+========================================================================================
+model           UNSUP05   ORACLE05   HARD-UNSUP  HARD-ORACLE
+v3_huge          0.5677     0.9146       0.3602       0.9009
+
+Đã lưu: ./diagnosis/diagnosis_13_v3huge/results.csv
+ĐỌC: HARD-ORACLE là then chốt. Backbone nào nâng nó rõ -> đáng dùng. Mọi backbone đều thấp -> trần do supervision. v3≈v2 -> đòn bẩy là granularity (Swin).

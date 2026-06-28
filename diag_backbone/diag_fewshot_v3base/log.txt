@@ -1,0 +1,46 @@
+================================================================================
+FEW-SHOT BB | model=v3_base patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[2, 3, 4, 5, 6, 7, 8, 9] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.2165 F1=0.0038
+  [can] k=10 HEAD  AUPRO05=0.6943 F1=0.2713
+  [can] k=10 FUSE  AUPRO05=0.8350 F1=0.2850
+  [can] k=10 FMULT AUPRO05=0.6965 F1=0.3460
+  [fabric] k=0 UNSUP AUPRO05=0.6324 F1=0.2144
+  [fabric] k=10 HEAD  AUPRO05=0.2496 F1=0.5968
+  [fabric] k=10 FUSE  AUPRO05=0.3682 F1=0.3407
+  [fabric] k=10 FMULT AUPRO05=0.4053 F1=0.2129
+  [fruit_jelly] k=0 UNSUP AUPRO05=0.6190 F1=0.2692
+  [fruit_jelly] k=10 HEAD  AUPRO05=0.8334 F1=0.6698
+  [fruit_jelly] k=10 FUSE  AUPRO05=0.8697 F1=0.6813
+  [fruit_jelly] k=10 FMULT AUPRO05=0.8547 F1=0.6785
+  [rice] k=0 UNSUP AUPRO05=0.6234 F1=0.6440
+  [rice] k=10 HEAD  AUPRO05=0.7609 F1=0.3915
+  [rice] k=10 FUSE  AUPRO05=0.8737 F1=0.4972
+  [rice] k=10 FMULT AUPRO05=0.7570 F1=0.4280
+  [sheet_metal] k=0 UNSUP AUPRO05=0.4528 F1=0.2194
+  [sheet_metal] k=10 HEAD  AUPRO05=0.5381 F1=0.3362
+  [sheet_metal] k=10 FUSE  AUPRO05=0.5219 F1=0.3061
+  [sheet_metal] k=10 FMULT AUPRO05=0.5573 F1=0.2710
+  [vial] k=0 UNSUP AUPRO05=0.7194 F1=0.3474
+  [vial] k=10 HEAD  AUPRO05=0.6252 F1=0.5230
+  [vial] k=10 FUSE  AUPRO05=0.7547 F1=0.5410
+  [vial] k=10 FMULT AUPRO05=0.7739 F1=0.5079
+  [wallplugs] k=0 UNSUP AUPRO05=0.6727 F1=0.1869
+  [wallplugs] k=10 HEAD  AUPRO05=0.8172 F1=0.3483
+  [wallplugs] k=10 FUSE  AUPRO05=0.8343 F1=0.3678
+  [wallplugs] k=10 FMULT AUPRO05=0.8324 F1=0.3761
+  [walnuts] k=0 UNSUP AUPRO05=0.6763 F1=0.5369
+  [walnuts] k=10 HEAD  AUPRO05=0.6936 F1=0.6956
+  [walnuts] k=10 FUSE  AUPRO05=0.7286 F1=0.6876
+  [walnuts] k=10 FMULT AUPRO05=0.7484 F1=0.6870
+
+================================================================================
+shot/branch      AUPRO0.05     P-F1max
+0-UNSUP             0.5766      0.3028
+10-FMULT            0.7032      0.4384
+10-FUSE             0.7233      0.4633
+10-HEAD             0.6515      0.4791
+
+Đã lưu: ./diag_fewshot_v3base/results.csv  | model=v3_base
+ĐỌC: so 10-FUSE của model này với v2_base 0.7181. Cao hơn rõ -> swap backbone cho method.

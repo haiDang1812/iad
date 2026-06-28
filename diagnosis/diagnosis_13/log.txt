@@ -1,0 +1,104 @@
+========================================================================================
+DIAG13 BACKBONE SWEEP | grid=28 (cùng granularity) | layers=[2, 3, 4, 5, 6, 7, 8, 9]
+models=['v2_base', 'v3_base'] | UNSUP=distance, ORACLE=logistic CÓ NHÃN (k-fold ảnh) | metric AUPRO0.05
+========================================================================================
+[SKIP] v2_base: Cần `transformers`: pip install transformers. (No module named 'transformers')
+[SKIP] v3_base: Cần `transformers`: pip install transformers. (No module named 'transformers')
+
+========================================================================================
+model           UNSUP05   ORACLE05   HARD-UNSUP  HARD-ORACLE
+
+Đã lưu: ./diagnosis/diagnosis_13/results.csv
+ĐỌC: HARD-ORACLE là then chốt. Backbone nào nâng nó rõ -> đáng dùng. Mọi backbone đều thấp -> trần do supervision. v3≈v2 -> đòn bẩy là granularity (Swin).
+========================================================================================
+DIAG13 BACKBONE SWEEP | grid=28 (cùng granularity) | layers=[2, 3, 4, 5, 6, 7, 8, 9]
+models=['v2_base', 'v3_base'] | UNSUP=distance, ORACLE=logistic CÓ NHÃN (k-fold ảnh) | metric AUPRO0.05
+========================================================================================
+
+########## v2_base | input=392 (grid 28×28, patch 14) ##########
+  *[can        ] UNSUP05=0.1284  ORACLE05=0.9709  gap=+0.8425
+   [fabric     ] UNSUP05=0.6264  ORACLE05=0.8693  gap=+0.2430
+   [fruit_jelly] UNSUP05=0.5932  ORACLE05=0.8574  gap=+0.2643
+   [rice       ] UNSUP05=0.6951  ORACLE05=0.9689  gap=+0.2738
+  *[sheet_metal] UNSUP05=0.4444  ORACLE05=0.7527  gap=+0.3083
+   [vial       ] UNSUP05=0.7031  ORACLE05=0.6825  gap=-0.0206
+  *[wallplugs  ] UNSUP05=0.4813  ORACLE05=0.9097  gap=+0.4284
+   [walnuts    ] UNSUP05=0.6365  ORACLE05=0.8935  gap=+0.2570
+[SKIP] v3_base: Không load được "facebook/dinov3-vitb16-pretrain-lvd1689m". Nếu là DINOv3 -> weight GATED: `huggingface-cli login` + xin quyền truy cập model trên HuggingFace.
+  Lỗi: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/facebook/dinov3-vitb16-pretrain-lvd1689m.
+401 Client Error. (Request ID: Root=1-6a40111c-3f37e8e27f33b21212acca95;e396cdca-9724-40f2-b620-806a8298f7d2)
+
+Cannot access gated repo for url https://huggingface.co/facebook/dinov3-vitb16-pretrain-lvd1689m/resolve/main/config.json.
+Access to model facebook/dinov3-vitb16-pretrain-lvd1689m is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+========================================================================================
+model           UNSUP05   ORACLE05   HARD-UNSUP  HARD-ORACLE
+v2_base          0.5385     0.8631       0.3514       0.8778
+
+Đã lưu: ./diagnosis/diagnosis_13/results.csv
+ĐỌC: HARD-ORACLE là then chốt. Backbone nào nâng nó rõ -> đáng dùng. Mọi backbone đều thấp -> trần do supervision. v3≈v2 -> đòn bẩy là granularity (Swin).
+========================================================================================
+DIAG13 BACKBONE SWEEP | grid=28 (cùng granularity) | layers=[2, 3, 4, 5, 6, 7, 8, 9]
+models=['v2_base', 'v2_large', 'v2_giant'] | UNSUP=distance, ORACLE=logistic CÓ NHÃN (k-fold ảnh) | metric AUPRO0.05
+========================================================================================
+
+########## v2_base | input=392 (grid 28×28, patch 14) ##########
+  *[can        ] UNSUP05=0.1284  ORACLE05=0.9103  gap=+0.7819
+   [fabric     ] UNSUP05=0.6264  ORACLE05=0.8550  gap=+0.2286
+   [fruit_jelly] UNSUP05=0.5932  ORACLE05=0.8516  gap=+0.2584
+   [rice       ] UNSUP05=0.6951  ORACLE05=0.9690  gap=+0.2740
+  *[sheet_metal] UNSUP05=0.4444  ORACLE05=0.7362  gap=+0.2918
+   [vial       ] UNSUP05=0.7031  ORACLE05=0.6830  gap=-0.0201
+  *[wallplugs  ] UNSUP05=0.4813  ORACLE05=0.9126  gap=+0.4313
+   [walnuts    ] UNSUP05=0.6365  ORACLE05=0.8979  gap=+0.2613
+
+########## v2_large | input=392 (grid 28×28, patch 14) ##########
+  *[can        ] UNSUP05=0.2028  ORACLE05=0.9957  gap=+0.7929
+   [fabric     ] UNSUP05=0.2144  ORACLE05=0.3127  gap=+0.0983
+   [fruit_jelly] UNSUP05=0.5312  ORACLE05=0.9127  gap=+0.3814
+   [rice       ] UNSUP05=0.2859  ORACLE05=0.9300  gap=+0.6440
+  *[sheet_metal] UNSUP05=0.1111  ORACLE05=0.3965  gap=+0.2854
+   [vial       ] UNSUP05=0.4334  ORACLE05=0.5574  gap=+0.1240
+  *[wallplugs  ] UNSUP05=0.2050  ORACLE05=0.8301  gap=+0.6251
+========================================================================================
+DIAG13 BACKBONE SWEEP | grid=28 (cùng granularity) | layers=[2, 3, 4, 5, 6, 7, 8, 9]
+models=['v2_base', 'v2_large', 'v3_base', 'v3_large'] | UNSUP=distance, ORACLE=logistic CÓ NHÃN (k-fold ảnh) | metric AUPRO0.05
+========================================================================================
+
+########## v2_base | input=392 (grid 28×28, patch 14) ##########
+  *[can        ] UNSUP05=0.1493  ORACLE05=0.9297  gap=+0.7804
+   [fabric     ] UNSUP05=0.6247  ORACLE05=0.8816  gap=+0.2569
+   [fruit_jelly] UNSUP05=0.5849  ORACLE05=0.8759  gap=+0.2910
+   [rice       ] UNSUP05=0.6748  ORACLE05=0.9545  gap=+0.2797
+  *[sheet_metal] UNSUP05=0.4577  ORACLE05=0.7129  gap=+0.2552
+   [vial       ] UNSUP05=0.7034  ORACLE05=0.6965  gap=-0.0069
+  *[wallplugs  ] UNSUP05=0.4814  ORACLE05=0.8813  gap=+0.3999
+   [walnuts    ] UNSUP05=0.6520  ORACLE05=0.9028  gap=+0.2507
+
+########## v2_large | input=392 (grid 28×28, patch 14) ##########
+  *[can        ] UNSUP05=0.2294  ORACLE05=0.9989  gap=+0.7694
+   [fabric     ] UNSUP05=0.1962  ORACLE05=0.3546  gap=+0.1584
+   [fruit_jelly] UNSUP05=0.5413  ORACLE05=0.9283  gap=+0.3870
+   [rice       ] UNSUP05=0.2695  ORACLE05=0.9296  gap=+0.6600
+  *[sheet_metal] UNSUP05=0.1212  ORACLE05=0.3872  gap=+0.2660
+   [vial       ] UNSUP05=0.4326  ORACLE05=0.5801  gap=+0.1475
+  *[wallplugs  ] UNSUP05=0.1354  ORACLE05=0.8362  gap=+0.7008
+   [walnuts    ] UNSUP05=0.4974  ORACLE05=0.6248  gap=+0.1274
+[SKIP] v3_base: Không load được "facebook/dinov3-vitb16-pretrain-lvd1689m". Nếu là DINOv3 -> weight GATED: `huggingface-cli login` + xin quyền truy cập model trên HuggingFace.
+  Lỗi: facebook/dinov3-vitb16-pretrain-lvd1689m does not appear to have a file named pytorch_model.bin or model.safetensors.
+[SKIP] v3_large: Không load được "facebook/dinov3-vitl16-pretrain-lvd1689m". Nếu là DINOv3 -> weight GATED: `huggingface-cli login` + xin quyền truy cập model trên HuggingFace.
+  Lỗi: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/facebook/dinov3-vitl16-pretrain-lvd1689m.
+401 Client Error. (Request ID: Root=1-6a402694-3259b06731f5f3367de1cf96;fa4868ea-7f52-4000-8eba-46dd983c6de3)
+
+Cannot access gated repo for url https://huggingface.co/facebook/dinov3-vitl16-pretrain-lvd1689m/resolve/main/config.json.
+Access to model facebook/dinov3-vitl16-pretrain-lvd1689m is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+========================================================================================
+model           UNSUP05   ORACLE05   HARD-UNSUP  HARD-ORACLE
+v2_base          0.5410     0.8544       0.3628       0.8413
+v2_large         0.3029     0.7049       0.1620       0.7408
+
+Đã lưu: ./diagnosis/diagnosis_13/results.csv
+ĐỌC: HARD-ORACLE là then chốt. Backbone nào nâng nó rõ -> đáng dùng. Mọi backbone đều thấp -> trần do supervision. v3≈v2 -> đòn bẩy là granularity (Swin).

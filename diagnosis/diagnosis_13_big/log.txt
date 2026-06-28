@@ -1,0 +1,28 @@
+========================================================================================
+DIAG13 BACKBONE SWEEP | grid=28 (cùng granularity) | layers=[2, 3, 4, 5, 6, 7, 8, 9]
+models=['v2_giant', 'v3_huge'] | UNSUP=distance, ORACLE=logistic CÓ NHÃN (k-fold ảnh) | metric AUPRO0.05
+========================================================================================
+
+########## v2_giant | input=392 (grid 28×28, patch 14) ##########
+  *[can        ] UNSUP05=0.4795  ORACLE05=0.9981  gap=+0.5186
+   [fabric     ] UNSUP05=0.0806  ORACLE05=0.2638  gap=+0.1831
+   [fruit_jelly] UNSUP05=0.3739  ORACLE05=0.8457  gap=+0.4718
+   [rice       ] UNSUP05=0.1838  ORACLE05=0.8234  gap=+0.6396
+  *[sheet_metal] UNSUP05=0.1037  ORACLE05=0.2270  gap=+0.1233
+   [vial       ] UNSUP05=0.2278  ORACLE05=0.4966  gap=+0.2688
+  *[wallplugs  ] UNSUP05=0.1556  ORACLE05=0.7986  gap=+0.6430
+   [walnuts    ] UNSUP05=0.3898  ORACLE05=0.5093  gap=+0.1195
+[SKIP] v3_huge: Không load được "facebook/dinov3-vith16plus-pretrain-lvd1689m". Nếu là DINOv3 -> weight GATED: `huggingface-cli login` + xin quyền truy cập model trên HuggingFace.
+  Lỗi: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/facebook/dinov3-vith16plus-pretrain-lvd1689m.
+401 Client Error. (Request ID: Root=1-6a402e8a-724e51a73d1ae27a14dd96ae;788a9acf-c771-4bc5-811c-e236c5c90d5f)
+
+Cannot access gated repo for url https://huggingface.co/facebook/dinov3-vith16plus-pretrain-lvd1689m/resolve/main/config.json.
+Access to model facebook/dinov3-vith16plus-pretrain-lvd1689m is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+========================================================================================
+model           UNSUP05   ORACLE05   HARD-UNSUP  HARD-ORACLE
+v2_giant         0.2493     0.6203       0.2462       0.6745
+
+Đã lưu: ./diagnosis/diagnosis_13_big/results.csv
+ĐỌC: HARD-ORACLE là then chốt. Backbone nào nâng nó rõ -> đáng dùng. Mọi backbone đều thấp -> trần do supervision. v3≈v2 -> đòn bẩy là granularity (Swin).

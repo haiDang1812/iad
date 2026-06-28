@@ -1,0 +1,25 @@
+========================================================================================
+DIAG14 mổ lỗi SOTA | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | k=10 head_w=0.6 | FPR=0.05
+========================================================================================
+*[can        ] AUPRO05 fs=0.950 oracle=0.996 gap=+0.046 | @FPR0.05: recall=1.000 FP_rare=1.00 FP_head=0.00 | FN dr=nan pr=nan
+ [fabric     ] AUPRO05 fs=0.752 oracle=0.609 gap=-0.143 | @FPR0.05: recall=0.367 FP_rare=1.00 FP_head=0.00 | FN dr=0.62 pr=0.00
+ [fruit_jelly] AUPRO05 fs=0.862 oracle=0.883 gap=+0.021 | @FPR0.05: recall=0.914 FP_rare=0.92 FP_head=0.08 | FN dr=0.66 pr=0.01
+ [rice       ] AUPRO05 fs=0.806 oracle=0.977 gap=+0.172 | @FPR0.05: recall=0.950 FP_rare=0.99 FP_head=0.01 | FN dr=0.57 pr=0.00
+*[sheet_metal] AUPRO05 fs=0.556 oracle=0.628 gap=+0.073 | @FPR0.05: recall=0.493 FP_rare=0.98 FP_head=0.02 | FN dr=0.63 pr=0.00
+ [vial       ] AUPRO05 fs=0.724 oracle=0.649 gap=-0.074 | @FPR0.05: recall=0.812 FP_rare=0.15 FP_head=0.85 | FN dr=0.72 pr=0.25
+*[wallplugs  ] AUPRO05 fs=0.876 oracle=0.880 gap=+0.004 | @FPR0.05: recall=0.866 FP_rare=0.99 FP_head=0.01 | FN dr=0.69 pr=0.00
+ [walnuts    ] AUPRO05 fs=0.672 oracle=0.765 gap=+0.093 | @FPR0.05: recall=0.963 FP_rare=0.71 FP_head=0.29 | FN dr=0.65 pr=0.05
+
+========================================================================================
+cat               fs05   orac05     gap    recall   FP_rare     FNdr     FNpr
+can              0.950    0.996   0.046     1.000      1.00      nan      nan
+fabric           0.752    0.609  -0.143     0.367      1.00     0.62     0.00
+fruit_jelly      0.862    0.883   0.021     0.914      0.92     0.66     0.01
+rice             0.806    0.977   0.172     0.950      0.99     0.57     0.00
+sheet_metal      0.556    0.628   0.073     0.493      0.98     0.63     0.00
+vial             0.724    0.649  -0.074     0.812      0.15     0.72     0.25
+wallplugs        0.876    0.880   0.004     0.866      0.99     0.69     0.00
+walnuts          0.672    0.765   0.093     0.963      0.71     0.65     0.05
+MEAN             0.775    0.798   0.024     0.796      0.84     0.65     0.05
+
+ĐỌC: FP_rare cao -> RNM đúng thuốc. FP_rare thấp (head-overfire) -> calibrate head. recall thấp + FN dr,pr thấp -> defect in-distribution (cần sensitivity). gap lớn -> còn headroom.

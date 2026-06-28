@@ -1,0 +1,66 @@
+================================================================================
+FEW-SHOT BB | model=v2_base patch=14 | tiles=2 grid_tile=28 (tile_res=392, eff_grid=56) | layers=[2, 3, 4, 5, 6, 7, 8, 9] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.2364 F1=0.0043
+  [can] k=10 HEAD  AUPRO05=0.6899 F1=0.2218
+  [can] k=10 FUSE  AUPRO05=0.9152 F1=0.2743
+================================================================================
+FEW-SHOT BB | model=v2_base patch=14 | tiles=2 grid_tile=28 (tile_res=392, eff_grid=56) | layers=[2, 3, 4, 5, 6, 7, 8, 9] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.2268 F1=0.0051
+================================================================================
+FEW-SHOT BB | model=v2_base patch=14 | tiles=2 grid_tile=28 (tile_res=392, eff_grid=56) | layers=[2, 3, 4, 5, 6, 7, 8, 9] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.2768 F1=0.0144
+  [can] k=10 HEAD  AUPRO05=0.6889 F1=0.2013
+  [can] k=10 FUSE  AUPRO05=0.9463 F1=0.2627
+  [can] k=10 FMULT AUPRO05=0.6929 F1=0.3231
+================================================================================
+FEW-SHOT BB | model=v2_base patch=14 | tiles=2 grid_tile=28 (tile_res=392, eff_grid=56) | layers=[2, 3, 4, 5, 6, 7, 8, 9] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.2539 F1=0.0075
+  [can] k=10 HEAD  AUPRO05=0.6886 F1=0.2013
+  [can] k=10 FUSE  AUPRO05=0.9377 F1=0.2998
+  [can] k=10 FMULT AUPRO05=0.6951 F1=0.3476
+  [fabric] k=0 UNSUP AUPRO05=0.6197 F1=0.1857
+  [fabric] k=10 HEAD  AUPRO05=0.1658 F1=0.5188
+  [fabric] k=10 FUSE  AUPRO05=0.3394 F1=0.3272
+  [fabric] k=10 FMULT AUPRO05=0.3671 F1=0.2257
+  [fruit_jelly] k=0 UNSUP AUPRO05=0.6167 F1=0.2608
+  [fruit_jelly] k=10 HEAD  AUPRO05=0.8293 F1=0.5942
+  [fruit_jelly] k=10 FUSE  AUPRO05=0.8505 F1=0.6099
+  [fruit_jelly] k=10 FMULT AUPRO05=0.8580 F1=0.6098
+  [rice] k=0 UNSUP AUPRO05=0.5841 F1=0.5578
+  [rice] k=10 HEAD  AUPRO05=0.6907 F1=0.3183
+  [rice] k=10 FUSE  AUPRO05=0.8118 F1=0.4094
+  [rice] k=10 FMULT AUPRO05=0.6883 F1=0.3440
+  [sheet_metal] k=0 UNSUP AUPRO05=0.4409 F1=0.1938
+  [sheet_metal] k=10 HEAD  AUPRO05=0.5858 F1=0.2788
+  [sheet_metal] k=10 FUSE  AUPRO05=0.5987 F1=0.2901
+  [sheet_metal] k=10 FMULT AUPRO05=0.6024 F1=0.2886
+  [vial] k=0 UNSUP AUPRO05=0.7188 F1=0.3560
+  [vial] k=10 HEAD  AUPRO05=0.5250 F1=0.4401
+  [vial] k=10 FUSE  AUPRO05=0.7163 F1=0.4815
+  [vial] k=10 FMULT AUPRO05=0.7278 F1=0.4539
+  [wallplugs] k=0 UNSUP AUPRO05=0.5983 F1=0.1501
+  [wallplugs] k=10 HEAD  AUPRO05=0.6048 F1=0.3113
+  [wallplugs] k=10 FUSE  AUPRO05=0.7425 F1=0.3517
+  [wallplugs] k=10 FMULT AUPRO05=0.6534 F1=0.3606
+  [walnuts] k=0 UNSUP AUPRO05=0.6760 F1=0.5429
+  [walnuts] k=10 HEAD  AUPRO05=0.6286 F1=0.6379
+  [walnuts] k=10 FUSE  AUPRO05=0.6711 F1=0.6157
+  [walnuts] k=10 FMULT AUPRO05=0.6824 F1=0.6118
+
+================================================================================
+shot/branch      AUPRO0.05     P-F1max
+0-UNSUP             0.5635      0.2818
+10-FMULT            0.6593      0.4052
+10-FUSE             0.7085      0.4232
+10-HEAD             0.5898      0.4126
+
+Đã lưu: ./diag_fewshot_v2base/results.csv  | model=v2_base
+ĐỌC: so 10-FUSE của model này với v2_base 0.7181. Cao hơn rõ -> swap backbone cho method.

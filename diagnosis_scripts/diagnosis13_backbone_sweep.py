@@ -115,13 +115,17 @@ def main():
     ap.add_argument('--data_path', type=str, default=r'E:\dataset\mvtecad2')
     ap.add_argument('--models', type=str, nargs='+',
                     default=['v2_base', 'v2_large', 'v2_giant', 'v3_base', 'v3_large', 'v3_huge'])
-    ap.add_argument('--layers', type=int, nargs='+', default=[2, 3, 4, 5, 6, 7, 8, 9])
+    ap.add_argument('--layers', type=int, nargs='+', default=[2, 3, 4, 5, 6, 7, 8, 9],
+                    help='layer tham chiếu trên model 12-layer (base); sẽ tự scale theo độ sâu model khác')
+    ap.add_argument('--layers_fixed', action='store_true',
+                    help='dùng --layers y nguyên cho mọi model (KHÔNG scale) — thường gây lệch độ sâu')
     ap.add_argument('--grid', type=int, default=28, help='cỡ lưới patch chung (input = grid×patch)')
     ap.add_argument('--bank_size', type=int, default=50000)
     ap.add_argument('--enc_batch', type=int, default=8)
     ap.add_argument('--pca', type=int, default=128)
     ap.add_argument('--folds', type=int, default=5)
     ap.add_argument('--max_patches', type=int, default=60000)
+    ap.add_argument('--resize', type=int, default=256, help='res tính metric — giảm (vd 224) để AUPRO CPU nhanh hơn')
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--categories', type=str, nargs='+', default=VALID)
     ap.add_argument('--out_dir', type=str, default='./diag13')
@@ -146,7 +150,12 @@ def main():
             p(f'[SKIP] {mname}: {e}')
             continue
         R = args.grid * bb.patch
-        p(f'\n########## {mname} | input={R} (grid {args.grid}×{args.grid}, patch {bb.patch}) ##########')
+        # scale layer theo độ sâu (base 12-layer là tham chiếu) -> so công bằng giữa các size
+        if args.layers_fixed or not bb.n_layers:
+            layers = [l for l in args.layers if l < (bb.n_layers or 1e9)]
+        else:
+            layers = sorted(set(max(1, min(bb.n_layers - 1, round(l / 12 * bb.n_layers))) for l in args.layers))
+        p(f'\n########## {mname} | input={R} (grid {args.grid}×{args.grid}, patch {bb.patch}) | layers={layers} ##########')
         rows = []
         for cat in args.categories:
             tr = sorted(glob.glob(os.path.join(args.data_path, cat, 'train', 'good', '*.png')) +
@@ -156,7 +165,7 @@ def main():
             with torch.no_grad():
                 for s in range(0, len(tr), args.enc_batch):
                     batch = torch.stack([to_tensor(Image.open(pth), R) for pth in tr[s:s + args.enc_batch]])
-                    f = bb.extract(batch, args.layers)          # [B,N,C]
+                    f = bb.extract(batch, layers)               # [B,N,C]
                     acc.append(subsample(f.reshape(-1, f.shape[-1]), batch.shape[0] * keep).cpu())
             bank = subsample(torch.cat(acc, 0), args.bank_size).to(device)
 
@@ -165,14 +174,19 @@ def main():
             N = len(ds.img_paths)
             feats, dist, gts = [], [], []
             with torch.no_grad():
-                for idx in tqdm(range(N), ncols=80, desc=f'  {mname}/{cat}'):
-                    grid = featgrid(bb, Image.open(ds.img_paths[idx]), R, args.layers, args.enc_batch)
-                    feats.append(grid.cpu().numpy())
-                    dist.append(nn_map(grid, bank, device))
-                    gts.append(gt_grid(ds.gt_paths[idx], ds.labels[idx], grid.shape[0]))
+                for s in tqdm(range(0, N, args.enc_batch), ncols=80, desc=f'  {mname}/{cat}'):
+                    idxs = list(range(s, min(s + args.enc_batch, N)))
+                    x = torch.stack([to_tensor(Image.open(ds.img_paths[i]), R) for i in idxs])
+                    f = bb.extract(x, layers)                   # [B,N,C] — forward cả batch -> GPU util
+                    g = int(round(f.shape[1] ** 0.5)); C = f.shape[-1]
+                    for bi, i in enumerate(idxs):
+                        grid = f[bi, :g * g].reshape(g, g, C)
+                        feats.append(grid.cpu().numpy())
+                        dist.append(nn_map(grid, bank, device))
+                        gts.append(gt_grid(ds.gt_paths[i], ds.labels[i], grid.shape[0]))
             C = feats[0].shape[-1]; G = feats[0].shape[0]
 
-            ru = evaluate_set(dist, gts, gk, device)            # UNSUP
+            ru = evaluate_set(dist, gts, gk, device, resize=args.resize)            # UNSUP
 
             oof = [None] * N
             kf = KFold(n_splits=min(args.folds, N), shuffle=True, random_state=args.seed)
@@ -193,7 +207,7 @@ def main():
                 for i in va_i:
                     oof[i] = clf.predict_proba(feats[i].reshape(-1, C))[:, 1].reshape(G, G)
             oracle_maps = [oof[i] if oof[i] is not None else dist[i] for i in range(N)]
-            ro = evaluate_set(oracle_maps, gts, gk, device)     # ORACLE
+            ro = evaluate_set(oracle_maps, gts, gk, device, resize=args.resize)     # ORACLE
 
             tag = '*' if cat in HARD else ' '
             p(f'  {tag}[{cat:<11}] UNSUP05={ru[7]:.4f}  ORACLE05={ro[7]:.4f}  gap={ro[7]-ru[7]:+.4f}')

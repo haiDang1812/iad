@@ -1,0 +1,12 @@
+model,category,UNSUP_AUPRO05,ORACLE_AUPRO05
+v2_giant,can,0.4795,0.9981
+v2_giant,fabric,0.0806,0.2638
+v2_giant,fruit_jelly,0.3739,0.8457
+v2_giant,rice,0.1838,0.8234
+v2_giant,sheet_metal,0.1037,0.2270
+v2_giant,vial,0.2278,0.4966
+v2_giant,wallplugs,0.1556,0.7986
+v2_giant,walnuts,0.3898,0.5093
+
+model,mean_UNSUP05,mean_ORACLE05,meanHARD_UNSUP05,meanHARD_ORACLE05
+v2_giant,0.2493,0.6203,0.2462,0.6745

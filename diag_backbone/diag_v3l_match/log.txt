@@ -1,0 +1,68 @@
+================================================================================
+FEW-SHOT BB | model=v3_large patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[4, 6, 8, 10, 12, 14, 16, 18] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+================================================================================
+FEW-SHOT BB | model=v3_large patch=16 | tiles=2 grid_tile=28 (tile_res=448, eff_grid=56) | layers=[4, 6, 8, 10, 12, 14, 16, 18] | shots=[0, 10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=0 UNSUP AUPRO05=0.2844 F1=0.0085
+  [can] k=10 hw0.50 AUPRO05=0.9480 F1=0.2166
+  [can] k=10 hw0.60 AUPRO05=0.9604 F1=0.4500
+  [can] k=10 hw0.70 AUPRO05=0.9594 F1=0.5653
+  [can] k=10 hw0.80 AUPRO05=0.9515 F1=0.5424
+  [can] k=10 hw1.00 AUPRO05=0.6968 F1=0.4976
+  [fabric] k=0 UNSUP AUPRO05=0.6841 F1=0.2402
+  [fabric] k=10 hw0.50 AUPRO05=0.6328 F1=0.6371
+  [fabric] k=10 hw0.60 AUPRO05=0.5362 F1=0.6913
+  [fabric] k=10 hw0.70 AUPRO05=0.4654 F1=0.7239
+  [fabric] k=10 hw0.80 AUPRO05=0.4142 F1=0.7370
+  [fabric] k=10 hw1.00 AUPRO05=0.3455 F1=0.7347
+  [fruit_jelly] k=0 UNSUP AUPRO05=0.6173 F1=0.3277
+  [fruit_jelly] k=10 hw0.50 AUPRO05=0.8472 F1=0.7515
+  [fruit_jelly] k=10 hw0.60 AUPRO05=0.8429 F1=0.7549
+  [fruit_jelly] k=10 hw0.70 AUPRO05=0.8387 F1=0.7530
+  [fruit_jelly] k=10 hw0.80 AUPRO05=0.8312 F1=0.7489
+  [fruit_jelly] k=10 hw1.00 AUPRO05=0.8247 F1=0.7389
+  [rice] k=0 UNSUP AUPRO05=0.6985 F1=0.6821
+  [rice] k=10 hw0.50 AUPRO05=0.9695 F1=0.7386
+  [rice] k=10 hw0.60 AUPRO05=0.9766 F1=0.7082
+  [rice] k=10 hw0.70 AUPRO05=0.9809 F1=0.6460
+  [rice] k=10 hw0.80 AUPRO05=0.9792 F1=0.5570
+  [rice] k=10 hw1.00 AUPRO05=0.9041 F1=0.4742
+  [sheet_metal] k=0 UNSUP AUPRO05=0.4761 F1=0.2422
+  [sheet_metal] k=10 hw0.50 AUPRO05=0.6878 F1=0.3113
+  [sheet_metal] k=10 hw0.60 AUPRO05=0.6748 F1=0.3177
+  [sheet_metal] k=10 hw0.70 AUPRO05=0.6596 F1=0.3053
+  [sheet_metal] k=10 hw0.80 AUPRO05=0.6394 F1=0.2879
+  [sheet_metal] k=10 hw1.00 AUPRO05=0.5988 F1=0.2480
+  [vial] k=0 UNSUP AUPRO05=0.7596 F1=0.3685
+  [vial] k=10 hw0.50 AUPRO05=0.7842 F1=0.5280
+  [vial] k=10 hw0.60 AUPRO05=0.7531 F1=0.5488
+  [vial] k=10 hw0.70 AUPRO05=0.7218 F1=0.5533
+  [vial] k=10 hw0.80 AUPRO05=0.6835 F1=0.5501
+  [vial] k=10 hw1.00 AUPRO05=0.6104 F1=0.5240
+  [wallplugs] k=0 UNSUP AUPRO05=0.7298 F1=0.2496
+  [wallplugs] k=10 hw0.50 AUPRO05=0.8103 F1=0.3741
+  [wallplugs] k=10 hw0.60 AUPRO05=0.7999 F1=0.3652
+  [wallplugs] k=10 hw0.70 AUPRO05=0.7789 F1=0.3564
+  [wallplugs] k=10 hw0.80 AUPRO05=0.7422 F1=0.3437
+  [wallplugs] k=10 hw1.00 AUPRO05=0.6924 F1=0.3225
+  [walnuts] k=0 UNSUP AUPRO05=0.6739 F1=0.6057
+  [walnuts] k=10 hw0.50 AUPRO05=0.7950 F1=0.7218
+  [walnuts] k=10 hw0.60 AUPRO05=0.7771 F1=0.7207
+  [walnuts] k=10 hw0.70 AUPRO05=0.7621 F1=0.7172
+  [walnuts] k=10 hw0.80 AUPRO05=0.7444 F1=0.7112
+  [walnuts] k=10 hw1.00 AUPRO05=0.7074 F1=0.6978
+
+================================================================================
+shot/branch      AUPRO0.05     P-F1max
+0-UNSUP             0.6154      0.3406
+10-hw0.50           0.8094      0.5349
+10-hw0.60           0.7901      0.5696
+10-hw0.70           0.7708      0.5776
+10-hw0.80           0.7482      0.5598
+10-hw1.00           0.6725      0.5297
+
+Đã lưu: ./diag_v3l_match/results.csv  | model=v3_large
+ĐỌC: so 10-FUSE của model này với v2_base 0.7181. Cao hơn rõ -> swap backbone cho method.

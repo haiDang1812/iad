@@ -69,10 +69,15 @@ def load_backbone(name, device='cuda:0'):
     key, hf_id = resolve_hf_id(name)
     try:
         model = AutoModel.from_pretrained(hf_id)
-    except Exception as e:
-        raise SystemExit(
-            f'Không load được "{hf_id}". Nếu là DINOv3 -> weight GATED: '
-            f'`huggingface-cli login` + xin quyền truy cập model trên HuggingFace.\n  Lỗi: {e}')
+    except Exception as e1:
+        try:                                   # DINOv3 có thể cần trust_remote_code / transformers mới
+            model = AutoModel.from_pretrained(hf_id, trust_remote_code=True)
+        except Exception as e2:
+            raise SystemExit(
+                f'Không load được "{hf_id}".\n'
+                f'  - Nếu "gated/401": mỗi size là 1 repo gated RIÊNG -> xin quyền đúng trang đó + HF_TOKEN.\n'
+                f'  - Nếu "no safetensors/unknown model": transformers cũ -> `uv pip install -U transformers`.\n'
+                f'  Lỗi: {e2}')
 
     cfg = model.config
     patch = getattr(cfg, 'patch_size', 16)
