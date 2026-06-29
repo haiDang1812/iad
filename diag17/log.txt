@@ -1,0 +1,31 @@
+============================================================================================
+DIAG17 NSP premise | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | rn_q=95.0 ranks=[1, 2, 5, 10, 20, 40]
+HARD = defect vs top-5% normal theo d1 (diag10=0.45). So d1-AUROC TRƯỚC vs SAU chiếu bỏ rare-normal subspace.
+============================================================================================
+============================================================================================
+DIAG17 NSP premise | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | rn_q=95.0 ranks=[1, 2, 5, 10, 20, 40]
+HARD = defect vs top-5% normal theo d1 (diag10=0.45). So d1-AUROC TRƯỚC vs SAU chiếu bỏ rare-normal subspace.
+============================================================================================
+  [can        ] HARD orig=0.255 -> proj best(r=40)=0.807  | FULL orig=0.934 -> 0.975  | Δhard=+0.551
+  [fabric     ] HARD orig=0.207 -> proj best(r=40)=0.409  | FULL orig=0.753 -> 0.802  | Δhard=+0.202
+  [fruit_jelly] HARD orig=0.429 -> proj best(r=40)=0.545  | FULL orig=0.929 -> 0.934  | Δhard=+0.116
+  [rice       ] HARD orig=0.855 -> proj best(r=20)=0.906  | FULL orig=0.976 -> 0.977  | Δhard=+0.051
+  [sheet_metal] HARD orig=0.355 -> proj best(r=40)=0.498  | FULL orig=0.723 -> 0.774  | Δhard=+0.143
+  [vial       ] HARD orig=0.330 -> proj best(r=40)=0.469  | FULL orig=0.912 -> 0.921  | Δhard=+0.139
+  [wallplugs  ] HARD orig=0.560 -> proj best(r=5)=0.626  | FULL orig=0.927 -> 0.932  | Δhard=+0.067
+  [walnuts    ] HARD orig=0.642 -> proj best(r=40)=0.730  | FULL orig=0.945 -> 0.950  | Δhard=+0.088
+
+============================================================================================
+cat            HARD_orig  HARD_proj*     Δhard  FULL_orig FULL_proj*
+can                0.255       0.807     0.551      0.934      0.975
+fabric             0.207       0.409     0.202      0.753      0.802
+fruit_jelly        0.429       0.545     0.116      0.929      0.934
+rice               0.855       0.906     0.051      0.976      0.977
+sheet_metal        0.355       0.498     0.143      0.723      0.774
+vial               0.330       0.469     0.139      0.912      0.921
+wallplugs          0.560       0.626     0.067      0.927      0.932
+walnuts            0.642       0.730     0.088      0.945      0.950
+MEAN               0.454       0.624     0.170
+
+ĐỌC: Δhard >> 0 (HARD_proj cao hẳn) MÀ KHÔNG dùng nhãn -> NSP phá trần rare-normal -> NOVELTY thật, build full.
+     Δhard ~ 0 -> defect & rare-normal cùng subspace -> NSP vô vọng, bỏ.

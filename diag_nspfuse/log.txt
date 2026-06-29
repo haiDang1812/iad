@@ -1,0 +1,43 @@
+========================================================================================
+NSP-FUSE | model=v3_large eff_grid=56 | k=10 head_w=0.6 ranks=[0, 20, 40]
+PLAIN-fuse (rank0 = SOTA) vs NSP-fuse(r). AUPRO0.05 & SegF1.
+========================================================================================
+  [can        ] PLAIN(SOTA)  AUPRO05=0.7332 SegF1=0.5052
+  [can        ] NSP r=20     AUPRO05=0.8653 SegF1=0.5012
+  [can        ] NSP r=40     AUPRO05=0.9017 SegF1=0.5124
+========================================================================================
+NSP-FUSE | model=v3_large eff_grid=56 | k=10 head_w=0.6 ranks=[0, 20, 40]
+PLAIN-fuse (rank0 = SOTA) vs NSP-fuse(r). AUPRO0.05 & SegF1.
+========================================================================================
+  [can        ] PLAIN(SOTA)  AUPRO05=0.7332 SegF1=0.4899
+  [can        ] NSP r=20     AUPRO05=0.8652 SegF1=0.4844
+  [can        ] NSP r=40     AUPRO05=0.9017 SegF1=0.4932
+  [fabric     ] PLAIN(SOTA)  AUPRO05=0.7483 SegF1=0.2337
+  [fabric     ] NSP r=20     AUPRO05=0.7812 SegF1=0.2571
+  [fabric     ] NSP r=40     AUPRO05=0.7710 SegF1=0.2677
+  [fruit_jelly] PLAIN(SOTA)  AUPRO05=0.7574 SegF1=0.7405
+  [fruit_jelly] NSP r=20     AUPRO05=0.7736 SegF1=0.7431
+  [fruit_jelly] NSP r=40     AUPRO05=0.7706 SegF1=0.7414
+  [rice       ] PLAIN(SOTA)  AUPRO05=0.9150 SegF1=0.7709
+  [rice       ] NSP r=20     AUPRO05=0.8988 SegF1=0.7575
+  [rice       ] NSP r=40     AUPRO05=0.8941 SegF1=0.7439
+  [sheet_metal] PLAIN(SOTA)  AUPRO05=0.5734 SegF1=0.4976
+  [sheet_metal] NSP r=20     AUPRO05=0.5513 SegF1=0.5064
+  [sheet_metal] NSP r=40     AUPRO05=0.5514 SegF1=0.5051
+  [vial       ] PLAIN(SOTA)  AUPRO05=0.6758 SegF1=0.5116
+  [vial       ] NSP r=20     AUPRO05=0.6627 SegF1=0.5211
+  [vial       ] NSP r=40     AUPRO05=0.6602 SegF1=0.5266
+  [wallplugs  ] PLAIN(SOTA)  AUPRO05=0.7680 SegF1=0.3735
+  [wallplugs  ] NSP r=20     AUPRO05=0.7306 SegF1=0.3775
+  [wallplugs  ] NSP r=40     AUPRO05=0.6624 SegF1=0.3787
+  [walnuts    ] PLAIN(SOTA)  AUPRO05=0.7947 SegF1=0.7148
+  [walnuts    ] NSP r=20     AUPRO05=0.7925 SegF1=0.7246
+  [walnuts    ] NSP r=40     AUPRO05=0.7942 SegF1=0.7271
+
+========================================================================================
+config           AUPRO0.05       SegF1
+PLAIN(SOTA)         0.7457      0.5416
+NSP-20              0.7570      0.5465
+NSP-40              0.7507      0.5479
+
+ĐỌC: NSP-r > PLAIN(SOTA) ở CẢ AUPRO0.05 & SegF1 -> novelty đẩy được SOTA. NSP ≈ PLAIN -> head đã bao phủ (NSP thừa) -> SOTA chỉ lên bằng resolution.

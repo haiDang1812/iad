@@ -1,0 +1,54 @@
+========================================================================================
+EVAL NSP (unsup) | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | rn_q=95.0 ranks=[0, 20, 40, 80, 160]
+PLAIN (rank 0) vs NSP(rank r). Báo AUPRO0.05 & SegF1, mean 8 cat.
+========================================================================================
+  [can        ] PLAIN     AUPRO05=0.0255 SegF1=0.0005
+  [can        ] NSP r=20  AUPRO05=0.1747 SegF1=0.0021
+  [can        ] NSP r=40  AUPRO05=0.2001 SegF1=0.0037
+  [can        ] NSP r=80  AUPRO05=0.1923 SegF1=0.0030
+  [can        ] NSP r=160 AUPRO05=0.1751 SegF1=0.0024
+  [fabric     ] PLAIN     AUPRO05=0.6082 SegF1=0.2338
+  [fabric     ] NSP r=20  AUPRO05=0.6421 SegF1=0.2566
+  [fabric     ] NSP r=40  AUPRO05=0.6512 SegF1=0.2686
+  [fabric     ] NSP r=80  AUPRO05=0.6509 SegF1=0.2711
+  [fabric     ] NSP r=160 AUPRO05=0.6060 SegF1=0.2765
+  [fruit_jelly] PLAIN     AUPRO05=0.6017 SegF1=0.3326
+  [fruit_jelly] NSP r=20  AUPRO05=0.5937 SegF1=0.3517
+  [fruit_jelly] NSP r=40  AUPRO05=0.6099 SegF1=0.3078
+  [fruit_jelly] NSP r=80  AUPRO05=0.6000 SegF1=0.3209
+  [fruit_jelly] NSP r=160 AUPRO05=0.6130 SegF1=0.3437
+  [rice       ] PLAIN     AUPRO05=0.7178 SegF1=0.6785
+  [rice       ] NSP r=20  AUPRO05=0.6952 SegF1=0.6892
+  [rice       ] NSP r=40  AUPRO05=0.6815 SegF1=0.6888
+  [rice       ] NSP r=80  AUPRO05=0.6918 SegF1=0.6823
+  [rice       ] NSP r=160 AUPRO05=0.6812 SegF1=0.6858
+  [sheet_metal] PLAIN     AUPRO05=0.4764 SegF1=0.2298
+  [sheet_metal] NSP r=20  AUPRO05=0.4853 SegF1=0.2816
+  [sheet_metal] NSP r=40  AUPRO05=0.4950 SegF1=0.2879
+  [sheet_metal] NSP r=80  AUPRO05=0.4950 SegF1=0.2942
+  [sheet_metal] NSP r=160 AUPRO05=0.4806 SegF1=0.3114
+  [vial       ] PLAIN     AUPRO05=0.7240 SegF1=0.3310
+  [vial       ] NSP r=20  AUPRO05=0.7208 SegF1=0.3520
+  [vial       ] NSP r=40  AUPRO05=0.7107 SegF1=0.3448
+  [vial       ] NSP r=80  AUPRO05=0.7089 SegF1=0.3422
+  [vial       ] NSP r=160 AUPRO05=0.6984 SegF1=0.3432
+  [wallplugs  ] PLAIN     AUPRO05=0.7089 SegF1=0.2585
+  [wallplugs  ] NSP r=20  AUPRO05=0.6514 SegF1=0.1873
+  [wallplugs  ] NSP r=40  AUPRO05=0.5753 SegF1=0.1145
+  [wallplugs  ] NSP r=80  AUPRO05=0.3900 SegF1=0.0621
+  [wallplugs  ] NSP r=160 AUPRO05=0.2288 SegF1=0.0302
+  [walnuts    ] PLAIN     AUPRO05=0.6371 SegF1=0.5893
+  [walnuts    ] NSP r=20  AUPRO05=0.6658 SegF1=0.6400
+  [walnuts    ] NSP r=40  AUPRO05=0.6535 SegF1=0.5999
+  [walnuts    ] NSP r=80  AUPRO05=0.6083 SegF1=0.5648
+  [walnuts    ] NSP r=160 AUPRO05=0.5414 SegF1=0.5021
+
+========================================================================================
+rank           AUPRO0.05       SegF1
+PLAIN             0.5625      0.3318
+NSP-20            0.5786      0.3451
+NSP-40            0.5722      0.3270
+NSP-80            0.5422      0.3176
+NSP-160           0.5031      0.3119
+
+ĐỌC: NSP-r > PLAIN ở AUPRO0.05/SegF1 (unsup, KHÔNG nhãn) -> NOVELTY end-to-end. Best rank để build full + nộp track unsup VAND.

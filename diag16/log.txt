@@ -1,0 +1,28 @@
+================================================================================================
+DIAG16 SegF1 root-cause | model=v3_large eff_grid=56 eval_res=512 | k=10 head_w=0.6
+================================================================================================
+================================================================================================
+DIAG16 SegF1 root-cause | model=v3_large eff_grid=56 eval_res=512 | k=10 head_w=0.6
+================================================================================================
+*[can        ] GAUSS F1=0.331 P=0.766 R=0.211 area×0.84  | SHARP F1=0.329  | defect=0.01%
+ [fabric     ] GAUSS F1=0.861 P=0.836 R=0.888 area×2.55  | SHARP F1=0.848  | defect=1.18%
+ [fruit_jelly] GAUSS F1=0.822 P=0.853 R=0.794 area×1.42  | SHARP F1=0.822  | defect=1.41%
+ [rice       ] GAUSS F1=0.866 P=0.858 R=0.874 area×2.01  | SHARP F1=0.857  | defect=0.28%
+*[sheet_metal] GAUSS F1=0.441 P=0.409 R=0.479 area×5.16  | SHARP F1=0.437  | defect=0.53%
+ [vial       ] GAUSS F1=0.795 P=0.763 R=0.830 area×2.98  | SHARP F1=0.791  | defect=2.85%
+*[wallplugs  ] GAUSS F1=0.520 P=0.633 R=0.442 area×2.79  | SHARP F1=0.513  | defect=0.26%
+ [walnuts    ] GAUSS F1=0.835 P=0.898 R=0.781 area×1.59  | SHARP F1=0.832  | defect=1.68%
+
+================================================================================================
+cat               F1g       P       R    area×   F1sharp  defect%
+can             0.331   0.766   0.211     0.84     0.329     0.01
+fabric          0.861   0.836   0.888     2.55     0.848     1.18
+fruit_jelly     0.822   0.853   0.794     1.42     0.822     1.41
+rice            0.866   0.858   0.874     2.01     0.857     0.28
+sheet_metal     0.441   0.409   0.479     5.16     0.437     0.53
+vial            0.795   0.763   0.830     2.98     0.791     2.85
+wallplugs       0.520   0.633   0.442     2.79     0.513     0.26
+walnuts         0.835   0.898   0.781     1.59     0.832     1.68
+MEAN            0.684   0.752   0.662     2.42     0.679     1.02
+
+ĐỌC: P thấp + area×>>1 -> over-segment/biên mờ -> novelty=boundary refinement. F1sharp > F1gauss -> gaussian đang hại SegF1. R thấp -> nghẽn phát hiện (khác hướng).

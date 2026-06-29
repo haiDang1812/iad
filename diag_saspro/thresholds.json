@@ -1,0 +1,92 @@
+{
+  "BCE_hw0.50": {
+    "can": 0.744873,
+    "fabric": 0.755519,
+    "fruit_jelly": 0.776983,
+    "rice": 0.76131,
+    "sheet_metal": 0.778302,
+    "vial": 0.750958,
+    "wallplugs": 0.911866,
+    "walnuts": 0.822407
+  },
+  "BCE_hw0.60": {
+    "can": 0.669134,
+    "fabric": 0.787945,
+    "fruit_jelly": 0.776831,
+    "rice": 0.710345,
+    "sheet_metal": 0.789829,
+    "vial": 0.779188,
+    "wallplugs": 0.909876,
+    "walnuts": 0.821712
+  },
+  "BCE_hw0.70": {
+    "can": 0.576573,
+    "fabric": 0.820942,
+    "fruit_jelly": 0.77527,
+    "rice": 0.674297,
+    "sheet_metal": 0.814482,
+    "vial": 0.809693,
+    "wallplugs": 0.911082,
+    "walnuts": 0.824145
+  },
+  "SOFTPRO_hw0.50": {
+    "can": 0.718558,
+    "fabric": 0.664597,
+    "fruit_jelly": 0.676511,
+    "rice": 0.751995,
+    "sheet_metal": 0.679129,
+    "vial": 0.710442,
+    "wallplugs": 0.795406,
+    "walnuts": 0.700064
+  },
+  "SOFTPRO_hw0.60": {
+    "can": 0.582218,
+    "fabric": 0.679517,
+    "fruit_jelly": 0.628907,
+    "rice": 0.713586,
+    "sheet_metal": 0.687839,
+    "vial": 0.712609,
+    "wallplugs": 0.78038,
+    "walnuts": 0.667216
+  },
+  "SOFTPRO_hw0.70": {
+    "can": 0.526696,
+    "fabric": 0.69383,
+    "fruit_jelly": 0.599417,
+    "rice": 0.646122,
+    "sheet_metal": 0.699831,
+    "vial": 0.724655,
+    "wallplugs": 0.755154,
+    "walnuts": 0.670417
+  },
+  "SASPRO_hw0.50": {
+    "can": 0.722596,
+    "fabric": 0.661965,
+    "fruit_jelly": 0.680175,
+    "rice": 0.758882,
+    "sheet_metal": 0.678733,
+    "vial": 0.704664,
+    "wallplugs": 0.793878,
+    "walnuts": 0.694207
+  },
+  "SASPRO_hw0.60": {
+    "can": 0.581779,
+    "fabric": 0.676674,
+    "fruit_jelly": 0.632103,
+    "rice": 0.696674,
+    "sheet_metal": 0.681004,
+    "vial": 0.712444,
+    "wallplugs": 0.779845,
+    "walnuts": 0.686204
+  },
+  "SASPRO_hw0.70": {
+    "can": 0.538039,
+    "fabric": 0.684903,
+    "fruit_jelly": 0.591411,
+    "rice": 0.651059,
+    "sheet_metal": 0.693098,
+    "vial": 0.71356,
+    "wallplugs": 0.754536,
+    "walnuts": 0.659578
+  }
+}

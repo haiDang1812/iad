@@ -1,0 +1,23 @@
+================================================================================
+FEW-SHOT BB | model=v3_large patch=16 | tiles=3 grid_tile=28 (tile_res=448, eff_grid=84) | layers=[4, 6, 8, 10, 12, 14, 16, 18] | shots=[10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+================================================================================
+FEW-SHOT BB | model=v3_large patch=16 | tiles=3 grid_tile=28 (tile_res=448, eff_grid=84) | layers=[4, 6, 8, 10, 12, 14, 16, 18] | shots=[10]
+UNSUP=distance | HEAD=logistic(k) | FUSE=0.5 rank(d)+0.5 head | FMULT=rank(d)*head
+================================================================================
+  [can] k=10 hw0.60 AUPRO05=0.4516 F1=0.4596
+  [fabric] k=10 hw0.60 AUPRO05=0.5162 F1=0.4198
+  [fruit_jelly] k=10 hw0.60 AUPRO05=0.7137 F1=0.6813
+  [rice] k=10 hw0.60 AUPRO05=0.8433 F1=0.6954
+  [sheet_metal] k=10 hw0.60 AUPRO05=0.7820 F1=0.3710
+  [vial] k=10 hw0.60 AUPRO05=0.7376 F1=0.4549
+  [wallplugs] k=10 hw0.60 AUPRO05=0.5983 F1=0.3392
+  [walnuts] k=10 hw0.60 AUPRO05=0.6841 F1=0.6982
+
+================================================================================
+shot/branch      AUPRO0.05     P-F1max
+10-hw0.60           0.6659      0.5149
+
+Đã lưu: ./diag_v3l_t3/results.csv  | model=v3_large
+ĐỌC: so 10-FUSE của model này với v2_base 0.7181. Cao hơn rõ -> swap backbone cho method.

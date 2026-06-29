@@ -1,0 +1,25 @@
+====================================================================================
+RNM | model=v3_large tile_res=448 eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | k=10 head_w=[0.5, 0.6, 0.7] | rn_q=95.0 rn_max=20000 rn_w=2.0
+So BASE (head thường) vs RNM (+rare-normal mined negative). Global-norm. Báo AUPRO0.05 & P-F1max.
+====================================================================================
+  [can] rare-normal mined: 12874 | defect px: 4
+  [can] BASE hw0.50 AUPRO05=0.9410 F1=0.1847
+  [can] BASE hw0.60 AUPRO05=0.9566 F1=0.4314
+  [can] BASE hw0.70 AUPRO05=0.9551 F1=0.5474
+  [can] RNM hw0.50 AUPRO05=0.9412 F1=0.1847
+  [can] RNM hw0.60 AUPRO05=0.9568 F1=0.4381
+  [can] RNM hw0.70 AUPRO05=0.9555 F1=0.5816
+  [fabric] rare-normal mined: 12089 | defect px: 23
+  [fabric] BASE hw0.50 AUPRO05=0.7584 F1=0.2434
+  [fabric] BASE hw0.60 AUPRO05=0.7733 F1=0.2424
+  [fabric] BASE hw0.70 AUPRO05=0.7664 F1=0.2405
+  [fabric] RNM hw0.50 AUPRO05=0.7610 F1=0.2437
+  [fabric] RNM hw0.60 AUPRO05=0.7650 F1=0.2431
+  [fabric] RNM hw0.70 AUPRO05=0.7668 F1=0.2416
+  [fruit_jelly] rare-normal mined: 8164 | defect px: 370
+  [fruit_jelly] BASE hw0.50 AUPRO05=0.7838 F1=0.7598
+  [fruit_jelly] BASE hw0.60 AUPRO05=0.7824 F1=0.7606
+  [fruit_jelly] BASE hw0.70 AUPRO05=0.7806 F1=0.7580
+  [fruit_jelly] RNM hw0.50 AUPRO05=0.7737 F1=0.7406
+  [fruit_jelly] RNM hw0.60 AUPRO05=0.7730 F1=0.7399
+  [fruit_jelly] RNM hw0.70 AUPRO05=0.7686 F1=0.7352

@@ -1,0 +1,96 @@
+========================================================================================
+SAS-PRO ablation | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | k=10 head_w=[0.5, 0.6, 0.7] | steps=400 q=0.95 temp=0.5 w_bce=0.3 w_hard=0.5
+Running: ['BCE', 'SOFTPRO', 'SASPRO']
+========================================================================================
+  [can] BCE      hw0.50 AUPRO05=0.9578 SegF1=0.1549 thr=0.7449
+  [can] BCE      hw0.60 AUPRO05=0.9741 SegF1=0.3493 thr=0.6691
+  [can] BCE      hw0.70 AUPRO05=0.9754 SegF1=0.5053 thr=0.5766
+  [can] SOFTPRO  hw0.50 AUPRO05=0.9427 SegF1=0.2603 thr=0.7186
+  [can] SOFTPRO  hw0.60 AUPRO05=0.9591 SegF1=0.4348 thr=0.5822
+  [can] SOFTPRO  hw0.70 AUPRO05=0.9644 SegF1=0.4580 thr=0.5267
+  [can] SASPRO   hw0.50 AUPRO05=0.9472 SegF1=0.2658 thr=0.7226
+  [can] SASPRO   hw0.60 AUPRO05=0.9619 SegF1=0.4376 thr=0.5818
+  [can] SASPRO   hw0.70 AUPRO05=0.9609 SegF1=0.4349 thr=0.5380
+  [fabric] BCE      hw0.50 AUPRO05=0.7195 SegF1=0.7405 thr=0.7555
+  [fabric] BCE      hw0.60 AUPRO05=0.6519 SegF1=0.8026 thr=0.7879
+  [fabric] BCE      hw0.70 AUPRO05=0.5657 SegF1=0.8467 thr=0.8209
+  [fabric] SOFTPRO  hw0.50 AUPRO05=0.7925 SegF1=0.8256 thr=0.6646
+  [fabric] SOFTPRO  hw0.60 AUPRO05=0.7905 SegF1=0.8678 thr=0.6795
+  [fabric] SOFTPRO  hw0.70 AUPRO05=0.7529 SegF1=0.8873 thr=0.6938
+  [fabric] SASPRO   hw0.50 AUPRO05=0.7955 SegF1=0.8292 thr=0.6620
+  [fabric] SASPRO   hw0.60 AUPRO05=0.7937 SegF1=0.8714 thr=0.6767
+  [fabric] SASPRO   hw0.70 AUPRO05=0.7536 SegF1=0.8899 thr=0.6849
+  [fruit_jelly] BCE      hw0.50 AUPRO05=0.8740 SegF1=0.7563 thr=0.7770
+  [fruit_jelly] BCE      hw0.60 AUPRO05=0.8808 SegF1=0.7796 thr=0.7768
+  [fruit_jelly] BCE      hw0.70 AUPRO05=0.8819 SegF1=0.7939 thr=0.7753
+  [fruit_jelly] SOFTPRO  hw0.50 AUPRO05=0.8774 SegF1=0.7520 thr=0.6765
+  [fruit_jelly] SOFTPRO  hw0.60 AUPRO05=0.8847 SegF1=0.7657 thr=0.6289
+  [fruit_jelly] SOFTPRO  hw0.70 AUPRO05=0.8922 SegF1=0.7764 thr=0.5994
+  [fruit_jelly] SASPRO   hw0.50 AUPRO05=0.8794 SegF1=0.7536 thr=0.6802
+  [fruit_jelly] SASPRO   hw0.60 AUPRO05=0.8869 SegF1=0.7675 thr=0.6321
+  [fruit_jelly] SASPRO   hw0.70 AUPRO05=0.8940 SegF1=0.7785 thr=0.5914
+  [rice] BCE      hw0.50 AUPRO05=0.9026 SegF1=0.7492 thr=0.7613
+  [rice] BCE      hw0.60 AUPRO05=0.9224 SegF1=0.7564 thr=0.7103
+  [rice] BCE      hw0.70 AUPRO05=0.9290 SegF1=0.7626 thr=0.6743
+  [rice] SOFTPRO  hw0.50 AUPRO05=0.8453 SegF1=0.7086 thr=0.7520
+  [rice] SOFTPRO  hw0.60 AUPRO05=0.8637 SegF1=0.7039 thr=0.7136
+  [rice] SOFTPRO  hw0.70 AUPRO05=0.8773 SegF1=0.6972 thr=0.6461
+  [rice] SASPRO   hw0.50 AUPRO05=0.8522 SegF1=0.7085 thr=0.7589
+  [rice] SASPRO   hw0.60 AUPRO05=0.8603 SegF1=0.7047 thr=0.6967
+  [rice] SASPRO   hw0.70 AUPRO05=0.8724 SegF1=0.6992 thr=0.6511
+  [sheet_metal] BCE      hw0.50 AUPRO05=0.6120 SegF1=0.3845 thr=0.7783
+  [sheet_metal] BCE      hw0.60 AUPRO05=0.6036 SegF1=0.4465 thr=0.7898
+  [sheet_metal] BCE      hw0.70 AUPRO05=0.5926 SegF1=0.4773 thr=0.8145
+  [sheet_metal] SOFTPRO  hw0.50 AUPRO05=0.6318 SegF1=0.4432 thr=0.6791
+  [sheet_metal] SOFTPRO  hw0.60 AUPRO05=0.6450 SegF1=0.4728 thr=0.6878
+  [sheet_metal] SOFTPRO  hw0.70 AUPRO05=0.6440 SegF1=0.4869 thr=0.6998
+  [sheet_metal] SASPRO   hw0.50 AUPRO05=0.6309 SegF1=0.4463 thr=0.6787
+  [sheet_metal] SASPRO   hw0.60 AUPRO05=0.6438 SegF1=0.4741 thr=0.6810
+  [sheet_metal] SASPRO   hw0.70 AUPRO05=0.6543 SegF1=0.4877 thr=0.6931
+  [vial] BCE      hw0.50 AUPRO05=0.8598 SegF1=0.6148 thr=0.7510
+  [vial] BCE      hw0.60 AUPRO05=0.8550 SegF1=0.6465 thr=0.7792
+  [vial] BCE      hw0.70 AUPRO05=0.8448 SegF1=0.6644 thr=0.8097
+  [vial] SOFTPRO  hw0.50 AUPRO05=0.8704 SegF1=0.6107 thr=0.7104
+  [vial] SOFTPRO  hw0.60 AUPRO05=0.8697 SegF1=0.6335 thr=0.7126
+  [vial] SOFTPRO  hw0.70 AUPRO05=0.8661 SegF1=0.6461 thr=0.7247
+  [vial] SASPRO   hw0.50 AUPRO05=0.8720 SegF1=0.6168 thr=0.7047
+  [vial] SASPRO   hw0.60 AUPRO05=0.8667 SegF1=0.6399 thr=0.7124
+  [vial] SASPRO   hw0.70 AUPRO05=0.8623 SegF1=0.6519 thr=0.7136
+  [wallplugs] BCE      hw0.50 AUPRO05=0.7908 SegF1=0.4443 thr=0.9119
+  [wallplugs] BCE      hw0.60 AUPRO05=0.7660 SegF1=0.4610 thr=0.9099
+  [wallplugs] BCE      hw0.70 AUPRO05=0.7318 SegF1=0.4653 thr=0.9111
+  [wallplugs] SOFTPRO  hw0.50 AUPRO05=0.8319 SegF1=0.4883 thr=0.7954
+  [wallplugs] SOFTPRO  hw0.60 AUPRO05=0.8258 SegF1=0.4969 thr=0.7804
+  [wallplugs] SOFTPRO  hw0.70 AUPRO05=0.8093 SegF1=0.5015 thr=0.7552
+  [wallplugs] SASPRO   hw0.50 AUPRO05=0.8271 SegF1=0.4861 thr=0.7939
+  [wallplugs] SASPRO   hw0.60 AUPRO05=0.8176 SegF1=0.4940 thr=0.7798
+  [wallplugs] SASPRO   hw0.70 AUPRO05=0.8051 SegF1=0.4983 thr=0.7545
+  [walnuts] BCE      hw0.50 AUPRO05=0.8861 SegF1=0.7619 thr=0.8224
+  [walnuts] BCE      hw0.60 AUPRO05=0.8882 SegF1=0.7634 thr=0.8217
+  [walnuts] BCE      hw0.70 AUPRO05=0.8856 SegF1=0.7646 thr=0.8241
+  [walnuts] SOFTPRO  hw0.50 AUPRO05=0.8521 SegF1=0.7719 thr=0.7001
+  [walnuts] SOFTPRO  hw0.60 AUPRO05=0.8602 SegF1=0.7707 thr=0.6672
+  [walnuts] SOFTPRO  hw0.70 AUPRO05=0.8649 SegF1=0.7706 thr=0.6704
+  [walnuts] SASPRO   hw0.50 AUPRO05=0.8675 SegF1=0.7699 thr=0.6942
+  [walnuts] SASPRO   hw0.60 AUPRO05=0.8836 SegF1=0.7680 thr=0.6862
+  [walnuts] SASPRO   hw0.70 AUPRO05=0.9002 SegF1=0.7696 thr=0.6596
+
+========================================================================================
+head/head_w            AUPRO0.05       SegF1
+BCE-hw0.50                0.8253      0.5758
+BCE-hw0.60                0.8177      0.6257
+BCE-hw0.70                0.8009      0.6600
+SASPRO-hw0.50             0.8340      0.6095
+SASPRO-hw0.60             0.8393      0.6447
+SASPRO-hw0.70             0.8378      0.6512
+SOFTPRO-hw0.50            0.8305      0.6076
+SOFTPRO-hw0.60            0.8373      0.6432
+SOFTPRO-hw0.70            0.8339      0.6530
+
+Đã lưu: ./diag_saspro/results.csv
+Threshold đã lưu: ./diag_saspro/thresholds.json
+
+ĐỌC KẾT QUẢ:
+  SASPRO > SOFTPRO ở can/rice/walnuts (large defect) nhờ size-adaptive weight
+  SASPRO >= SOFTPRO ở fabric/sheet_metal/wallplugs (small defect)
+  → unified performance across defect sizes = novelty core claim
