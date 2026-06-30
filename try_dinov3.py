@@ -12,7 +12,6 @@ import torch
 DEFAULT = [
     'facebook/dinov3-vitb16-pretrain-lvd1689m',
     'facebook/dinov3-vitl16-pretrain-lvd1689m',
-    'facebook/dinov3-vith16plus-pretrain-lvd1689m',
 ]
 ids = sys.argv[1:] or DEFAULT
 

@@ -1,0 +1,30 @@
+====================================================================================
+DIAG18 defect-synth premise | model=v3_large eff_grid=56 | shots=10 holdout=3 | n_synth=5000 dirs=10 scale=1.0 nui_rank=40
+real-only vs synth-augmented head; recall defect HELD-OUT (AUROC vs normal, recall@FPR5)
+====================================================================================
+====================================================================================
+DIAG18 defect-synth premise | model=v3_large eff_grid=56 | shots=10 holdout=3 | n_synth=5000 dirs=10 scale=1.0 nui_rank=40
+real-only vs synth-augmented head; recall defect HELD-OUT (AUROC vs normal, recall@FPR5)
+====================================================================================
+  [can] quá ít shot có defect, bỏ
+  [fabric     ] real AUROC=0.683 rec@5=0.156 | synth AUROC=0.550 rec@5=0.102 | Δrec=-0.054
+  [fruit_jelly] real AUROC=0.901 rec@5=0.574 | synth AUROC=0.874 rec@5=0.721 | Δrec=+0.148
+  [rice       ] real AUROC=1.000 rec@5=1.000 | synth AUROC=1.000 rec@5=1.000 | Δrec=+0.000
+  [sheet_metal] real AUROC=0.675 rec@5=0.298 | synth AUROC=0.741 rec@5=0.351 | Δrec=+0.053
+  [vial       ] real AUROC=0.870 rec@5=0.402 | synth AUROC=0.467 rec@5=0.292 | Δrec=-0.110
+  [wallplugs  ] real AUROC=0.982 rec@5=0.938 | synth AUROC=0.875 rec@5=0.688 | Δrec=-0.250
+  [walnuts    ] real AUROC=0.986 rec@5=0.917 | synth AUROC=0.964 rec@5=0.833 | Δrec=-0.083
+
+====================================================================================
+cat            AUROC_re    rec_re  AUROC_syn    rec_syn     Δrec
+fabric            0.683     0.156      0.550      0.102   -0.054
+fruit_jelly       0.901     0.574      0.874      0.721    0.148
+rice              1.000     1.000      1.000      1.000    0.000
+sheet_metal       0.675     0.298      0.741      0.351    0.053
+vial              0.870     0.402      0.467      0.292   -0.110
+wallplugs         0.982     0.938      0.875      0.688   -0.250
+walnuts           0.986     0.917      0.964      0.833   -0.083
+MEAN              0.871     0.612      0.782      0.570   -0.042
+
+ĐỌC: synth rec@5 / AUROC > real-only (defect HELD-OUT) -> feature-synthesis giúp generalize -> build full.
+     Không hơn -> synthetic feature vô ích -> bỏ ý này.
