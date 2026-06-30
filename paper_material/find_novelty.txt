@@ -1,0 +1,89 @@
+Chốt chắc chắn:
+  1. Cả 3 đều trên MVTec AD bản CŨ (gần bão hoà, dễ), KHÔNG phải AD2. BGAD 99.2% pixel-AUROC là trên AD cũ — không so được với số của ta trên AD2 (khó hơn nhiều, SOTA <60%).
+  2. AnomalyDINO = DINOv2 + không nhãn defect; BGAD = flow. Không ai dùng DINOv3, không ai chạy AD2.
+  3. → Tên backbone chính xác PRN/BGAD tôi vẫn không trích được (PDF), nên không assert. Nhưng fact quyết định (khác dataset, không DINOv3, không AD2) là chắc.
+
+  → Vậy "BCE của ta cao hơn họ" thực ra không phải so sánh hợp lệ (khác dataset). Củng cố: số cao của BCE không chứng minh gì về novelty — chỉ là linh kiện mới trên benchmark khác.
+
+  Giờ ghi nhớ + nghĩ novelty SegF1:
+
+  Recalled 1 memory, wrote 2 memories (ctrl+o to expand)
+
+● Đã ghi nhớ: SoftPRO = SOTA-có-novelty hiện tại (0.837/0.644, thắng BCE sạch; loss region-low-FPR, lit-check OPEN). SegF1 của nó chưa thuyết phục → cần lever SegF1 thật novel.
+
+  Ý tưởng novelty THẬT cho SegF1 (gắn đúng chẩn đoán)
+
+  Bottleneck SegF1 (diag16) = RECALL defect NHỎ (can R=0.21, 4 pixel defect/10 shot). Head không nhận ra defect nhỏ/lạ vì quá ít ví dụ defect. Cách cũ để fix (DRAEM/SimpleNet/GLASS) = synthetic anomaly trong KHÔNG GIAN ẢNH (dán
+  texture / cộng nhiễu Gaussian) — mà D8 đã chứng minh nhiễu Gaussian là proxy TỒI (defect nằm trong phân bố normal).
+
+  → Novelty: "Subspace-guided defect feature EXTRAPOLATION" — tổng hợp defect TRONG KHÔNG GIAN FEATURE, dẫn hướng bởi chính subspace NSP của ta.
+
+  Cơ chế:
+  1. Từ diag17/NSP ta đã có phân rã: nuisance (rare-normal) subspace ⊕ complement (nơi defect sống).
+  2. Lấy ~vài chục feature defect thật (từ 10 shot) → ngoại suy/nội suy chúng DỌC các hướng trong complement (PCA của defect-residual), ở nhiều biên độ → sinh hàng nghìn feature defect tổng hợp ĐA DẠNG nhưng HỢP LỆ (không lệch
+  sang hướng rare-normal).
+  3. Train head trên real + synthetic defects → head nhận ra defect nhỏ/lạ chưa từng thấy → recall lên → SegF1 lên.
+
+  Vì sao THẬT SỰ mới:
+  - Khác synthetic-anomaly cũ: chúng làm image-space + nhiễu đẳng hướng thô; ta làm feature-space, ràng buộc bởi subspace decomposition học được (defect đi đúng hướng defect, tránh hướng nuisance). Chưa ai làm cái này.
+  - Dùng độc quyền finding NSP của ta (nuisance/defect subspace) → không phải lắp linh kiện có sẵn.
+  - Đánh đúng bottleneck SegF1 (tiny-defect recall), không phải scorer.
+
+  Nhưng — validate PREMISE trước (kỷ luật như diag17, đừng build mù)
+
+  diag18: leave-out trên 10 shot → train head trên (một phần defect + synthetic từ phần đó) → đo recall trên defect held-out.
+  - Synthetic-augmented head recall > real-only head → ngoại suy sinh defect hữu ích → build full, kỳ vọng đẩy SegF1.
+  - Không hơn → synthetic feature không thực tế → bỏ, đỡ tốn công.
+
+  Đây là idea novel nhất cho SegF1 mà tôi dựng được, gắn chặt diag16 + NSP, khác hẳn đồ có sẵn. Thành thật: track record các mechanism đều marginal, cái này CŨNG có thể marginal — nên test premise trước.
+
+  → Viết diag18 (premise test cho defect-synthesis) chứ? Vụt là tôi làm.
+
+✻ Cogitated for 4m 46s
+
+❯ ok vụt                                                                                                                                                                                                                           
+
+● Vụt. diag18_defect_synth_premise.py — test premise: feature-defect synthesis (ngoại suy trong complement subspace) có giúp head nhận ra defect HELD-OUT tốt hơn real-only không.
+
+● Write(diag18_defect_synth_premise.py)
+  ⎿  Wrote 257 lines to diag18_defect_synth_premise.py
+       1 # diag18_defect_synth_premise.py
+       2 # -----------------------------------------------------------------------------
+       3 # Test PREMISE của novelty "subspace-guided defect feature synthesis":
+       4 #   Defect nhỏ/lạ bị miss vì few-shot quá ít ví dụ defect (diag16: can=4 px).
+       5 #   Ý: từ ít defect thật, NGOẠI SUY thêm defect TỔNG HỢP trong feature-space,
+       6 #      dẫn hướng bởi defect-PCA directions, RÀNG buộc trong complement (bỏ nuisance subspace NSP)
+       7 #      -> head thấy nhiều defect đa dạng -> nhận ra defect chưa thấy -> recall lên.
+       8 #
+       9 # Premise test (leave-out): chia 10 shot -> train-shots vs held-out-shots.
+      10 #   real-only head: train trên defect của train-shots.
+     … +247 lines (ctrl+o to expand)
+
+● Bash(python -m py_compile diag18_defect_synth_premise.py && echo "OK compile")
+  ⎿  OK compile
+
+● Compile OK. File: diag18_defect_synth_premise.py.
+
+  Chạy
+
+  HF_HUB_OFFLINE=1 python diag18_defect_synth_premise.py --data_path ../data --model v3_large \
+    --tiles 2 --grid_tile 28 --shots 10 --holdout 3 --n_synth 5000 --out_dir ./diag18
+  
+  Bảng ra
+
+  cat        AUROC_re  rec_re  AUROC_syn  rec_syn  Δrec
+  can        ...
+  ...
+  MEAN       ...
+  - re = head train trên defect thật (train-shots).
+  - syn = head train trên defect thật + defect tổng hợp (ngoại suy trong complement).
+  - Đo trên defect của held-out shots (head chưa thấy).
+
+  Quyết định
+
+  - rec_syn / AUROC_syn > real-only (Δrec > 0), nhất là can/sheet_metal/wallplugs → feature-synthesis giúp head nhận ra defect chưa thấy → recall lên → SegF1 lên → đây là novelty thật cho SegF1, build full (ghép vào head SOTA).
+  - ≈ nhau → synthetic feature vô ích → bỏ ý này, khỏi tốn công.
+
+  Tinh chỉnh nếu cần: --synth_scale 1.5/2, --defect_dirs 20, --nuisance_rank 0 (tắt complement) để so.
+
+  Chạy xong gửi tôi bảng — Δrec dương rõ thì ta có lever SegF1 mới + novel. Đây là test premise rẻ, quyết trước khi build.
