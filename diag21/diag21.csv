@@ -1,0 +1,5 @@
+metric,base,shift,shift_sc,shift_pin
+AUPRO05,0.6156,0.5582,0.5582,0.5120
+SegF1,0.1962,0.1501,0.2105,0.1412
+disparity,0.0577,0.0985,,0.0000
+safety_pin_at_base_au,0.5554,,,

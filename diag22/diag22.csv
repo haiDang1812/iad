@@ -1,0 +1,7 @@
+condition,AUPRO05,SegF1
+clean_ref,0.7873,0.3080
+shift_dist,0.5671,
+shift_noaug,0.7105,0.2832
+shift_aug,0.7716,0.3090
+headonly_noaug,0.6242,
+headonly_aug,0.6940,

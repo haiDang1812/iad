@@ -1,0 +1,4 @@
+metric,base,shift,shift_thr,shift_ttna
+AUPRO05,0.6156,0.5735,0.5735,0.5221
+SegF1,0.1962,0.1449,0.2072,0.1896
+contam_pct,0.1152,,,

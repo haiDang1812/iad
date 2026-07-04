@@ -1,0 +1,34 @@
+========================================================================================================
+DIAG20 TTNA premise | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | shift=1.0 bottom_q=0.5 adapt=30000 selfcal_pct=98.0
+BASE(no-shift) -> SHIFT(bank train, val-thr) -> SHIFT+THR(self-cal) -> SHIFT+TTNA(bank' + self-cal)
+========================================================================================================
+========================================================================================================
+DIAG20 TTNA premise | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | shift=1.0 bottom_q=0.5 adapt=30000 selfcal_pct=98.0
+BASE(no-shift) -> SHIFT(bank train, val-thr) -> SHIFT+THR(self-cal) -> SHIFT+TTNA(bank' + self-cal)
+========================================================================================================
+  [can        ] AUPRO05  base=0.286 shift=0.223 TTNA=0.199 (-0.024)  | SegF1  base=0.000 shift=0.000 +thr=0.003 +TTNA=0.003  | contam=0.0%
+  [fabric     ] AUPRO05  base=0.648 shift=0.449 TTNA=0.411 (-0.038)  | SegF1  base=0.248 shift=0.160 +thr=0.159 +TTNA=0.129  | contam=0.6%
+  [fruit_jelly] AUPRO05  base=0.636 shift=0.645 TTNA=0.618 (-0.027)  | SegF1  base=0.020 shift=0.051 +thr=0.267 +TTNA=0.254  | contam=0.0%
+  [rice       ] AUPRO05  base=0.716 shift=0.704 TTNA=0.581 (-0.123)  | SegF1  base=0.322 shift=0.023 +thr=0.154 +TTNA=0.142  | contam=0.0%
+  [sheet_metal] AUPRO05  base=0.479 shift=0.484 TTNA=0.411 (-0.073)  | SegF1  base=0.038 shift=0.031 +thr=0.142 +TTNA=0.110  | contam=0.2%
+  [vial       ] AUPRO05  base=0.782 shift=0.754 TTNA=0.699 (-0.055)  | SegF1  base=0.342 shift=0.375 +thr=0.372 +TTNA=0.338  | contam=0.0%
+  [wallplugs  ] AUPRO05  base=0.729 shift=0.699 TTNA=0.663 (-0.036)  | SegF1  base=0.200 shift=0.080 +thr=0.095 +TTNA=0.091  | contam=0.0%
+  [walnuts    ] AUPRO05  base=0.650 shift=0.630 TTNA=0.594 (-0.036)  | SegF1  base=0.401 shift=0.440 +thr=0.467 +TTNA=0.450  | contam=0.1%
+
+========================================================================================================
+MEAN             AUPRO05     SegF1       dAU       dF1
+BASE(no-shift)    0.6156    0.1962         -         -
+SHIFT             0.5735    0.1449   -0.0421   -0.0513
+SHIFT+THR         0.5735    0.2072  (=shift)    0.0623
+SHIFT+TTNA        0.5221    0.1896   -0.0514    0.0447
+
+contamination pool adapt (MEAN) = 0.12%  (thấp = defect KHÔNG bị bình-thường-hoá -> an toàn)
+========================================================================================================
+PREMISE FAILURE (shift tái hiện tụt private): PASS  (dAUPRO05=-0.042 dSegF1=-0.051)
+PREMISE METHOD-AUPRO (bank-adapt cứu ranking): FAIL  (-0.051)
+PREMISE METHOD-SegF1 (self-cal cứu ngưỡng)   : PASS  (+0.045)
+PREMISE SAFETY (contamination-robust)        : PASS  (contam=0.12%)
+=> BUILD TTNA nếu FAILURE + (METHOD-AUPRO hoặc METHOD-SegF1) PASS và SAFETY PASS.
+   Nếu METHOD-AUPRO FAIL: normal-shift KHÔNG tách được defect ngay cả khi thêm normal-test
+     -> shift làm defect==rare-normal (bất khả unsup), cần few-shot/SoftPRO gánh.
+Đã lưu: ./diag20/diag20.csv

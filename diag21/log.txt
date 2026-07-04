@@ -1,0 +1,31 @@
+================================================================================================================
+DIAG21 PIN premise | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | shift~U[0.3,1.2] per-image | pin=mad selfcal_pct=98.0
+BASE -> SHIFT(het, global-norm) -> SHIFT+SC(self-cal thr) -> SHIFT+PIN(per-image norm + self-cal) | +SAFETY +DISPARITY
+================================================================================================================
+  [can        ] AUPRO05  base=0.286 shift=0.232 PIN=0.250 (+0.017) safe=0.375 | SegF1 base=0.000 shift=0.000 +SC=0.003 +PIN=0.003 | disp b/s/p=0.035/0.068/0.000 | s~[0.30,1.18]
+  [fabric     ] AUPRO05  base=0.648 shift=0.423 PIN=0.440 (+0.017) safe=0.645 | SegF1 base=0.248 shift=0.181 +SC=0.165 +PIN=0.139 | disp b/s/p=0.048/0.089/0.000 | s~[0.30,1.20]
+  [fruit_jelly] AUPRO05  base=0.636 shift=0.617 PIN=0.514 (-0.103) safe=0.543 | SegF1 base=0.020 shift=0.047 +SC=0.288 +PIN=0.118 | disp b/s/p=0.040/0.128/0.000 | s~[0.31,1.18]
+  [rice       ] AUPRO05  base=0.716 shift=0.661 PIN=0.716 (+0.055) safe=0.729 | SegF1 base=0.322 shift=0.042 +SC=0.151 +PIN=0.156 | disp b/s/p=0.013/0.082/0.000 | s~[0.30,1.18]
+  [sheet_metal] AUPRO05  base=0.479 shift=0.473 PIN=0.483 (+0.009) safe=0.485 | SegF1 base=0.038 shift=0.031 +SC=0.139 +PIN=0.139 | disp b/s/p=0.024/0.026/0.000 | s~[0.30,1.20]
+  [vial       ] AUPRO05  base=0.782 shift=0.761 PIN=0.658 (-0.104) safe=0.628 | SegF1 base=0.342 shift=0.386 +SC=0.383 +PIN=0.319 | disp b/s/p=0.083/0.139/0.000 | s~[0.30,1.19]
+  [wallplugs  ] AUPRO05  base=0.729 shift=0.669 PIN=0.745 (+0.076) safe=0.753 | SegF1 base=0.200 shift=0.090 +SC=0.091 +PIN=0.116 | disp b/s/p=0.093/0.114/0.000 | s~[0.32,1.20]
+  [walnuts    ] AUPRO05  base=0.650 shift=0.629 PIN=0.290 (-0.339) safe=0.285 | SegF1 base=0.401 shift=0.424 +SC=0.464 +PIN=0.140 | disp b/s/p=0.125/0.142/0.000 | s~[0.30,1.18]
+
+================================================================================================================
+MEAN             AUPRO05     SegF1       dAU       dF1
+BASE(no-shift)    0.6156    0.1962         -         -
+SHIFT(het)        0.5582    0.1501   -0.0574   -0.0461
+SHIFT+SC          0.5582    0.2105  (=shift)    0.0604
+SHIFT+PIN         0.5120    0.1412   -0.0463   -0.0089
+
+DISPARITY (std median/ảnh)  BASE=0.0577  SHIFT=0.0985  PIN=0.0000   (SHIFT>BASE = shift dị nhất; PIN->gần BASE = gỡ disparity)
+SAFETY  PIN@BASE AUPRO05=0.5554 vs BASE=0.6156 (drop=+0.0602; ~0 = PIN vô hại khi KHÔNG shift)
+================================================================================================================
+PREMISE FAILURE  (shift-het tái hiện tụt private)   : PASS  (dAU=-0.057 dF1=-0.046)
+PREMISE METHOD-AUPRO (per-image norm cứu ranking)   : FAIL  (-0.046)
+PREMISE METHOD-SegF1 (self-cal/PIN cứu ngưỡng)      : PASS  (+0.060)
+PREMISE SAFETY  (PIN vô hại khi KHÔNG shift)        : FAIL  (drop=+0.060)
+PREMISE MECHANISM (PIN gỡ cross-image disparity)    : PASS  (Δdisp=+0.0985)
+=> BUILD PIN nếu FAILURE + METHOD-AUPRO + SAFETY PASS (một lever per-image cứu AUPRO, self-cal cứu SegF1).
+   Nếu METHOD-AUPRO FAIL: disparity KHÔNG phải gốc AUPRO-drop -> shift làm defect==rare-normal (few-shot gánh).
+Đã lưu: ./diag21/diag21.csv

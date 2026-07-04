@@ -1,0 +1,30 @@
+====================================================================================================================
+DIAG22 shift-aug few-shot | model=v3_large eff_grid=56 layers=[4, 6, 8, 10, 12, 14, 16, 18] | k=10 n_aug=3 shift~U[0.3,1.2] hw=0.6 steps=400
+CLEAN-REF | SHIFT DIST(hw0) | SHIFT NOAUG(head train sạch) | SHIFT AUG(head shift-aug) | +HEAD-ONLY(hw1)
+====================================================================================================================
+  [can        ] AUPRO05 clean=0.960 dist=0.241 NOAUG=0.887 AUG=0.900 (+0.014) | head-only NOAUG=0.658 AUG=0.653 | SegF1 NOAUG=0.007 AUG=0.007
+  [fabric     ] AUPRO05 clean=0.660 dist=0.452 NOAUG=0.487 AUG=0.565 (+0.079) | head-only NOAUG=0.491 AUG=0.375 | SegF1 NOAUG=0.172 AUG=0.175
+  [fruit_jelly] AUPRO05 clean=0.928 dist=0.657 NOAUG=0.704 AUG=0.956 (+0.252) | head-only NOAUG=0.402 AUG=0.961 | SegF1 NOAUG=0.406 AUG=0.599
+  [rice       ] AUPRO05 clean=0.771 dist=0.647 NOAUG=0.727 AUG=0.764 (+0.037) | head-only NOAUG=0.734 AUG=0.783 | SegF1 NOAUG=0.142 AUG=0.148
+  [sheet_metal] AUPRO05 clean=0.556 dist=0.483 NOAUG=0.540 AUG=0.530 (-0.010) | head-only NOAUG=0.513 AUG=0.493 | SegF1 NOAUG=0.159 AUG=0.155
+  [vial       ] AUPRO05 clean=0.812 dist=0.737 NOAUG=0.770 AUG=0.832 (+0.062) | head-only NOAUG=0.704 AUG=0.802 | SegF1 NOAUG=0.565 AUG=0.558
+  [wallplugs  ] AUPRO05 clean=0.813 dist=0.685 NOAUG=0.801 AUG=0.822 (+0.021) | head-only NOAUG=0.745 AUG=0.694 | SegF1 NOAUG=0.107 AUG=0.114
+  [walnuts    ] AUPRO05 clean=0.799 dist=0.634 NOAUG=0.769 AUG=0.803 (+0.034) | head-only NOAUG=0.747 AUG=0.792 | SegF1 NOAUG=0.706 AUG=0.715
+
+====================================================================================================================
+condition            AUPRO0.05       SegF1
+CLEAN-REF               0.7873      0.3080
+SHIFT DIST(hw0)         0.5671           -
+SHIFT NOAUG             0.7105      0.2832
+SHIFT AUG               0.7716      0.3090
+  head-only NOAUG       0.6242         nan
+  head-only AUG         0.6940         nan
+====================================================================================================================
+PREMISE FAILURE   (shift hạ pipeline hiện tại)      : PASS  (dAUPRO05=-0.077)
+PREMISE TRANSFER-AUPRO (shift-aug nâng fused)        : PASS  (+0.061)
+PREMISE TRANSFER-HEAD  (shift-aug nâng head-only)    : PASS  (+0.070)
+INFO SegF1 aug vs noaug = +0.026 | AUG còn cách trần CLEAN -0.016
+=> BUILD shift-aug nếu FAILURE + (TRANSFER-AUPRO hoặc TRANSFER-HEAD) PASS.
+   Nếu cả hai FAIL: shift đẩy defect-feature ra ngoài cả head shift-aug -> feature backbone bất-biến-sáng
+     mới là gốc (đổi backbone/normalize input), few-shot head không đủ.
+Đã lưu: ./diag22/diag22.csv
