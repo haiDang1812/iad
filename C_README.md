@@ -9,6 +9,7 @@ hf upload <username>/<repo_name> <local_dir> <remote_dir>
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv venv --python 3.10
+uv pip install torch==2.4.1+cu121 torchvision==0.19.1+cu121 --extra-index-url https://download.pytorch.org/whl/cu121 --index-strategy unsafe-best-match
 ```
 
 # Setup
