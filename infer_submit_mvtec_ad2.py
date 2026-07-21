@@ -212,16 +212,36 @@ def build_head(bb, ds, shot_pool, bank, args, layers, device):
 
 
 @torch.no_grad()
-def score_grid(bb, pil, bank, head, args, layers, device):
+def score_grid(bb, pil, bank, head, args, layers, device, return_feat=False):
     T = args.tiles; gt = args.grid_tile; R = args.grid_tile * bb.patch
     Cdim = bank.shape[-1]
     grid = img_featgrid(bb, pil, T, R, gt, layers, args.enc_batch)
     G = grid.shape[0]
     d = nn_map(grid, bank, device)
+    flat = grid.reshape(-1, Cdim)
     pr = None
     if head is not None:
-        pr = torch.sigmoid(head(grid.reshape(-1, Cdim))).reshape(G, G).cpu().numpy()
+        pr = torch.sigmoid(head(flat)).reshape(G, G).cpu().numpy()
+    if return_feat:
+        return d, pr, flat.mean(0), flat.shape[0]      # feat_mean (C,) trên device + số pixel
     return d, pr
+
+
+# ===== transductive head re-centering (diag25/26): khử drift dưới private light-shift =======
+# Dịch mu của head sang mean của phân bố ĐÍCH = trừ 1 HẰNG SỐ c khỏi logit MỌI pixel
+#   (vì input dịch bởi vector hằng δ=feat_mean-mu -> Δlogit = -w·(δ/sd) = -c, độc lập pixel).
+# Giữ nguyên tín hiệu (defect cũng lệch theo δ), chỉ đưa NORMAL private về operating-point đã train.
+def recenter_c(head, feat_mean):
+    w = head.lin.weight.squeeze(0)
+    return float((w * ((feat_mean.to(w.dtype) - head.mu.squeeze(0)) / head.sd.squeeze(0))).sum())
+
+
+def apply_recenter(pr, c):
+    """pr_new = sigmoid(logit(pr) - c) = pr / (pr + e^c (1-pr)). Ổn định số, pr∈[0,1]."""
+    if pr is None:
+        return None
+    ec = float(np.exp(c))
+    return (pr / (pr + ec * (1.0 - pr) + 1e-12)).astype(np.float32)
 
 
 # ===== map 56 -> 256 (gaussian, khớp train_softpro) -> (H,W) gốc ============
@@ -278,7 +298,15 @@ def main():
     ap.add_argument('--temp', type=float, default=0.5)
     ap.add_argument('--w_bce', type=float, default=0.3)
     ap.add_argument('--w_fp', type=float, default=1.0)
-    ap.add_argument('--thr_sigma', type=float, default=3.0, help='ngưỡng seg = mean + k*std trên validation/good')
+    ap.add_argument('--thr_sigma', type=float, default=3.0, help='ngưỡng seg = mean + k*std')
+    ap.add_argument('--head_recenter', type=str, default='none', choices=['none', 'image', 'split'],
+                    help='khử drift head dưới shift (diag25/26). image = mỗi ảnh trừ theo mean của NÓ '
+                         '(khử light-shift từng ảnh); split = trừ theo mean pooled mỗi private split; '
+                         'none = như cũ. Đổi CẢ .tiff (AUPRO) LẪN .png (SegF1). Validate bằng eval_shiftsim trước.')
+    ap.add_argument('--thr_mode', type=str, default='val_ksig', choices=['val_ksig', 'test_ksig'],
+                    help='val_ksig = mean+kσ trên validation/good (NGUỒN, cũ). '
+                         'test_ksig = mean+kσ trên chính phân bố private đã fuse (self-cal, diag27, k~4.5). '
+                         'Chỉ đổi .png (SegF1); .tiff/AUPRO không đổi.')
     ap.add_argument('--max_val', type=int, default=0, help='0 = dùng hết validation/good cho ngưỡng')
     ap.add_argument('--no_thresholded', action='store_true', help='bỏ nhánh .png (chỉ chấm AUPRO)')
     ap.add_argument('--tiff_compression', type=str, default='zlib',
@@ -338,6 +366,7 @@ def main():
                      for v in tqdm(val_imgs, ncols=80, desc=f'  {cat}/val')] if val_imgs else []
 
         # ---- PASS 1: score cả 2 private split, GỘP distance -> 1 lo/hi (giống train_softpro) ----
+        rc = args.head_recenter if head is not None else 'none'
         split_recs = {}; pooled_dist = []
         for split in SPLITS:
             files, root = list_split_files(args.data_path, cat, split)
@@ -346,11 +375,24 @@ def main():
             exp = OBJECT_FILE_COUNTER[cat]
             if len(files) != exp:
                 p(f'  [{cat}/{split}] CẢNH BÁO: {len(files)} ảnh (checker cần {exp})')
-            recs = []
+            recs = []; fsum = None; fcnt = 0
             for fp in tqdm(files, ncols=80, desc=f'  {cat}/{split}'):
                 pil = Image.open(fp); W, Himg = pil.size
-                d, pr = score_grid(bb, pil, bank, head, args, layers, device)
-                recs.append((fp, Himg, W, d, pr)); pooled_dist.append(d.reshape(-1))
+                if rc == 'none':
+                    d, pr = score_grid(bb, pil, bank, head, args, layers, device)
+                else:
+                    d, pr, fmean, npix = score_grid(bb, pil, bank, head, args, layers, device, return_feat=True)
+                    if rc == 'image':
+                        pr = apply_recenter(pr, recenter_c(head, fmean))       # khử theo mean của CHÍNH ảnh
+                    else:
+                        fsum = fmean * npix if fsum is None else fsum + fmean * npix
+                        fcnt += npix
+                recs.append([fp, Himg, W, d, pr]); pooled_dist.append(d.reshape(-1))
+            if rc == 'split' and fcnt > 0:                                     # khử theo mean pooled của split
+                c = recenter_c(head, fsum / fcnt)
+                for r in recs:
+                    r[4] = apply_recenter(r[4], c)
+                p(f'  [{cat}/{split}] head_recenter=split  c={c:+.3f}')
             split_recs[split] = (recs, root)
         if not pooled_dist:
             p(f'  [{cat}] không có ảnh private -> bỏ'); continue
@@ -362,13 +404,21 @@ def main():
             dr = (d - lo) / (hi - lo + 1e-8)
             return dr if (head is None or pr is None) else (1 - hw) * dr + hw * pr
 
-        # ---- ngưỡng seg từ validation/good, cùng lo/hi (private không có GT) ----
+        # ---- ngưỡng seg: mean+kσ, nguồn (val) hoặc self-cal trên đích (private). private không có GT ----
+        # diag27: k=3 quá nhỏ cho AD prevalence thấp -> mask phình -> precision sập. k~4.5 trên
+        # phân bố ĐÍCH đã fuse (test_ksig) lấy ~93% oracle in-domain VÀ tự dâng theo shift (+2.79σ).
         thr = None
-        if not args.no_thresholded and val_pairs:
-            vs = np.concatenate([up_to(fuse(d, pr), (SMOOTH_RES, SMOOTH_RES), gk, device).reshape(-1)
-                                 for d, pr in val_pairs])
-            thr = float(vs.mean() + args.thr_sigma * vs.std())
-        p(f'  [{cat}] dist_lo={lo:.3f} dist_hi={hi:.3f}' + (f' thr={thr:.4f}' if thr is not None else ' (no thr)'))
+        if not args.no_thresholded:
+            if args.thr_mode == 'test_ksig':
+                ts = np.concatenate([up_to(fuse(d, pr), (SMOOTH_RES, SMOOTH_RES), gk, device).reshape(-1)
+                                     for recs, _ in split_recs.values() for _, _, _, d, pr in recs])
+                thr = float(ts.mean() + args.thr_sigma * ts.std())
+            elif val_pairs:
+                vs = np.concatenate([up_to(fuse(d, pr), (SMOOTH_RES, SMOOTH_RES), gk, device).reshape(-1)
+                                     for d, pr in val_pairs])
+                thr = float(vs.mean() + args.thr_sigma * vs.std())
+        p(f'  [{cat}] dist_lo={lo:.3f} dist_hi={hi:.3f} thr_mode={args.thr_mode}'
+          + (f' thr={thr:.4f}' if thr is not None else ' (no thr)'))
 
         # ---- PASS 2: fuse -> upsample (H,W) -> lưu float16 tiff (+ png) ----
         for split, (recs, root) in split_recs.items():
