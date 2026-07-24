@@ -78,10 +78,19 @@
 #       --categories vial --out_dir ./shotcurve/s${S}_24
 # done
 
-CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python infer_submit_nrs3.py --data_path ../data --out_dir ./submit_nrs3
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python infer_submit_nrs3.py --data_path ../data --out_dir ./submit_nrs3
 
-rm submit_nrs3/log.txt
+# rm submit_nrs3/log.txt
+
+# cd MVTecAD2_public_code_utils
+
+# python check_and_prepare_data_for_upload.py ../submit_nrs3
+
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python infer_submit_uniform.py \
+    --data_path ../data --out_dir ./submit_uniform 2>&1 | tee log_uniform.txt
+
+rm submit_uniform/log.txt
 
 cd MVTecAD2_public_code_utils
 
-python check_and_prepare_data_for_upload.py ../submit_nrs3
+python check_and_prepare_data_for_upload.py ../submit_uniform
