@@ -109,3 +109,22 @@ zipper           4.3%   4.3% |    0.9905  0.9909 +0.0005 |    0.9525  0.9532 |  
   - r dương rõ (>=+0.4)        -> cơ chế dưới-ô được xác nhận, mạnh hơn cả con số.
   - |Δ| < 0.01 cả 2 dataset    -> NRS chỉ đúng cho ảnh siêu phân giải; KHAI giới hạn.
   - NRS thua rõ                -> contribution có điều kiện; khai rõ điều kiện đó.
+====================================================================================================
+TỔNG QUÁT HOÁ NRS | dataset=mvtec (15 cat) | CONFIG AD2 NGUYÊN SI: grid=3:48 shots=10 head_w=0.6 k=4.5 loss=softpro seed=0
+====================================================================================================
+  [bottle] không có train/good -> bỏ
+  [cable] không có train/good -> bỏ
+  [capsule] không có train/good -> bỏ
+  [carpet] không có train/good -> bỏ
+  [grid] không có train/good -> bỏ
+  [hazelnut] không có train/good -> bỏ
+  [leather] không có train/good -> bỏ
+  [metal_nut] không có train/good -> bỏ
+  [pill] không có train/good -> bỏ
+  [screw] không có train/good -> bỏ
+  [tile] không có train/good -> bỏ
+  [toothbrush] không có train/good -> bỏ
+  [transistor] không có train/good -> bỏ
+  [wood] không có train/good -> bỏ
+  [zipper] không có train/good -> bỏ
+không category nào chạy được — kiểm tra --data_path/layout

@@ -86,11 +86,33 @@
 
 # python check_and_prepare_data_for_upload.py ../submit_nrs3
 
-CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python infer_submit_uniform.py \
-    --data_path ../data --out_dir ./submit_uniform 2>&1 | tee log_uniform.txt
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python infer_submit_uniform.py \
+#     --data_path ../data --out_dir ./submit_uniform 2>&1 | tee log_uniform.txt
 
-rm submit_uniform/log.txt
+# rm submit_uniform/log.txt
 
-cd MVTecAD2_public_code_utils
+# cd MVTecAD2_public_code_utils
 
-python check_and_prepare_data_for_upload.py ../submit_uniform
+# python check_and_prepare_data_for_upload.py ../submit_uniform
+
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_generalize.py \
+#     --dataset visa --data_path /workspace/data/visa/1cls \
+#     --out_dir ./gen_visa 2>&1 | tee log_gen_visa.txt
+
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_segf1_morph.py \
+#     --data_path ../data --out_dir ./morph 2>&1 | tee log_morph.txt
+
+
+# A1 — multi-seed (chốt 0.069 ± σ), eff_grid 144, 8 cat × 5 seed
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_nrs_ablation.py --data_path ../data --out_dir ./abl_seed \
+#  --grids 48 --seeds 0 1 2 3 4
+
+# # A2 — grid-sweep, eff_grid 48/72/96/144/192, seed 0
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_nrs_ablation.py --data_path ../data --out_dir ./abl_grid \
+#  --grids 16 24 32 48 64 --seeds 0
+
+# A4 — MVTec AD generalize (cần data MVTec-AD ở ../data_mvtec)
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_generalize.py --dataset mvtec --data_path ../data_mvtec --out_dir ./gen_mvtec
+
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_nrs_ablation.py --data_path ../data
+  --out_dir ./abl_grid2 --grids 8 12 --seeds 0

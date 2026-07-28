@@ -1,0 +1,390 @@
+====================================================================================================
+NRS ABLATION (AD2) | grids(grid_tile)=[16, 24, 32, 48, 64] -> eff=[48, 72, 96, 144, 192] | seeds=[0] | 8 cat | tổng 40 run_cat
+  model=v3_large layers=[2, 3, 4, 5, 6, 7, 8, 9]->[4, 6, 8, 10, 12, 14, 16, 18] loss=softpro shots=10 head_w=0.6 k=4.5
+====================================================================================================
+
+----- [1/40] eff_grid=48 (gt=16) seed=0 cat=can p_sub=1.0 -----
+  [can] build bank từ 60 ảnh train...
+      NRS: 14 region NATIVE / 2003 px defect gốc -> train 2003 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 3 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=72 (reserve=10)
+    [can] head=grid: F1@ksig=0.2093 trần=0.2194 AUPRO0.05@512(120img)=0.3649
+    [can] head=nrs : F1@ksig=0.1317 trần=0.2496 AUPRO0.05@512(120img)=0.6960
+
+----- [2/40] eff_grid=48 (gt=16) seed=0 cat=fabric p_sub=0.9375 -----
+  [fabric] build bank từ 60 ảnh train...
+      NRS: 51 region NATIVE / 12324 px defect gốc -> train 12324 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 436 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=66 (reserve=10)
+    [fabric] head=grid: F1@ksig=0.8261 trần=0.8358 AUPRO0.05@512(120img)=0.6053
+    [fabric] head=nrs : F1@ksig=0.3798 trần=0.5322 AUPRO0.05@512(120img)=0.9385
+
+----- [3/40] eff_grid=48 (gt=16) seed=0 cat=fruit_jelly p_sub=0.7946428571428571 -----
+  [fruit_jelly] build bank từ 60 ảnh train...
+      NRS: 37 region NATIVE / 31846 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 297 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=50 good=20 (reserve=10)
+    [fruit_jelly] head=grid: F1@ksig=0.7741 trần=0.8195 AUPRO0.05@512(70img)=0.6524
+    [fruit_jelly] head=nrs : F1@ksig=0.6813 trần=0.7280 AUPRO0.05@512(70img)=0.7435
+
+----- [4/40] eff_grid=48 (gt=16) seed=0 cat=rice p_sub=0.2 -----
+  [rice] build bank từ 60 ảnh train...
+      NRS: 12 region NATIVE / 17537 px defect gốc -> train 17537 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 45 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=42 (reserve=10)
+    [rice] head=grid: F1@ksig=0.5606 trần=0.7015 AUPRO0.05@512(102img)=0.7791
+    [rice] head=nrs : F1@ksig=0.5360 trần=0.7073 AUPRO0.05@512(102img)=0.8307
+
+----- [5/40] eff_grid=48 (gt=16) seed=0 cat=sheet_metal p_sub=0.7105263157894737 -----
+  [sheet_metal] build bank từ 60 ảnh train...
+      NRS: 50 region NATIVE / 50720 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 195 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=24 (reserve=10)
+    [sheet_metal] head=grid: F1@ksig=0.4250 trần=0.4273 AUPRO0.05@512(84img)=0.4199
+    [sheet_metal] head=nrs : F1@ksig=0.3256 trần=0.3442 AUPRO0.05@512(84img)=0.6624
+
+----- [6/40] eff_grid=48 (gt=16) seed=0 cat=vial p_sub=0.24431818181818182 -----
+  [vial] build bank từ 60 ảnh train...
+      NRS: 16 region NATIVE / 18765 px defect gốc -> train 18765 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 843 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=95 good=35 (reserve=10)
+    [vial] head=grid: F1@ksig=0.4871 trần=0.6158 AUPRO0.05@512(95img)=0.8190
+    [vial] head=nrs : F1@ksig=0.4481 trần=0.5695 AUPRO0.05@512(95img)=0.8549
+
+----- [7/40] eff_grid=48 (gt=16) seed=0 cat=wallplugs p_sub=0.5333333333333333 -----
+  [wallplugs] build bank từ 60 ảnh train...
+      NRS: 10 region NATIVE / 11704 px defect gốc -> train 11704 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 51 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [wallplugs] head=grid: F1@ksig=0.4968 trần=0.5036 AUPRO0.05@512(120img)=0.6699
+    [wallplugs] head=nrs : F1@ksig=0.5374 trần=0.5548 AUPRO0.05@512(120img)=0.8040
+
+----- [8/40] eff_grid=48 (gt=16) seed=0 cat=walnuts p_sub=0.532258064516129 -----
+  [walnuts] build bank từ 60 ảnh train...
+      NRS: 42 region NATIVE / 44723 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 562 px trên lưới 48 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [walnuts] head=grid: F1@ksig=0.7831 trần=0.7831 AUPRO0.05@512(120img)=0.8155
+    [walnuts] head=nrs : F1@ksig=0.7411 trần=0.7415 AUPRO0.05@512(120img)=0.8918
+
+----- [9/40] eff_grid=72 (gt=24) seed=0 cat=can p_sub=0.9444444444444444 -----
+  [can] build bank từ 60 ảnh train...
+      NRS: 14 region NATIVE / 2003 px defect gốc -> train 2003 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 0 px trên lưới 72 | head cũ: None -> dist-only | NRS: OK
+    shots=10 | eval held-out: bad=80 good=72 (reserve=10)
+    [can] head=grid (dist-only: head cũ None): F1@ksig=0.0000 trần=0.0044 AUPRO0.05@512(120img)=0.1855
+    [can] head=nrs : F1@ksig=0.0722 trần=0.2753 AUPRO0.05@512(120img)=0.6658
+
+----- [10/40] eff_grid=72 (gt=24) seed=0 cat=fabric p_sub=0.875 -----
+  [fabric] build bank từ 60 ảnh train...
+      NRS: 51 region NATIVE / 12324 px defect gốc -> train 12324 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 989 px trên lưới 72 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=66 (reserve=10)
+    [fabric] head=grid: F1@ksig=0.8465 trần=0.8495 AUPRO0.05@512(120img)=0.5840
+    [fabric] head=nrs : F1@ksig=0.3110 trần=0.4671 AUPRO0.05@512(120img)=0.9387
+
+----- [11/40] eff_grid=72 (gt=24) seed=0 cat=fruit_jelly p_sub=0.75 -----
+  [fruit_jelly] build bank từ 60 ảnh train...
+      NRS: 37 region NATIVE / 31846 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 661 px trên lưới 72 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=50 good=20 (reserve=10)
+    [fruit_jelly] head=grid: F1@ksig=0.7832 trần=0.8246 AUPRO0.05@512(70img)=0.6828
+    [fruit_jelly] head=nrs : F1@ksig=0.6999 trần=0.7539 AUPRO0.05@512(70img)=0.7636
+
+----- [12/40] eff_grid=72 (gt=24) seed=0 cat=rice p_sub=0.15 -----
+  [rice] build bank từ 60 ảnh train...
+      NRS: 12 region NATIVE / 17537 px defect gốc -> train 17537 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 112 px trên lưới 72 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=42 (reserve=10)
+    [rice] head=grid: F1@ksig=0.5928 trần=0.7462 AUPRO0.05@512(102img)=0.8917
+    [rice] head=nrs : F1@ksig=0.5794 trần=0.7512 AUPRO0.05@512(102img)=0.9217
+
+----- [13/40] eff_grid=72 (gt=24) seed=0 cat=sheet_metal p_sub=0.5 -----
+  [sheet_metal] build bank từ 60 ảnh train...
+      NRS: 50 region NATIVE / 50720 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 486 px trên lưới 72 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=24 (reserve=10)
+    [sheet_metal] head=grid: F1@ksig=0.4774 trần=0.4821 AUPRO0.05@512(84img)=0.5348
+    [sheet_metal] head=nrs : F1@ksig=0.3649 trần=0.3649 AUPRO0.05@512(84img)=0.7266
+
+----- [14/40] eff_grid=72 (gt=24) seed=0 cat=vial p_sub=0.16477272727272727 -----
+  [vial] build bank từ 60 ảnh train...
+      NRS: 16 region NATIVE / 18765 px defect gốc -> train 18765 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 1894 px trên lưới 72 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=95 good=35 (reserve=10)
+    [vial] head=grid: F1@ksig=0.4372 trần=0.5657 AUPRO0.05@512(95img)=0.8136
+    [vial] head=nrs : F1@ksig=0.4228 trần=0.5372 AUPRO0.05@512(95img)=0.8632
+
+----- [15/40] eff_grid=72 (gt=24) seed=0 cat=wallplugs p_sub=0.2 -----
+  [wallplugs] build bank từ 60 ảnh train...
+      NRS: 10 region NATIVE / 11704 px defect gốc -> train 11704 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 120 px trên lưới 72 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [wallplugs] head=grid: F1@ksig=0.5442 trần=0.5622 AUPRO0.05@512(120img)=0.7802
+    [wallplugs] head=nrs : F1@ksig=0.5518 trần=0.5531 AUPRO0.05@512(120img)=0.8368
+
+----- [16/40] eff_grid=72 (gt=24) seed=0 cat=walnuts p_sub=0.3709677419354839 -----
+  [walnuts] build bank từ 60 ảnh train...
+      NRS: 42 region NATIVE / 44723 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 1254 px trên lưới 72 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [walnuts] head=grid: F1@ksig=0.7963 trần=0.7969 AUPRO0.05@512(120img)=0.8540
+    [walnuts] head=nrs : F1@ksig=0.7583 trần=0.7626 AUPRO0.05@512(120img)=0.9113
+
+----- [17/40] eff_grid=96 (gt=32) seed=0 cat=can p_sub=0.7777777777777778 -----
+  [can] build bank từ 60 ảnh train...
+      NRS: 14 region NATIVE / 2003 px defect gốc -> train 2003 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 6 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=72 (reserve=10)
+    [can] head=grid: F1@ksig=0.1516 trần=0.2973 AUPRO0.05@512(120img)=0.3520
+    [can] head=nrs : F1@ksig=0.2622 trần=0.2896 AUPRO0.05@512(120img)=0.7845
+
+----- [18/40] eff_grid=96 (gt=32) seed=0 cat=fabric p_sub=0.8333333333333334 -----
+  [fabric] build bank từ 60 ảnh train...
+      NRS: 51 region NATIVE / 12324 px defect gốc -> train 12324 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 1746 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=66 (reserve=10)
+    [fabric] head=grid: F1@ksig=0.8853 trần=0.8884 AUPRO0.05@512(120img)=0.6756
+    [fabric] head=nrs : F1@ksig=0.2436 trần=0.3669 AUPRO0.05@512(120img)=0.9630
+
+----- [19/40] eff_grid=96 (gt=32) seed=0 cat=fruit_jelly p_sub=0.6875 -----
+  [fruit_jelly] build bank từ 60 ảnh train...
+      NRS: 37 region NATIVE / 31846 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 1174 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=50 good=20 (reserve=10)
+    [fruit_jelly] head=grid: F1@ksig=0.7844 trần=0.8369 AUPRO0.05@512(70img)=0.6956
+    [fruit_jelly] head=nrs : F1@ksig=0.7035 trần=0.7639 AUPRO0.05@512(70img)=0.7585
+
+----- [20/40] eff_grid=96 (gt=32) seed=0 cat=rice p_sub=0.15 -----
+  [rice] build bank từ 60 ảnh train...
+      NRS: 12 region NATIVE / 17537 px defect gốc -> train 17537 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 188 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=42 (reserve=10)
+    [rice] head=grid: F1@ksig=0.5970 trần=0.7673 AUPRO0.05@512(102img)=0.8035
+    [rice] head=nrs : F1@ksig=0.5845 trần=0.7706 AUPRO0.05@512(102img)=0.8412
+
+----- [21/40] eff_grid=96 (gt=32) seed=0 cat=sheet_metal p_sub=0.20394736842105263 -----
+  [sheet_metal] build bank từ 60 ảnh train...
+      NRS: 50 region NATIVE / 50720 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 877 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=24 (reserve=10)
+    [sheet_metal] head=grid: F1@ksig=0.5050 trần=0.5093 AUPRO0.05@512(84img)=0.6593
+    [sheet_metal] head=nrs : F1@ksig=0.4144 trần=0.4144 AUPRO0.05@512(84img)=0.7759
+
+----- [22/40] eff_grid=96 (gt=32) seed=0 cat=vial p_sub=0.125 -----
+  [vial] build bank từ 60 ảnh train...
+      NRS: 16 region NATIVE / 18765 px defect gốc -> train 18765 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 3362 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=95 good=35 (reserve=10)
+    [vial] head=grid: F1@ksig=0.4437 trần=0.5299 AUPRO0.05@512(95img)=0.7761
+    [vial] head=nrs : F1@ksig=0.3979 trần=0.5083 AUPRO0.05@512(95img)=0.8438
+
+----- [23/40] eff_grid=96 (gt=32) seed=0 cat=wallplugs p_sub=0.13333333333333333 -----
+  [wallplugs] build bank từ 60 ảnh train...
+      NRS: 10 region NATIVE / 11704 px defect gốc -> train 11704 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 210 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [wallplugs] head=grid: F1@ksig=0.5249 trần=0.5566 AUPRO0.05@512(120img)=0.8157
+    [wallplugs] head=nrs : F1@ksig=0.5736 trần=0.5777 AUPRO0.05@512(120img)=0.8333
+
+----- [24/40] eff_grid=96 (gt=32) seed=0 cat=walnuts p_sub=0.27419354838709675 -----
+  [walnuts] build bank từ 60 ảnh train...
+      NRS: 42 region NATIVE / 44723 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 2239 px trên lưới 96 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [walnuts] head=grid: F1@ksig=0.8088 trần=0.8150 AUPRO0.05@512(120img)=0.8762
+    [walnuts] head=nrs : F1@ksig=0.7672 trần=0.7767 AUPRO0.05@512(120img)=0.9210
+
+----- [25/40] eff_grid=144 (gt=48) seed=0 cat=can p_sub=0.5555555555555556 -----
+  [can] build bank từ 60 ảnh train...
+      NRS: 14 region NATIVE / 2003 px defect gốc -> train 2003 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 31 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=72 (reserve=10)
+    [can] head=grid: F1@ksig=0.2014 trần=0.2847 AUPRO0.05@512(120img)=0.6801
+    [can] head=nrs : F1@ksig=0.3055 trần=0.3208 AUPRO0.05@512(120img)=0.7440
+
+----- [26/40] eff_grid=144 (gt=48) seed=0 cat=fabric p_sub=0.7083333333333334 -----
+  [fabric] build bank từ 60 ảnh train...
+      NRS: 51 region NATIVE / 12324 px defect gốc -> train 12324 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 3912 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=66 (reserve=10)
+    [fabric] head=grid: F1@ksig=0.8629 trần=0.8663 AUPRO0.05@512(120img)=0.8075
+    [fabric] head=nrs : F1@ksig=0.2186 trần=0.3185 AUPRO0.05@512(120img)=0.9576
+
+----- [27/40] eff_grid=144 (gt=48) seed=0 cat=fruit_jelly p_sub=0.5625 -----
+  [fruit_jelly] build bank từ 60 ảnh train...
+      NRS: 37 region NATIVE / 31846 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 2646 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=50 good=20 (reserve=10)
+    [fruit_jelly] head=grid: F1@ksig=0.7729 trần=0.8192 AUPRO0.05@512(70img)=0.6964
+    [fruit_jelly] head=nrs : F1@ksig=0.7007 trần=0.7529 AUPRO0.05@512(70img)=0.7515
+
+----- [28/40] eff_grid=144 (gt=48) seed=0 cat=rice p_sub=0.05 -----
+  [rice] build bank từ 60 ảnh train...
+      NRS: 12 region NATIVE / 17537 px defect gốc -> train 17537 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 433 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=42 (reserve=10)
+    [rice] head=grid: F1@ksig=0.6380 trần=0.7977 AUPRO0.05@512(102img)=0.8476
+    [rice] head=nrs : F1@ksig=0.6328 trần=0.7934 AUPRO0.05@512(102img)=0.8923
+
+----- [29/40] eff_grid=144 (gt=48) seed=0 cat=sheet_metal p_sub=0.06578947368421052 -----
+  [sheet_metal] build bank từ 60 ảnh train...
+      NRS: 50 region NATIVE / 50720 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 1717 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=24 (reserve=10)
+    [sheet_metal] head=grid: F1@ksig=0.5500 trần=0.5501 AUPRO0.05@512(84img)=0.6375
+    [sheet_metal] head=nrs : F1@ksig=0.4587 trần=0.4600 AUPRO0.05@512(84img)=0.7960
+
+----- [30/40] eff_grid=144 (gt=48) seed=0 cat=vial p_sub=0.056818181818181816 -----
+  [vial] build bank từ 60 ảnh train...
+      NRS: 16 region NATIVE / 18765 px defect gốc -> train 18765 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 7552 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=95 good=35 (reserve=10)
+    [vial] head=grid: F1@ksig=0.4171 trần=0.5481 AUPRO0.05@512(95img)=0.7958
+    [vial] head=nrs : F1@ksig=0.3890 trần=0.5021 AUPRO0.05@512(95img)=0.8305
+
+----- [31/40] eff_grid=144 (gt=48) seed=0 cat=wallplugs p_sub=0.06666666666666667 -----
+  [wallplugs] build bank từ 60 ảnh train...
+      NRS: 10 region NATIVE / 11704 px defect gốc -> train 11704 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 458 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [wallplugs] head=grid: F1@ksig=0.5373 trần=0.5635 AUPRO0.05@512(120img)=0.8134
+    [wallplugs] head=nrs : F1@ksig=0.5531 trần=0.5557 AUPRO0.05@512(120img)=0.8271
+
+----- [32/40] eff_grid=144 (gt=48) seed=0 cat=walnuts p_sub=0.20967741935483872 -----
+  [walnuts] build bank từ 60 ảnh train...
+      NRS: 42 region NATIVE / 44723 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 5056 px trên lưới 144 | head cũ: OK | NRS: OK
+    shots=10 | eval held-out: bad=80 good=60 (reserve=10)
+    [walnuts] head=grid: F1@ksig=0.8146 trần=0.8175 AUPRO0.05@512(120img)=0.8810
+    [walnuts] head=nrs : F1@ksig=0.7763 trần=0.7877 AUPRO0.05@512(120img)=0.9158
+
+----- [33/40] eff_grid=192 (gt=64) seed=0 cat=can p_sub=0.3333333333333333 -----
+  [can] build bank từ 60 ảnh train...
+    !! LỖI can eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.59 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+----- [34/40] eff_grid=192 (gt=64) seed=0 cat=fabric p_sub=0.6666666666666666 -----
+  [fabric] build bank từ 60 ảnh train...
+    !! LỖI fabric eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.60 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+----- [35/40] eff_grid=192 (gt=64) seed=0 cat=fruit_jelly p_sub=0.5267857142857143 -----
+  [fruit_jelly] build bank từ 60 ảnh train...
+    !! LỖI fruit_jelly eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.60 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+----- [36/40] eff_grid=192 (gt=64) seed=0 cat=rice p_sub=0.05 -----
+  [rice] build bank từ 60 ảnh train...
+    !! LỖI rice eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.60 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+----- [37/40] eff_grid=192 (gt=64) seed=0 cat=sheet_metal p_sub=0.02631578947368421 -----
+  [sheet_metal] build bank từ 60 ảnh train...
+    !! LỖI sheet_metal eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.60 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+----- [38/40] eff_grid=192 (gt=64) seed=0 cat=vial p_sub=0.045454545454545456 -----
+  [vial] build bank từ 60 ảnh train...
+    !! LỖI vial eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.60 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+----- [39/40] eff_grid=192 (gt=64) seed=0 cat=wallplugs p_sub=0.0 -----
+  [wallplugs] build bank từ 60 ảnh train...
+    !! LỖI wallplugs eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.60 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+----- [40/40] eff_grid=192 (gt=64) seed=0 cat=walnuts p_sub=0.1935483870967742 -----
+  [walnuts] build bank từ 60 ảnh train...
+    !! LỖI walnuts eff=192 seed=0: CUDA out of memory. Tried to allocate 1.00 GiB. GPU 0 has a total capacity of 11.76 GiB of which 290.12 MiB is free. Process 714867 has 11.45 GiB memory in use. Of the allocated memory 8.60 GiB is allocated by PyTorch, and 2.72 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+====================================================================================================
+===== A1 MULTI-SEED | eff_grid=48 (gt=16) | ΔAUPRO0.05 = nrs - grid =====
+  seed |    meanΔ NRS thắng | per-cat Δ
+     0 |  +0.1620      8/8 | +0.331 +0.333 +0.091 +0.052 +0.243 +0.036 +0.134 +0.076
+  ----------------------------------------
+  cat              meanΔ     std   n  (qua seed)
+  can            +0.3311  0.0000   1
+  fabric         +0.3332  0.0000   1
+  fruit_jelly    +0.0911  0.0000   1
+  rice           +0.0516  0.0000   1
+  sheet_metal    +0.2425  0.0000   1
+  vial           +0.0359  0.0000   1
+  wallplugs      +0.1341  0.0000   1
+  walnuts        +0.0763  0.0000   1
+  ----------------------------------------
+  TỔNG eff=48: ΔAUPRO0.05 mean(per-cat)=+0.1620 | meanΔ-8cat qua seed = +0.1620 ± 0.0000 (n_seed=1)
+
+====================================================================================================
+===== A1 MULTI-SEED | eff_grid=72 (gt=24) | ΔAUPRO0.05 = nrs - grid =====
+  seed |    meanΔ NRS thắng | per-cat Δ
+     0 |  +0.1626      8/8 | +0.480 +0.355 +0.081 +0.030 +0.192 +0.050 +0.057 +0.057
+  ----------------------------------------
+  cat              meanΔ     std   n  (qua seed)
+  can            +0.4803  0.0000   1
+  fabric         +0.3547  0.0000   1
+  fruit_jelly    +0.0808  0.0000   1
+  rice           +0.0300  0.0000   1
+  sheet_metal    +0.1918  0.0000   1
+  vial           +0.0496  0.0000   1
+  wallplugs      +0.0565  0.0000   1
+  walnuts        +0.0573  0.0000   1
+  ----------------------------------------
+  TỔNG eff=72: ΔAUPRO0.05 mean(per-cat)=+0.1626 | meanΔ-8cat qua seed = +0.1626 ± 0.0000 (n_seed=1)
+
+====================================================================================================
+===== A1 MULTI-SEED | eff_grid=96 (gt=32) | ΔAUPRO0.05 = nrs - grid =====
+  seed |    meanΔ NRS thắng | per-cat Δ
+     0 |  +0.1334      8/8 | +0.433 +0.287 +0.063 +0.038 +0.117 +0.068 +0.018 +0.045
+  ----------------------------------------
+  cat              meanΔ     std   n  (qua seed)
+  can            +0.4325  0.0000   1
+  fabric         +0.2874  0.0000   1
+  fruit_jelly    +0.0629  0.0000   1
+  rice           +0.0377  0.0000   1
+  sheet_metal    +0.1166  0.0000   1
+  vial           +0.0676  0.0000   1
+  wallplugs      +0.0176  0.0000   1
+  walnuts        +0.0447  0.0000   1
+  ----------------------------------------
+  TỔNG eff=96: ΔAUPRO0.05 mean(per-cat)=+0.1334 | meanΔ-8cat qua seed = +0.1334 ± 0.0000 (n_seed=1)
+
+====================================================================================================
+===== A1 MULTI-SEED | eff_grid=144 (gt=48) | ΔAUPRO0.05 = nrs - grid =====
+  seed |    meanΔ NRS thắng | per-cat Δ
+     0 |  +0.0694      8/8 | +0.064 +0.150 +0.055 +0.045 +0.159 +0.035 +0.014 +0.035
+  ----------------------------------------
+  cat              meanΔ     std   n  (qua seed)
+  can            +0.0639  0.0000   1
+  fabric         +0.1502  0.0000   1
+  fruit_jelly    +0.0551  0.0000   1
+  rice           +0.0447  0.0000   1
+  sheet_metal    +0.1585  0.0000   1
+  vial           +0.0347  0.0000   1
+  wallplugs      +0.0137  0.0000   1
+  walnuts        +0.0348  0.0000   1
+  ----------------------------------------
+  TỔNG eff=144: ΔAUPRO0.05 mean(per-cat)=+0.0694 | meanΔ-8cat qua seed = +0.0694 ± 0.0000 (n_seed=1)
+
+====================================================================================================
+===== A1 MULTI-SEED | eff_grid=192 (gt=64) | ΔAUPRO0.05 = nrs - grid =====
+  seed |    meanΔ NRS thắng | per-cat Δ
+  ----------------------------------------
+  cat              meanΔ     std   n  (qua seed)
+
+====================================================================================================
+===== A2 GRID-SWEEP | ΔAUPRO0.05 (trung bình qua seed+cat) theo eff_grid =====
+  eff_grid   gt    meanΔ  meanΔ±   p_sub  (p_sub = %defect dưới-ô)
+        48   16  +0.1620  0.1149   61.9%
+        72   24  +0.1626  0.1573   49.4%
+        96   32  +0.1334  0.1384   39.8%
+       144   48  +0.0694  0.0510   28.4%
+  r(Δ, eff_grid)  = -0.962  (kỳ vọng ÂM: lưới mịn -> Δ nhỏ)
+  r(Δ, p_sub)     = +0.895  (kỳ vọng DƯƠNG rõ: nhiều dưới-ô -> Δ lớn)
+
+====================================================================================================
+===== A3 số method (per-metric) tại eff_grid=192 seed=0 — dán vào bảng so SOTA =====
+  cat           AUPRO0.05(nrs)  SegF1(grid)
+  can                       NA           NA
+  fabric                    NA           NA
+  fruit_jelly               NA           NA
+  rice                      NA           NA
+  sheet_metal               NA           NA
+  vial                      NA           NA
+  wallplugs                 NA           NA
+  walnuts                   NA           NA
+
+Dump: ./abl_grid/ablation.json  (đủ số cho cả 3 bảng + vẽ scatter A2)

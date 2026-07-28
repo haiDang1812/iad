@@ -1,0 +1,133 @@
+====================================================================================================
+TỔNG QUÁT HOÁ NRS | dataset=visa (12 cat) | CONFIG AD2 NGUYÊN SI: grid=3:48 shots=10 head_w=0.6 k=4.5 loss=softpro seed=0
+====================================================================================================
+  [candle] 60 train | test bad=100 good=100 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [candle] NRS head None -> bỏ
+  [capsules] 60 train | test bad=100 good=60 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [capsules] NRS head None -> bỏ
+  [cashew] 60 train | test bad=100 good=50 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [cashew] NRS head None -> bỏ
+  [chewinggum] 60 train | test bad=100 good=50 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [chewinggum] NRS head None -> bỏ
+  [fryum] 60 train | test bad=100 good=50 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [fryum] NRS head None -> bỏ
+  [macaroni1] 60 train | test bad=100 good=100 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [macaroni1] NRS head None -> bỏ
+  [macaroni2] 60 train | test bad=100 good=100 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [macaroni2] NRS head None -> bỏ
+  [pcb1] 60 train | test bad=100 good=100 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [pcb1] NRS head None -> bỏ
+  [pcb2] 60 train | test bad=100 good=100 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [pcb2] NRS head None -> bỏ
+  [pcb3] 60 train | test bad=100 good=101 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [pcb3] NRS head None -> bỏ
+  [pcb4] 60 train | test bad=100 good=101 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [pcb4] NRS head None -> bỏ
+  [pipe_fryum] 60 train | test bad=100 good=50 | lưới 144 | region=0 dưới-ô=0.0% mất-sau-NEAREST=0.0% | median area=0.00 ô
+    supervision grid-GT: 0 px | head grid: None -> dist-only | NRS: None
+  [pipe_fryum] NRS head None -> bỏ
+không category nào chạy được — kiểm tra --data_path/layout
+====================================================================================================
+TỔNG QUÁT HOÁ NRS | dataset=visa (12 cat) | CONFIG AD2 NGUYÊN SI: grid=3:48 shots=10 head_w=0.6 k=4.5 loss=softpro seed=0
+====================================================================================================
+  [candle] 60 train | test bad=100 good=100 | lưới 144 | region=471 dưới-ô=77.7% mất-sau-NEAREST=60.9% | median area=0.11 ô
+      NRS: 118 region NATIVE / 13358 px defect gốc -> train 13358 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 549 px | head grid: OK | NRS: OK
+    [candle] head=grid: F1@ksig=0.1695 trần=0.5449 | AUPRO0.30=0.9819 AUPRO0.05=0.9044 P-AUROC=0.9958 I-AUROC=0.9833 (120img)
+    [candle] head=nrs : F1@ksig=0.1657 trần=0.5144 | AUPRO0.30=0.9829 AUPRO0.05=0.9053 P-AUROC=0.9950 I-AUROC=0.9764 (120img)
+  [capsules] 60 train | test bad=100 good=60 | lưới 144 | region=99 dưới-ô=25.3% mất-sau-NEAREST=19.2% | median area=10.60 ô
+      NRS: 19 region NATIVE / 12288 px defect gốc -> train 12288 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 983 px | head grid: OK | NRS: OK
+    [capsules] head=grid: F1@ksig=0.8195 trần=0.8207 | AUPRO0.30=0.9650 AUPRO0.05=0.9258 P-AUROC=0.9955 I-AUROC=0.9911 (120img)
+    [capsules] head=nrs : F1@ksig=0.7653 trần=0.7669 | AUPRO0.30=0.9562 AUPRO0.05=0.9231 P-AUROC=0.9912 I-AUROC=0.9953 (120img)
+  [cashew] 60 train | test bad=100 good=50 | lưới 144 | region=89 dưới-ô=10.1% mất-sau-NEAREST=5.6% | median area=18.80 ô
+      NRS: 13 region NATIVE / 13800 px defect gốc -> train 13800 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 7094 px | head grid: OK | NRS: OK
+    [cashew] head=grid: F1@ksig=0.4952 trần=0.4954 | AUPRO0.30=0.9792 AUPRO0.05=0.9397 P-AUROC=0.9678 I-AUROC=0.9883 (110img)
+    [cashew] head=nrs : F1@ksig=0.3945 trần=0.4256 | AUPRO0.30=0.9723 AUPRO0.05=0.9498 P-AUROC=0.8686 I-AUROC=0.9953 (110img)
+  [chewinggum] 60 train | test bad=100 good=50 | lưới 144 | region=247 dưới-ô=56.3% mất-sau-NEAREST=45.7% | median area=0.15 ô
+      NRS: 16 region NATIVE / 14591 px defect gốc -> train 14591 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 1515 px | head grid: OK | NRS: OK
+    [chewinggum] head=grid: F1@ksig=0.7695 trần=0.8108 | AUPRO0.30=0.9388 AUPRO0.05=0.8784 P-AUROC=0.9958 I-AUROC=0.9923 (110img)
+    [chewinggum] head=nrs : F1@ksig=0.7677 trần=0.8115 | AUPRO0.30=0.9510 AUPRO0.05=0.8918 P-AUROC=0.9952 I-AUROC=0.9903 (110img)
+  [fryum] 60 train | test bad=100 good=50 | lưới 144 | region=379 dưới-ô=69.1% mất-sau-NEAREST=48.5% | median area=0.25 ô
+      NRS: 57 region NATIVE / 18997 px defect gốc -> train 18997 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 3405 px | head grid: OK | NRS: OK
+    [fryum] head=grid: F1@ksig=0.4567 trần=0.5758 | AUPRO0.30=0.9558 AUPRO0.05=0.7919 P-AUROC=0.9767 I-AUROC=0.9863 (110img)
+    [fryum] head=nrs : F1@ksig=0.3394 trần=0.4772 | AUPRO0.30=0.9733 AUPRO0.05=0.8829 P-AUROC=0.9632 I-AUROC=0.9790 (110img)
+  [macaroni1] 60 train | test bad=100 good=100 | lưới 144 | region=549 dưới-ô=86.7% mất-sau-NEAREST=70.5% | median area=0.07 ô
+      NRS: 182 region NATIVE / 8122 px defect gốc -> train 8122 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 123 px | head grid: OK | NRS: OK
+    [macaroni1] head=grid: F1@ksig=0.0463 trần=0.5342 | AUPRO0.30=0.9783 AUPRO0.05=0.9033 P-AUROC=0.9973 I-AUROC=0.9969 (120img)
+    [macaroni1] head=nrs : F1@ksig=0.0578 trần=0.5563 | AUPRO0.30=0.9841 AUPRO0.05=0.9240 P-AUROC=0.9978 I-AUROC=0.9986 (120img)
+  [macaroni2] 60 train | test bad=100 good=100 | lưới 144 | region=322 dưới-ô=75.2% mất-sau-NEAREST=57.1% | median area=0.07 ô
+      NRS: 122 region NATIVE / 8111 px defect gốc -> train 8111 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 125 px | head grid: OK | NRS: OK
+    [macaroni2] head=grid: F1@ksig=0.0464 trần=0.4325 | AUPRO0.30=0.9806 AUPRO0.05=0.8923 P-AUROC=0.9968 I-AUROC=0.9153 (120img)
+    [macaroni2] head=nrs : F1@ksig=0.0493 trần=0.4142 | AUPRO0.30=0.9835 AUPRO0.05=0.9079 P-AUROC=0.9971 I-AUROC=0.9078 (120img)
+  [pcb1] 60 train | test bad=100 good=100 | lưới 144 | region=214 dưới-ô=39.3% mất-sau-NEAREST=24.3% | median area=2.08 ô
+      NRS: 29 region NATIVE / 23074 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 465 px | head grid: OK | NRS: OK
+    [pcb1] head=grid: F1@ksig=0.0952 trần=0.1516 | AUPRO0.30=0.9337 AUPRO0.05=0.7933 P-AUROC=0.9492 I-AUROC=0.9897 (120img)
+    [pcb1] head=nrs : F1@ksig=0.0876 trần=0.1389 | AUPRO0.30=0.9252 AUPRO0.05=0.7682 P-AUROC=0.9499 I-AUROC=0.9753 (120img)
+  [pcb2] 60 train | test bad=100 good=100 | lưới 144 | region=166 dưới-ô=15.7% mất-sau-NEAREST=10.2% | median area=13.00 ô
+      NRS: 26 region NATIVE / 26801 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 643 px | head grid: OK | NRS: OK
+    [pcb2] head=grid: F1@ksig=0.4146 trần=0.5554 | AUPRO0.30=0.9705 AUPRO0.05=0.8917 P-AUROC=0.9926 I-AUROC=0.9436 (120img)
+    [pcb2] head=nrs : F1@ksig=0.4041 trần=0.5360 | AUPRO0.30=0.9711 AUPRO0.05=0.8961 P-AUROC=0.9921 I-AUROC=0.9494 (120img)
+  [pcb3] 60 train | test bad=100 good=101 | lưới 144 | region=173 dưới-ô=27.7% mất-sau-NEAREST=21.4% | median area=6.89 ô
+      NRS: 27 region NATIVE / 18654 px defect gốc -> train 18654 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 1195 px | head grid: OK | NRS: OK
+    [pcb3] head=grid: F1@ksig=0.4369 trần=0.5888 | AUPRO0.30=0.9567 AUPRO0.05=0.8730 P-AUROC=0.9588 I-AUROC=0.9458 (120img)
+    [pcb3] head=nrs : F1@ksig=0.4941 trần=0.5849 | AUPRO0.30=0.9615 AUPRO0.05=0.9049 P-AUROC=0.9597 I-AUROC=0.9442 (120img)
+  [pcb4] 60 train | test bad=100 good=101 | lưới 144 | region=344 dưới-ô=38.1% mất-sau-NEAREST=25.0% | median area=2.99 ô
+      NRS: 24 region NATIVE / 24933 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 2031 px | head grid: OK | NRS: OK
+    [pcb4] head=grid: F1@ksig=0.5803 trần=0.5819 | AUPRO0.30=0.9706 AUPRO0.05=0.8370 P-AUROC=0.9933 I-AUROC=0.9928 (120img)
+    [pcb4] head=nrs : F1@ksig=0.5261 trần=0.5303 | AUPRO0.30=0.9661 AUPRO0.05=0.8219 P-AUROC=0.9879 I-AUROC=0.9906 (120img)
+  [pipe_fryum] 60 train | test bad=100 good=50 | lưới 144 | region=160 dưới-ô=43.8% mất-sau-NEAREST=29.4% | median area=2.27 ô
+      NRS: 18 region NATIVE / 12786 px defect gốc -> train 12786 pos, 28000 neg (bank 20000 + in-image)
+    supervision grid-GT: 10884 px | head grid: OK | NRS: OK
+    [pipe_fryum] head=grid: F1@ksig=0.5159 trần=0.5508 | AUPRO0.30=0.9723 AUPRO0.05=0.8461 P-AUROC=0.9917 I-AUROC=0.9783 (110img)
+    [pipe_fryum] head=nrs : F1@ksig=0.4549 trần=0.4911 | AUPRO0.30=0.9772 AUPRO0.05=0.8726 P-AUROC=0.9906 I-AUROC=0.9880 (110img)
+
+====================================================================================================
+===== TỔNG visa (12 cat) | thước native, full test trừ shots =====
+  (AUPRO0.30 = thước baseline MVTec/VisA; AUPRO0.05 = nhất quán với AD2)
+cat            dưới-ô    mất | AUPRO30 g     nrs     Δ30 | AUPRO05 g     nrs |  P-AUR g     nrs |   F1 g    nrs
+candle          77.7%  60.9% |    0.9819  0.9829 +0.0009 |    0.9044  0.9053 |   0.9958  0.9950 |  0.170  0.166
+capsules        25.3%  19.2% |    0.9650  0.9562 -0.0088 |    0.9258  0.9231 |   0.9955  0.9912 |  0.819  0.765
+cashew          10.1%   5.6% |    0.9792  0.9723 -0.0070 |    0.9397  0.9498 |   0.9678  0.8686 |  0.495  0.394
+chewinggum      56.3%  45.7% |    0.9388  0.9510 +0.0122 |    0.8784  0.8918 |   0.9958  0.9952 |  0.769  0.768
+fryum           69.1%  48.5% |    0.9558  0.9733 +0.0175 |    0.7919  0.8829 |   0.9767  0.9632 |  0.457  0.339
+macaroni1       86.7%  70.5% |    0.9783  0.9841 +0.0058 |    0.9033  0.9240 |   0.9973  0.9978 |  0.046  0.058
+macaroni2       75.2%  57.1% |    0.9806  0.9835 +0.0029 |    0.8923  0.9079 |   0.9968  0.9971 |  0.046  0.049
+pcb1            39.3%  24.3% |    0.9337  0.9252 -0.0085 |    0.7933  0.7682 |   0.9492  0.9499 |  0.095  0.088
+pcb2            15.7%  10.2% |    0.9705  0.9711 +0.0006 |    0.8917  0.8961 |   0.9926  0.9921 |  0.415  0.404
+pcb3            27.7%  21.4% |    0.9567  0.9615 +0.0048 |    0.8730  0.9049 |   0.9588  0.9597 |  0.437  0.494
+pcb4            38.1%  25.0% |    0.9706  0.9661 -0.0046 |    0.8370  0.8219 |   0.9933  0.9879 |  0.580  0.526
+pipe_fryum      43.8%  29.4% |    0.9723  0.9772 +0.0048 |    0.8461  0.8726 |   0.9917  0.9906 |  0.516  0.455
+  MEAN AUPRO0.30: grid=0.9653  nrs=0.9670  Δ=+0.0017  | NRS thắng 8/12
+  MEAN AUPRO0.05: grid=0.8731  nrs=0.8874  Δ=+0.0143  | NRS thắng 9/12
+  MEAN P-AUROC  : grid=0.9843  nrs=0.9740  Δ=-0.0103  | NRS thắng 4/12
+  MEAN I-AUROC  : grid=0.9753  nrs=0.9742  Δ=-0.0011  | NRS thắng 5/12
+  MEAN F1@ksig  : grid=0.4038  nrs=0.3756  Δ=-0.0283  | NRS thắng 3/12
+  MEAN trần     : grid=0.5536  nrs=0.5206  Δ=-0.0330  | NRS thắng 2/12
+  TƯƠNG QUAN %dưới-ô vs ΔAUPRO0.30: pearson r=+0.554 (n=12)
+
+ĐỌC (pre-registered, KHÔNG sửa sau khi thấy số):
+  - NRS thắng AUPRO >=70% cat  -> tổng quát hoá, dùng chống "single benchmark".
+  - r dương rõ (>=+0.4)        -> cơ chế dưới-ô được xác nhận, mạnh hơn cả con số.
+  - |Δ| < 0.01 cả 2 dataset    -> NRS chỉ đúng cho ảnh siêu phân giải; KHAI giới hạn.
+  - NRS thua rõ                -> contribution có điều kiện; khai rõ điều kiện đó.

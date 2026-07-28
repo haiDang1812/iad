@@ -1,0 +1,80 @@
+device=cuda:0 eff_grid=144 k=4.5 | variants: ['none', 'open1', 'open2', 'close1', 'open1+close1', 'open2+close1']
+  [can] build bank từ 60 ảnh...
+      NRS: 14 region NATIVE / 2003 px defect gốc -> train 2003 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=80 good=72
+    [can] head=grid SegF1 baseline=0.2006 | best=none=0.2006 (Δ+0.0000)
+      none=0.2006  open1=0.1997  open2=0.1972  close1=0.2006  open1+close1=0.1997  open2+close1=0.1972
+    [can] head=nrs  SegF1 baseline=0.3056 | best=open2=0.3062 (Δ+0.0006)
+      none=0.3056  open1=0.3055  open2=0.3062  close1=0.3056  open1+close1=0.3055  open2+close1=0.3062
+  [fabric] build bank từ 60 ảnh...
+      NRS: 51 region NATIVE / 12324 px defect gốc -> train 12324 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=80 good=66
+    [fabric] head=grid SegF1 baseline=0.8630 | best=open2=0.8631 (Δ+0.0001)
+      none=0.8630  open1=0.8630  open2=0.8631  close1=0.8630  open1+close1=0.8630  open2+close1=0.8630
+    [fabric] head=nrs  SegF1 baseline=0.2184 | best=none=0.2184 (Δ+0.0000)
+      none=0.2184  open1=0.2184  open2=0.2184  close1=0.2182  open1+close1=0.2182  open2+close1=0.2182
+  [fruit_jelly] build bank từ 60 ảnh...
+      NRS: 37 region NATIVE / 31846 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=50 good=20
+    [fruit_jelly] head=grid SegF1 baseline=0.7729 | best=close1=0.7729 (Δ+0.0000)
+      none=0.7729  open1=0.7728  open2=0.7727  close1=0.7729  open1+close1=0.7728  open2+close1=0.7727
+    [fruit_jelly] head=nrs  SegF1 baseline=0.7007 | best=close1=0.7007 (Δ+0.0000)
+      none=0.7007  open1=0.7006  open2=0.7005  close1=0.7007  open1+close1=0.7007  open2+close1=0.7005
+  [rice] build bank từ 60 ảnh...
+      NRS: 12 region NATIVE / 17537 px defect gốc -> train 17537 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=80 good=42
+    [rice] head=grid SegF1 baseline=0.6386 | best=open2=0.6390 (Δ+0.0004)
+      none=0.6386  open1=0.6387  open2=0.6390  close1=0.6383  open1+close1=0.6384  open2+close1=0.6387
+    [rice] head=nrs  SegF1 baseline=0.6330 | best=open2=0.6334 (Δ+0.0003)
+      none=0.6330  open1=0.6331  open2=0.6334  close1=0.6328  open1+close1=0.6329  open2+close1=0.6332
+  [sheet_metal] build bank từ 60 ảnh...
+      NRS: 50 region NATIVE / 50720 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=80 good=24
+    [sheet_metal] head=grid SegF1 baseline=0.5500 | best=open2=0.5500 (Δ+0.0000)
+      none=0.5500  open1=0.5500  open2=0.5500  close1=0.5500  open1+close1=0.5500  open2+close1=0.5500
+    [sheet_metal] head=nrs  SegF1 baseline=0.4586 | best=open2+close1=0.4587 (Δ+0.0001)
+      none=0.4586  open1=0.4587  open2=0.4587  close1=0.4587  open1+close1=0.4587  open2+close1=0.4587
+  [vial] build bank từ 60 ảnh...
+      NRS: 16 region NATIVE / 18765 px defect gốc -> train 18765 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=95 good=35
+    [vial] head=grid SegF1 baseline=0.4164 | best=close1=0.4164 (Δ+0.0000)
+      none=0.4164  open1=0.4163  open2=0.4162  close1=0.4164  open1+close1=0.4163  open2+close1=0.4162
+    [vial] head=nrs  SegF1 baseline=0.3889 | best=close1=0.3889 (Δ+0.0000)
+      none=0.3889  open1=0.3888  open2=0.3887  close1=0.3889  open1+close1=0.3888  open2+close1=0.3887
+  [wallplugs] build bank từ 60 ảnh...
+      NRS: 10 region NATIVE / 11704 px defect gốc -> train 11704 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=80 good=60
+    [wallplugs] head=grid SegF1 baseline=0.5374 | best=open2+close1=0.5377 (Δ+0.0003)
+      none=0.5374  open1=0.5375  open2=0.5377  close1=0.5374  open1+close1=0.5375  open2+close1=0.5377
+    [wallplugs] head=nrs  SegF1 baseline=0.5532 | best=open2+close1=0.5534 (Δ+0.0002)
+      none=0.5532  open1=0.5532  open2=0.5534  close1=0.5532  open1+close1=0.5532  open2+close1=0.5534
+  [walnuts] build bank từ 60 ảnh...
+      NRS: 42 region NATIVE / 44723 px defect gốc -> train 20000 pos, 28000 neg (bank 20000 + in-image)
+    eval: bad=80 good=60
+    [walnuts] head=grid SegF1 baseline=0.8146 | best=close1=0.8146 (Δ+0.0000)
+      none=0.8146  open1=0.8146  open2=0.8146  close1=0.8146  open1+close1=0.8146  open2+close1=0.8146
+    [walnuts] head=nrs  SegF1 baseline=0.7762 | best=close1=0.7762 (Δ+0.0000)
+      none=0.7762  open1=0.7762  open2=0.7762  close1=0.7762  open1+close1=0.7762  open2+close1=0.7762
+
+============================================================================================
+===== TỔNG SegF1 (pool pixel toàn cục, threshold ksig) =====
+
+  --- head=grid ---
+    none           MEAN SegF1=0.5992  Δ=+0.0000  | thắng baseline 0/8 cat
+    open1          MEAN SegF1=0.5991  Δ=-0.0001  | thắng baseline 4/8 cat
+    open2          MEAN SegF1=0.5988  Δ=-0.0004  | thắng baseline 4/8 cat
+    close1         MEAN SegF1=0.5992  Δ=-0.0000  | thắng baseline 4/8 cat
+    open1+close1   MEAN SegF1=0.5990  Δ=-0.0001  | thắng baseline 2/8 cat
+    open2+close1   MEAN SegF1=0.5988  Δ=-0.0004  | thắng baseline 3/8 cat
+
+  --- head=nrs ---
+    none           MEAN SegF1=0.5043  Δ=+0.0000  | thắng baseline 0/8 cat
+    open1          MEAN SegF1=0.5043  Δ=-0.0000  | thắng baseline 3/8 cat
+    open2          MEAN SegF1=0.5044  Δ=+0.0001  | thắng baseline 4/8 cat  <== best
+    close1         MEAN SegF1=0.5043  Δ=-0.0000  | thắng baseline 5/8 cat
+    open1+close1   MEAN SegF1=0.5043  Δ=-0.0001  | thắng baseline 3/8 cat
+    open2+close1   MEAN SegF1=0.5044  Δ=+0.0000  | thắng baseline 4/8 cat
+
+ĐỌC (pre-registered):
+  - best morph >= baseline +0.01 SegF1 & thắng >=2/3 cat (head grid) -> SỐNG, fold vào submit.
+  - < +0.01 hoặc thất thường                                        -> BỎ, đừng bịa novelty.
