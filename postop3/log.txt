@@ -1,0 +1,24 @@
+device=cuda:0 P3 = OR closing 16 line-SE (L=42px native) -> AND 0.8xthr -> fill. Hằng số nguyên bản SuperADD, không tune. P0 control = 0.3748.
+  [sheet_metal] cache n=114 thr=41.152
+    [sheet_metal] F1@rule P0=0.3075  P3=0.3252  Δ=+0.0177
+  [can] cache n=162 thr=42.039
+    [can] F1@rule P0=0.0038  P3=0.0027  Δ=-0.0011
+  [fabric] cache n=156 thr=39.691
+    [fabric] F1@rule P0=0.3623  P3=0.4982  Δ=+0.1359
+  [wallplugs] cache n=150 thr=41.086
+    [wallplugs] F1@rule P0=0.1884  P3=0.1582  Δ=-0.0302
+  [fruit_jelly] cache n=80 thr=42.460
+    [fruit_jelly] F1@rule P0=0.3075  P3=0.3580  Δ=+0.0505
+  [vial] cache n=140 thr=40.218
+    [vial] F1@rule P0=0.4111  P3=0.3961  Δ=-0.0150
+  [rice] cache n=132 thr=41.067
+    [rice] F1@rule P0=0.7399  P3=0.6982  Δ=-0.0417
+  [walnuts] cache n=150 thr=43.976
+    [walnuts] F1@rule P0=0.6775  P3=0.7348  Δ=+0.0573
+
+====================================================================================
+===== MEAN (FULL test_public, offline cache) =====
+  F1@rule: P0=0.3748  P3=0.3964  Δ=+0.0217
+  cat tụt >0.02: [('wallplugs', -0.0302), ('rice', -0.0417)]
+
+ĐỌC (pre-registered): (0) P0=0.3748. (1) P3 VÀO nếu Δmean>=+0.010 VÀ không cat tụt>0.02. Trượt -> giữ P0, không chẻ bundle ra sweep.

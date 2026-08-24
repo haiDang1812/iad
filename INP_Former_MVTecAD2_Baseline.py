@@ -84,7 +84,8 @@ def main(args):
     model = INP_Former(encoder=encoder, bottleneck=Bottleneck, aggregation=INP_Extractor,
                       decoder=INP_Guided_Decoder, target_layers=target_layers,
                       remove_class_token=True, fuse_layer_encoder=fuse_layer_encoder,
-                      fuse_layer_decoder=fuse_layer_decoder, prototype_token=INP)
+                      fuse_layer_decoder=fuse_layer_decoder, prototype_token=INP,
+                      cvar_alpha=args.cvar_alpha)
     model = model.to(device)
 
     if args.phase == 'train':
@@ -146,7 +147,9 @@ def main(args):
 
 
 if __name__ == '__main__':
-    os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
+    # CUDA_LAUNCH_BLOCKING=1 ép mọi kernel chạy đồng bộ -> chậm KHỦNG cho training.
+    # Chỉ bật khi debug lỗi CUDA; pilot/train thì tắt.
+    # os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
     parser = argparse.ArgumentParser(description='INP-Former Baseline on MVTecAD-2')
 
     # Dataset
@@ -162,20 +165,28 @@ if __name__ == '__main__':
     parser.add_argument('--input_size', type=int, default=448)
     parser.add_argument('--crop_size', type=int, default=392)
     parser.add_argument('--INP_num', type=int, default=6)
+    parser.add_argument('--cvar_alpha', type=float, default=1.0,
+                        help='gather-loss tail fraction: 1.0=INP-Former goc (k-means mean); '
+                             '<1.0=tail-coverage CVaR (phu rare-normal, giam FP low-FPR)')
 
     # Training
     parser.add_argument('--total_epochs', type=int, default=200)
     parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--phase', type=str, default='train')
+    parser.add_argument('--items', type=str, nargs='+', default=None,
+                        help='pilot: chạy subset cat (vd: sheet_metal). None = full 8 cat.')
 
     args = parser.parse_args()
     args.save_name = args.save_name + f'_Encoder={args.encoder}_Crop={args.crop_size}_INP={args.INP_num}'
+    if args.cvar_alpha < 1.0:
+        args.save_name = args.save_name + f'_cvar={args.cvar_alpha}'
     logger = get_logger(args.save_name, os.path.join(args.save_dir, args.save_name))
     print_fn = logger.info
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
     # MVTecAD-2 categories
-    args.item_list = ['can', 'fabric', 'fruit_jelly', 'rice', 'sheet_metal', 'vial', 'wall_plugs', 'walnuts']
+    args.item_list = args.items if args.items else \
+        ['can', 'fabric', 'fruit_jelly', 'rice', 'sheet_metal', 'vial', 'wall_plugs', 'walnuts']
 
     result_list = []
     for item in args.item_list:

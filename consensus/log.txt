@@ -1,0 +1,74 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 aupro_res=512 k=4.5
+  FAIR: bank CHỈ train/good; GT chỉ để chấm. avg=baseline (NN feature trung bình = pipeline hiện tại).
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 L=8
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 aupro_res=512 k=4.5
+  FAIR: bank CHỈ train/good; GT chỉ để chấm. avg=baseline (NN feature trung bình = pipeline hiện tại).
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 L=8
+    [sheet_metal] bank per-layer=22200 avg=50000
+    [sheet_metal] avg   : AUPRO0.05=0.5429  SegF1=0.0000  trần=0.2699
+    [sheet_metal] meanz : AUPRO0.05=0.4583  SegF1=0.0067  trần=0.2202   Δaupro=-0.0846
+    [sheet_metal] minz  : AUPRO0.05=0.4140  SegF1=0.0000  trần=0.1929   Δaupro=-0.1289
+    [sheet_metal] q25z  : AUPRO0.05=0.4587  SegF1=0.0000  trần=0.2299   Δaupro=-0.0842
+  [can] eval bad=30 good=30 | eff_grid=144 L=8
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 aupro_res=512 k=4.5
+  FAIR: bank CHỈ train/good; GT chỉ để chấm. avg=baseline (NN feature trung bình = pipeline hiện tại).
+  [can] eval bad=30 good=30 | eff_grid=144 L=8
+    [can] bank per-layer=22200 avg=50000
+    [can] avg   : AUPRO0.05=0.2805  SegF1=0.0000  trần=0.0040
+    [can] meanz : AUPRO0.05=0.2573  SegF1=0.0000  trần=0.0030   Δaupro=-0.0232
+    [can] minz  : AUPRO0.05=0.1375  SegF1=0.0000  trần=0.0038   Δaupro=-0.1429
+    [can] q25z  : AUPRO0.05=0.2268  SegF1=0.0000  trần=0.0033   Δaupro=-0.0537
+  [vial] eval bad=30 good=30 | eff_grid=144 L=8
+    [vial] bank per-layer=22200 avg=50000
+    [vial] avg   : AUPRO0.05=0.6474  SegF1=0.0000  trần=0.2314
+    [vial] meanz : AUPRO0.05=0.5041  SegF1=0.0000  trần=0.1772   Δaupro=-0.1432
+    [vial] minz  : AUPRO0.05=0.3542  SegF1=0.0000  trần=0.1602   Δaupro=-0.2931
+    [vial] q25z  : AUPRO0.05=0.4364  SegF1=0.0000  trần=0.1703   Δaupro=-0.2110
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 L=8
+    [wallplugs] bank per-layer=22200 avg=50000
+    [wallplugs] avg   : AUPRO0.05=0.6227  SegF1=0.0745  trần=0.1521
+    [wallplugs] meanz : AUPRO0.05=0.5754  SegF1=0.0366  trần=0.0664   Δaupro=-0.0473
+    [wallplugs] minz  : AUPRO0.05=0.5469  SegF1=0.0569  trần=0.0755   Δaupro=-0.0758
+    [wallplugs] q25z  : AUPRO0.05=0.5607  SegF1=0.0622  trần=0.0856   Δaupro=-0.0620
+  [walnuts] eval bad=30 good=30 | eff_grid=144 L=8
+    [walnuts] bank per-layer=22200 avg=50000
+    [walnuts] avg   : AUPRO0.05=0.4983  SegF1=0.0000  trần=0.2892
+    [walnuts] meanz : AUPRO0.05=0.4267  SegF1=0.0050  trần=0.1822   Δaupro=-0.0717
+    [walnuts] minz  : AUPRO0.05=0.4051  SegF1=0.0000  trần=0.1781   Δaupro=-0.0933
+    [walnuts] q25z  : AUPRO0.05=0.4191  SegF1=0.0001  trần=0.1768   Δaupro=-0.0792
+  [fabric] eval bad=30 good=30 | eff_grid=144 L=8
+    [fabric] bank per-layer=22200 avg=50000
+    [fabric] avg   : AUPRO0.05=0.7337  SegF1=0.0342  trần=0.0873
+    [fabric] meanz : AUPRO0.05=0.6709  SegF1=0.0266  trần=0.0438   Δaupro=-0.0628
+    [fabric] minz  : AUPRO0.05=0.5535  SegF1=0.0212  trần=0.0314   Δaupro=-0.1802
+    [fabric] q25z  : AUPRO0.05=0.6261  SegF1=0.0234  trần=0.0348   Δaupro=-0.1076
+  [rice] eval bad=30 good=30 | eff_grid=144 L=8
+    [rice] bank per-layer=22200 avg=50000
+    [rice] avg   : AUPRO0.05=0.6733  SegF1=0.6062  trần=0.6208
+    [rice] meanz : AUPRO0.05=0.5450  SegF1=0.4051  trần=0.4360   Δaupro=-0.1283
+    [rice] minz  : AUPRO0.05=0.4096  SegF1=0.1322  trần=0.1747   Δaupro=-0.2638
+    [rice] q25z  : AUPRO0.05=0.4338  SegF1=0.1671  trần=0.1977   Δaupro=-0.2395
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 L=8
+    [fruit_jelly] bank per-layer=22200 avg=50000
+    [fruit_jelly] avg   : AUPRO0.05=0.5353  SegF1=0.0000  trần=0.1665
+    [fruit_jelly] meanz : AUPRO0.05=0.5339  SegF1=0.0000  trần=0.1714   Δaupro=-0.0014
+    [fruit_jelly] minz  : AUPRO0.05=0.5015  SegF1=0.0000  trần=0.1870   Δaupro=-0.0338
+    [fruit_jelly] q25z  : AUPRO0.05=0.5388  SegF1=0.0000  trần=0.1730   Δaupro=+0.0035
+
+====================================================================================
+===== MEAN (AUPRO0.05 / SegF1 / trần) — avg=baseline =====
+  avg   : AUPRO0.05=0.5702  SegF1=0.1021  trần=0.2216
+  meanz : AUPRO0.05=0.5019  SegF1=0.0676  trần=0.1543   Δ=-0.0683
+  minz  : AUPRO0.05=0.4155  SegF1=0.0300  trần=0.1158   Δ=-0.1547
+  q25z  : AUPRO0.05=0.4631  SegF1=0.0361  trần=0.1202   Δ=-0.1071
+
+  Per-cat (biến thể tốt nhất theo AUPRO0.05):
+    [can        ] best=avg    AUPRO0.05=0.2805 (avg=0.280)  SegF1=0.0000
+    [vial       ] best=avg    AUPRO0.05=0.6474 (avg=0.647)  SegF1=0.0000
+    [wallplugs  ] best=avg    AUPRO0.05=0.6227 (avg=0.623)  SegF1=0.0745
+    [walnuts    ] best=avg    AUPRO0.05=0.4983 (avg=0.498)  SegF1=0.0000
+    [fabric     ] best=avg    AUPRO0.05=0.7337 (avg=0.734)  SegF1=0.0342
+    [rice       ] best=avg    AUPRO0.05=0.6733 (avg=0.673)  SegF1=0.6062
+    [fruit_jelly] best=q25z   AUPRO0.05=0.5388 (avg=0.535)  SegF1=0.0000
+
+ĐỌC: minz/q25z>avg RÕ (và >meanz) -> đồng thuận đa tầng = novelty method. ~avg -> loại.

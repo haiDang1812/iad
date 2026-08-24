@@ -1,0 +1,46 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] W=[1, 2, 4, 8] n_ref=4 aupro_res=512 k=4.5
+  FAIR: refs CHỈ train/good; GT chỉ để chấm. bag=baseline (NN toàn ảnh = leaderboard AD2).
+  bag & corr DÙNG CHUNG refs -> biến duy nhất = ràng buộc vị trí (controlled).
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]
+    [sheet_metal] bag    : AUPRO0.05=0.4132  SegF1=0.0000  trần=0.1583
+    [sheet_metal] corr1  : AUPRO0.05=0.3541  SegF1=0.0010  trần=0.2948   Δaupro=-0.0592
+    [sheet_metal] corr2  : AUPRO0.05=0.3762  SegF1=0.0008  trần=0.2911   Δaupro=-0.0370
+    [sheet_metal] corr4  : AUPRO0.05=0.4019  SegF1=0.0000  trần=0.1932   Δaupro=-0.0114
+    [sheet_metal] corr8  : AUPRO0.05=0.4195  SegF1=0.0001  trần=0.1887   Δaupro=+0.0063
+  [can] eval bad=30 good=30 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]
+    [can] bag    : AUPRO0.05=0.0942  SegF1=0.0000  trần=0.0012
+    [can] corr1  : AUPRO0.05=0.1799  SegF1=0.0000  trần=0.0019   Δaupro=+0.0858
+    [can] corr2  : AUPRO0.05=0.1542  SegF1=0.0000  trần=0.0024   Δaupro=+0.0601
+    [can] corr4  : AUPRO0.05=0.1870  SegF1=0.0000  trần=0.0020   Δaupro=+0.0928
+    [can] corr8  : AUPRO0.05=0.1671  SegF1=0.0000  trần=0.0009   Δaupro=+0.0730
+  [vial] eval bad=30 good=30 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]
+    [vial] bag    : AUPRO0.05=0.7861  SegF1=0.1186  trần=0.3763
+    [vial] corr1  : AUPRO0.05=0.6691  SegF1=0.0201  trần=0.2899   Δaupro=-0.1170
+    [vial] corr2  : AUPRO0.05=0.7057  SegF1=0.0355  trần=0.3047   Δaupro=-0.0804
+    [vial] corr4  : AUPRO0.05=0.7356  SegF1=0.0564  trần=0.3260   Δaupro=-0.0505
+    [vial] corr8  : AUPRO0.05=0.7430  SegF1=0.0667  trần=0.3380   Δaupro=-0.0431
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]
+    [wallplugs] bag    : AUPRO0.05=0.4132  SegF1=0.0244  trần=0.0844
+    [wallplugs] corr1  : AUPRO0.05=0.2468  SegF1=0.0000  trần=0.0227   Δaupro=-0.1664
+    [wallplugs] corr2  : AUPRO0.05=0.2592  SegF1=0.0000  trần=0.0211   Δaupro=-0.1540
+    [wallplugs] corr4  : AUPRO0.05=0.3177  SegF1=0.0000  trần=0.0263   Δaupro=-0.0956
+    [wallplugs] corr8  : AUPRO0.05=0.3939  SegF1=0.0000  trần=0.0305   Δaupro=-0.0194
+  [walnuts] eval bad=30 good=30 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]
+    [walnuts] bag    : AUPRO0.05=0.6832  SegF1=0.0179  trần=0.6322
+    [walnuts] corr1  : AUPRO0.05=0.3013  SegF1=0.0000  trần=0.1205   Δaupro=-0.3820
+    [walnuts] corr2  : AUPRO0.05=0.2812  SegF1=0.0000  trần=0.1270   Δaupro=-0.4020
+    [walnuts] corr4  : AUPRO0.05=0.2827  SegF1=0.0003  trần=0.1426   Δaupro=-0.4005
+    [walnuts] corr8  : AUPRO0.05=0.3349  SegF1=0.0032  trần=0.1935   Δaupro=-0.3484
+  [fabric] eval bad=30 good=30 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]
+    [fabric] bag    : AUPRO0.05=0.6023  SegF1=0.0515  trần=0.1252
+    [fabric] corr1  : AUPRO0.05=0.3961  SegF1=0.0000  trần=0.0633   Δaupro=-0.2062
+    [fabric] corr2  : AUPRO0.05=0.4816  SegF1=0.0014  trần=0.0723   Δaupro=-0.1207
+    [fabric] corr4  : AUPRO0.05=0.5675  SegF1=0.0136  trần=0.0844   Δaupro=-0.0348
+    [fabric] corr8  : AUPRO0.05=0.5770  SegF1=0.0235  trần=0.1121   Δaupro=-0.0253
+  [rice] eval bad=30 good=30 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]
+    [rice] bag    : AUPRO0.05=0.6173  SegF1=0.7098  trần=0.7268
+    [rice] corr1  : AUPRO0.05=0.3975  SegF1=0.4256  trần=0.4461   Δaupro=-0.2197
+    [rice] corr2  : AUPRO0.05=0.4639  SegF1=0.5230  trần=0.5234   Δaupro=-0.1534
+    [rice] corr4  : AUPRO0.05=0.5220  SegF1=0.5775  trần=0.5923   Δaupro=-0.0953
+    [rice] corr8  : AUPRO0.05=0.5732  SegF1=0.6078  trần=0.6384   Δaupro=-0.0441
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 n_ref=4 W=[1, 2, 4, 8]

@@ -1,0 +1,17 @@
+device=cuda:0 DIAG (không lever): map gmaxz nhánh png, chain fullscale nguyên vẹn. Câu hỏi: trần thấp do FP (ảnh good) hay FN (defect nhỏ)?
+  [fabric] bad=90 good=66 sub30=60 | train_bank=200 heldout=16
+    [fabric] trần FULL=0.2135 (t*=38.019) | trần SUB30=0.4813 (quick-30 cũ ~0.50)
+    [fabric] tại t*: P=0.2772 R=0.1735 | FP tổng=2,555,369 — từ ảnh GOOD: 19.0%
+    [fabric] GT area [     0,  2000): n= 72 recall=0.8689  ảnh recall<0.1: 7
+    [fabric] GT area [  2000, 20000): n= 12 recall=0.9564  ảnh recall<0.1: 0
+    [fabric] GT area [ 20000,   inf): n=  6 recall=0.1570  ảnh recall<0.1: 0
+    [fabric] top-10 FP: 000_shift_2.png(bad,217k), 000_shift_3.png(bad,199k), 009_shift_2.png(good,183k), 000_overexposed.png(bad,161k), 000_underexposed.png(bad,159k), 000_regular.png(bad,158k), 000_shift_1.png(bad,157k), 009_shift_3.png(good,153k), 007_shift_2.png(bad,90k), 007_shift_3.png(bad,79k)
+  [wallplugs] bad=90 good=60 sub30=60 | train_bank=200 heldout=16
+    [wallplugs] trần FULL=0.3137 (t*=43.199) | trần SUB30=0.2431 (quick-30 cũ ~0.31)
+    [wallplugs] tại t*: P=0.3112 R=0.3163 | FP tổng=850,136 — từ ảnh GOOD: 64.8%
+    [wallplugs] GT area [     0,  2000): n= 48 recall=0.4933  ảnh recall<0.1: 28
+    [wallplugs] GT area [  2000, 20000): n= 30 recall=0.2522  ảnh recall<0.1: 7
+    [wallplugs] GT area [ 20000,   inf): n= 12 recall=0.3265  ảnh recall<0.1: 0
+    [wallplugs] top-10 FP: 004_shift_2.png(good,77k), 008_shift_1.png(good,62k), 008_shift_3.png(good,57k), 008_shift_2.png(good,48k), 007_shift_1.png(good,27k), 004_shift_3.png(bad,26k), 000_shift_2.png(good,26k), 007_shift_3.png(good,26k), 004_shift_1.png(bad,25k), 013_shift_3.png(bad,21k)
+
+ĐỌC (pre-registered): FP-good>=50% -> bệnh (A) coverage/normal-variation. Recall bucket <2k px <0.15 VÀ FP-good<30% -> bệnh (B) chi tiết/sub-cell. Lưng chừng -> kép.

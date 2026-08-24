@@ -1,0 +1,8 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 alpha=0.1 epochs=60 lam_s=4.0 beta=[0.5,3.0] margin=3.0 k=4.5
+  FAIR: bank & adapter CHỈ train/good; GT chỉ để chấm. raw=baseline (NN feature gốc).
+  [vial] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [vial] bank=50000 C=1024 -> train adapter...
+      [vial a=0.1 lam_s=0.0] ep0: tail=40.262 sep=0.000 var=0.105 std(z)=0.897 contrast=0.00
+      [vial a=0.1 lam_s=0.0] ep59: tail=12.373 sep=0.000 var=0.675 std(z)=0.325 contrast=0.00
+      [vial a=0.1 lam_s=4.0] ep0: tail=40.281 sep=23.071 var=0.103 std(z)=0.900 contrast=1.75
+      [vial a=0.1 lam_s=4.0] ep59: tail=39.641 sep=17.662 var=0.107 std(z)=0.947 contrast=2.27

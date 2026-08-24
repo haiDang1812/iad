@@ -1,0 +1,43 @@
+device=cuda:0 eff_grid=144 bank=50000(coreset) cand=200000 heldout=16 | RULE ĐÓNG BĂNG p=95.0 gain=1.15 morph=CÓ
+  variants: base (=core1 bankmap, non-overlap 3x3) | ov (5x5 chồng nửa + mean score). FAIR, không per-cat.
+  [vial] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [vial] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [vial] base: AUPRO0.05=0.8505  trần=0.4610  F1@rule=0.3845
+    [vial] ov  : AUPRO0.05=0.8559  trần=0.4585  F1@rule=0.4149
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [wallplugs] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [wallplugs] base: AUPRO0.05=0.6432  trần=0.1292  F1@rule=0.0775
+    [wallplugs] ov  : AUPRO0.05=0.6529  trần=0.1434  F1@rule=0.0764
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 heldout=16
+    [sheet_metal] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [sheet_metal] base: AUPRO0.05=0.5428  trần=0.3115  F1@rule=0.2730
+    [sheet_metal] ov  : AUPRO0.05=0.5341  trần=0.3122  F1@rule=0.2862
+  [fabric] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [fabric] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [fabric] base: AUPRO0.05=0.8756  trần=0.4984  F1@rule=0.2927
+    [fabric] ov  : AUPRO0.05=0.9128  trần=0.4975  F1@rule=0.3095
+  [rice] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [rice] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [rice] base: AUPRO0.05=0.6147  trần=0.7341  F1@rule=0.7409
+    [rice] ov  : AUPRO0.05=0.6443  trần=0.7360  F1@rule=0.7383
+  [walnuts] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [walnuts] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [walnuts] base: AUPRO0.05=0.7278  trần=0.6672  F1@rule=0.6165
+    [walnuts] ov  : AUPRO0.05=0.7671  trần=0.6974  F1@rule=0.6375
+  [can] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [can] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [can] base: AUPRO0.05=0.1594  trần=0.0015  F1@rule=0.0010
+    [can] ov  : AUPRO0.05=0.1766  trần=0.0016  F1@rule=0.0011
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 heldout=16
+    [fruit_jelly] bank base=50000 ov=50000 (coreset tu cand=200000)
+    [fruit_jelly] base: AUPRO0.05=0.5775  trần=0.2560  F1@rule=0.2521
+    [fruit_jelly] ov  : AUPRO0.05=0.6319  trần=0.2894  F1@rule=0.2657
+
+====================================================================================
+===== MEAN theo variant =====
+  base: AUPRO0.05=0.6240  trần=0.3824  F1@rule=0.3298
+  ov  : AUPRO0.05=0.6469  trần=0.3920  F1@rule=0.3412
+
+  Δ OVERLAP (ov - base): AUPRO+0.0230  trần+0.0096  F1+0.0114
+
+ĐỌC (pre-registered): ΔAUPRO>=+0.010 hoặc Δtrần>=+0.020 -> overlap VÀO config nền. ~0/âm -> overlap chết ở quick harness -> còn guided native-res upsampling (novelty front).

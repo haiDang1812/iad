@@ -1,0 +1,70 @@
+device=cuda:0 eff_grid=192 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=90000 heldout=16 P=[95.0, 99.0, 99.9] GAIN=[1.0, 1.15, 1.3, 1.5]
+  FAIR: bank + threshold CHỈ train/good. MỘT rule (p,gain) chung mọi cat. Map = raw NN (không học).
+  [vial] eval bad=30 good=30 | eff_grid=192 heldout=16
+    [vial] bank=90000 C=1024
+    [vial] AUPRO0.05=0.7991  trần=0.4323  f1@ksig4.5=0.0000 (mốc transductive)
+      p95.0 : g1.0:0.206/0.205  g1.15:0.405/0.407  g1.3:0.236/0.238  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.0 : g1.0:0.363/0.364  g1.15:0.263/0.266  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.9 : g1.0:0.416/0.419  g1.15:0.017/0.017  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+  [wallplugs] eval bad=30 good=30 | eff_grid=192 heldout=16
+    [wallplugs] bank=90000 C=1024
+    [wallplugs] AUPRO0.05=0.6255  trần=0.1755  f1@ksig4.5=0.0086 (mốc transductive)
+      p95.0 : g1.0:0.020/0.020  g1.15:0.115/0.115  g1.3:0.046/0.046  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.0 : g1.0:0.041/0.041  g1.15:0.156/0.158  g1.3:0.003/0.003  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.9 : g1.0:0.099/0.098  g1.15:0.038/0.038  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+  [sheet_metal] eval bad=30 good=24 | eff_grid=192 heldout=16
+    [sheet_metal] bank=90000 C=1024
+    [sheet_metal] AUPRO0.05=0.3763  trần=0.1801  f1@ksig4.5=0.0000 (mốc transductive)
+      p95.0 : g1.0:0.030/0.030  g1.15:0.162/0.163  g1.3:0.027/0.027  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.0 : g1.0:0.075/0.075  g1.15:0.099/0.099  g1.3:0.003/0.003  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.9 : g1.0:0.169/0.171  g1.15:0.045/0.045  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+  [fabric] eval bad=30 good=30 | eff_grid=192 heldout=16
+    [fabric] bank=90000 C=1024
+    [fabric] AUPRO0.05=0.7169  trần=0.1450  f1@ksig4.5=0.0472 (mốc transductive)
+      p95.0 : g1.0:0.025/0.025  g1.15:0.144/0.148  g1.3:0.066/0.068  g1.5:0.014/0.015   (f1/f1+morph)
+      p99.0 : g1.0:0.053/0.054  g1.15:0.120/0.124  g1.3:0.030/0.030  g1.5:0.003/0.003   (f1/f1+morph)
+      p99.9 : g1.0:0.120/0.123  g1.15:0.072/0.074  g1.3:0.019/0.019  g1.5:0.000/0.000   (f1/f1+morph)
+  [rice] eval bad=30 good=30 | eff_grid=192 heldout=16
+    [rice] bank=90000 C=1024
+    [rice] AUPRO0.05=0.6191  trần=0.6644  f1@ksig4.5=0.5301 (mốc transductive)
+      p95.0 : g1.0:0.044/0.044  g1.15:0.664/0.668  g1.3:0.216/0.216  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.0 : g1.0:0.167/0.167  g1.15:0.595/0.597  g1.3:0.043/0.043  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.9 : g1.0:0.551/0.554  g1.15:0.377/0.379  g1.3:0.006/0.006  g1.5:0.000/0.000   (f1/f1+morph)
+  [walnuts] eval bad=30 good=30 | eff_grid=192 heldout=16
+    [walnuts] bank=90000 C=1024
+    [walnuts] AUPRO0.05=0.7522  trần=0.6342  f1@ksig4.5=0.0000 (mốc transductive)
+      p95.0 : g1.0:0.250/0.246  g1.15:0.503/0.511  g1.3:0.013/0.013  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.0 : g1.0:0.528/0.529  g1.15:0.211/0.213  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.9 : g1.0:0.612/0.620  g1.15:0.025/0.025  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+  [can] eval bad=30 good=30 | eff_grid=192 heldout=16
+    [can] bank=90000 C=1024
+    [can] AUPRO0.05=0.1386  trần=0.0011  f1@ksig4.5=0.0000 (mốc transductive)
+      p95.0 : g1.0:0.001/0.001  g1.15:0.000/0.000  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.0 : g1.0:0.001/0.001  g1.15:0.000/0.000  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.9 : g1.0:0.000/0.000  g1.15:0.000/0.000  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=192 heldout=16
+    [fruit_jelly] bank=90000 C=1024
+    [fruit_jelly] AUPRO0.05=0.4276  trần=0.2258  f1@ksig4.5=0.0000 (mốc transductive)
+      p95.0 : g1.0:0.137/0.137  g1.15:0.219/0.218  g1.3:0.049/0.049  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.0 : g1.0:0.220/0.221  g1.15:0.082/0.082  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+      p99.9 : g1.0:0.173/0.174  g1.15:0.003/0.003  g1.3:0.000/0.000  g1.5:0.000/0.000   (f1/f1+morph)
+
+====================================================================================
+===== MEAN theo (p,gain) — CHỌN 1 CẶP CHUNG =====
+  AUPRO0.05(raw map)=0.5569   trần=0.3073   f1@ksig(transductive)=0.0732
+  p95.0  g1.0 : SegF1=0.0889  +morph=0.0883
+  p95.0  g1.15: SegF1=0.2766  +morph=0.2788
+  p95.0  g1.3 : SegF1=0.0816  +morph=0.0820
+  p95.0  g1.5 : SegF1=0.0017  +morph=0.0019
+  p99.0  g1.0 : SegF1=0.1810  +morph=0.1816
+  p99.0  g1.15: SegF1=0.1908  +morph=0.1922
+  p99.0  g1.3 : SegF1=0.0099  +morph=0.0099
+  p99.0  g1.5 : SegF1=0.0003  +morph=0.0003
+  p99.9  g1.0 : SegF1=0.2675  +morph=0.2699
+  p99.9  g1.15: SegF1=0.0723  +morph=0.0728
+  p99.9  g1.3 : SegF1=0.0032  +morph=0.0032
+  p99.9  g1.5 : SegF1=0.0000  +morph=0.0000
+
+  RULE CHỐT (mean cao nhất, chung mọi cat): p=95.0 gain=1.15 morph=CÓ -> SegF1=0.2788
+
+ĐỌC: SegF1(rule chốt) >= 0.15 & AUPRO=raw -> threshold fair thay được adapter, lên full pipeline. Mọi combo << ksig -> tail train không đại diện test -> lever chết, quay về map/resolution.

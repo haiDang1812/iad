@@ -1,0 +1,49 @@
+device=cuda:0 FILL-HOLES trên png (map gmaxz, chain fullscale nguyên vẹn) + dump grid cache. RULE p=95.0 g=1.15 morph=CÓ. Không đụng tiff/AUPRO.
+  [fabric] eval bad=90 good=66 | train_bank=200 heldout=16
+    [fabric] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [fabric] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [fabric] grid cache SAVED: ./fill/grids_fabric.npz
+    [fabric] trần=0.2135 | F1@rule gmaxz=0.2005  gfill=0.3623  Δ=+0.1618
+  [can] eval bad=90 good=72 | train_bank=200 heldout=16
+    [can] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [can] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [can] grid cache SAVED: ./fill/grids_can.npz
+    [can] trần=0.0048 | F1@rule gmaxz=0.0038  gfill=0.0038  Δ=-0.0000
+  [sheet_metal] eval bad=90 good=24 | train_bank=121 heldout=16
+    [sheet_metal] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] grid cache SAVED: ./fill/grids_sheet_metal.npz
+    [sheet_metal] trần=0.3223 | F1@rule gmaxz=0.3075  gfill=0.3075  Δ=+0.0000
+  [fruit_jelly] eval bad=60 good=20 | train_bank=200 heldout=16
+    [fruit_jelly] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] grid cache SAVED: ./fill/grids_fruit_jelly.npz
+    [fruit_jelly] trần=0.3734 | F1@rule gmaxz=0.3075  gfill=0.3075  Δ=+0.0000
+  [vial] eval bad=105 good=35 | train_bank=200 heldout=16
+    [vial] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [vial] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [vial] grid cache SAVED: ./fill/grids_vial.npz
+    [vial] trần=0.4111 | F1@rule gmaxz=0.4076  gfill=0.4111  Δ=+0.0036
+  [rice] eval bad=90 good=42 | train_bank=200 heldout=16
+    [rice] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [rice] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [rice] grid cache SAVED: ./fill/grids_rice.npz
+    [rice] trần=0.7517 | F1@rule gmaxz=0.7399  gfill=0.7399  Δ=+0.0000
+  [wallplugs] eval bad=90 good=60 | train_bank=200 heldout=16
+    [wallplugs] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [wallplugs] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [wallplugs] grid cache SAVED: ./fill/grids_wallplugs.npz
+    [wallplugs] trần=0.3137 | F1@rule gmaxz=0.1884  gfill=0.1884  Δ=-0.0000
+  [walnuts] eval bad=90 good=60 | train_bank=200 heldout=16
+    [walnuts] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [walnuts] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [walnuts] grid cache SAVED: ./fill/grids_walnuts.npz
+    [walnuts] trần=0.7231 | F1@rule gmaxz=0.6717  gfill=0.6775  Δ=+0.0057
+
+====================================================================================
+===== MEAN (FULL test_public) =====
+  F1@rule: gmaxz=0.3534  gfill=0.3748  Δ=+0.0214
+  fabric: gmaxz=0.2005 -> gfill=0.3623 (cơ chế: kỳ vọng Δ >= +0.30)
+  cat tụt >0.02: KHÔNG
+
+ĐỌC (pre-registered): FILL VÀO nếu Δmean >= +0.010 VÀ không cat tụt >0.02. fabric không nhảy -> viền không kín ở ngưỡng rule, đọc lại, KHÔNG tune.

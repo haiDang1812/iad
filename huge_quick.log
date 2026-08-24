@@ -1,0 +1,11 @@
+/workspace/.venv/lib/python3.10/site-packages/kornia/feature/lightglue.py:44: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @torch.cuda.amp.custom_fwd(cast_inputs=torch.float32)
+Không load được "facebook/dinov3-vith16plus-pretrain-lvd1689m".
+  - Nếu "gated/401": mỗi size là 1 repo gated RIÊNG -> xin quyền đúng trang đó + HF_TOKEN.
+  - Nếu "no safetensors/unknown model": transformers cũ -> `uv pip install -U transformers`.
+  Lỗi: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/facebook/dinov3-vith16plus-pretrain-lvd1689m.
+401 Client Error. (Request ID: Root=1-6a8ac230-323e8f8322373ee61a775a94;a75114a3-a66b-4a3a-97d5-d1118f669125)
+
+Cannot access gated repo for url https://huggingface.co/facebook/dinov3-vith16plus-pretrain-lvd1689m/resolve/main/config.json.
+Access to model facebook/dinov3-vith16plus-pretrain-lvd1689m is restricted. You must have access to it and be authenticated to access it. Please log in.

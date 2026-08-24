@@ -1,0 +1,127 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 alpha=0.1 epochs=60 lam_s=4.0 beta=[0.5,1.5] margin=1.5 k=4.5
+  FAIR: bank & adapter CHỈ train/good; GT chỉ để chấm. raw=baseline (NN feature gốc).
+  [vial] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [vial] bank=50000 C=1024 -> train adapter...
+      [vial a=0.1 lam_s=0.0] ep0: tail=40.262 sep=0.000 var=0.105 std(z)=0.897 contrast=0.00
+      [vial a=0.1 lam_s=0.0] ep59: tail=12.373 sep=0.000 var=0.675 std(z)=0.325 contrast=0.00
+      [vial a=0.1 lam_s=4.0] ep0: tail=40.219 sep=9.300 var=0.106 std(z)=0.897 contrast=1.00
+      [vial a=0.1 lam_s=4.0] ep59: tail=38.144 sep=0.546 var=0.242 std(z)=0.774 contrast=8.63
+      [synthval raw   ] rec@FPR5=0.551 auroc=0.820 (pos=29091 neg=698825)
+      [synthval noneg ] rec@FPR5=0.716 auroc=0.844 (pos=29091 neg=698825)
+      [synthval method] rec@FPR5=0.354 auroc=0.797 (pos=29091 neg=698825)
+    [vial] raw   : AUPRO0.05=0.7995  SegF1=0.0000  trần=0.4387
+    [vial] noneg : AUPRO0.05=0.6579  SegF1=0.0000  trần=0.3357   Δ=-0.1416
+    [vial] method: AUPRO0.05=0.7326  SegF1=0.0000  trần=0.3830   Δ=-0.0669
+    [vial] select: pick=noneg (oracle=raw -> TRẬT)  AUPRO0.05=0.6579  SegF1=0.0000  Δ=-0.1416
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [wallplugs] bank=50000 C=1024 -> train adapter...
+      [wallplugs a=0.1 lam_s=0.0] ep0: tail=36.195 sep=0.000 var=0.096 std(z)=0.905 contrast=0.00
+      [wallplugs a=0.1 lam_s=0.0] ep59: tail=15.230 sep=0.000 var=0.597 std(z)=0.403 contrast=0.00
+      [wallplugs a=0.1 lam_s=4.0] ep0: tail=36.344 sep=13.904 var=0.093 std(z)=0.908 contrast=1.00
+      [wallplugs a=0.1 lam_s=4.0] ep59: tail=16.082 sep=0.198 var=0.571 std(z)=0.429 contrast=5.23
+      [synthval raw   ] rec@FPR5=0.446 auroc=0.810 (pos=18640 neg=710691)
+      [synthval noneg ] rec@FPR5=0.638 auroc=0.871 (pos=18640 neg=710691)
+      [synthval method] rec@FPR5=0.645 auroc=0.882 (pos=18640 neg=710691)
+    [wallplugs] raw   : AUPRO0.05=0.5891  SegF1=0.0138  trần=0.1914
+    [wallplugs] noneg : AUPRO0.05=0.2691  SegF1=0.0037  trần=0.0283   Δ=-0.3200
+    [wallplugs] method: AUPRO0.05=0.2457  SegF1=0.0040  trần=0.0238   Δ=-0.3434
+    [wallplugs] select: pick=method (oracle=raw -> TRẬT)  AUPRO0.05=0.2457  SegF1=0.0040  Δ=-0.3434
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 alpha=0.1
+    [sheet_metal] bank=50000 C=1024 -> train adapter...
+      [sheet_metal a=0.1 lam_s=0.0] ep0: tail=36.222 sep=0.000 var=0.118 std(z)=0.883 contrast=0.00
+      [sheet_metal a=0.1 lam_s=0.0] ep59: tail=14.703 sep=0.000 var=0.613 std(z)=0.387 contrast=0.00
+      [sheet_metal a=0.1 lam_s=4.0] ep0: tail=36.654 sep=14.694 var=0.108 std(z)=0.892 contrast=0.99
+      [sheet_metal a=0.1 lam_s=4.0] ep59: tail=15.646 sep=0.057 var=0.581 std(z)=0.419 contrast=3.41
+      [synthval raw   ] rec@FPR5=0.367 auroc=0.689 (pos=52326 neg=676245)
+      [synthval noneg ] rec@FPR5=0.522 auroc=0.757 (pos=52326 neg=676245)
+      [synthval method] rec@FPR5=0.519 auroc=0.755 (pos=52326 neg=676245)
+    [sheet_metal] raw   : AUPRO0.05=0.4569  SegF1=0.0000  trần=0.2396
+    [sheet_metal] noneg : AUPRO0.05=0.5874  SegF1=0.3493  trần=0.4568   Δ=+0.1305
+    [sheet_metal] method: AUPRO0.05=0.5652  SegF1=0.3917  trần=0.4592   Δ=+0.1083
+    [sheet_metal] select: pick=noneg (oracle=noneg -> TRÚNG)  AUPRO0.05=0.5874  SegF1=0.3493  Δ=+0.1305
+  [fabric] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [fabric] bank=50000 C=1024 -> train adapter...
+      [fabric a=0.1 lam_s=0.0] ep0: tail=34.717 sep=0.000 var=0.121 std(z)=0.879 contrast=0.00
+      [fabric a=0.1 lam_s=0.0] ep59: tail=14.970 sep=0.000 var=0.605 std(z)=0.395 contrast=0.00
+      [fabric a=0.1 lam_s=4.0] ep0: tail=35.006 sep=14.096 var=0.115 std(z)=0.885 contrast=1.00
+      [fabric a=0.1 lam_s=4.0] ep59: tail=15.244 sep=0.066 var=0.592 std(z)=0.408 contrast=3.45
+      [synthval raw   ] rec@FPR5=0.712 auroc=0.913 (pos=43628 neg=681362)
+      [synthval noneg ] rec@FPR5=0.783 auroc=0.926 (pos=43628 neg=681362)
+      [synthval method] rec@FPR5=0.784 auroc=0.928 (pos=43628 neg=681362)
+    [fabric] raw   : AUPRO0.05=0.7864  SegF1=0.0755  trần=0.1585
+    [fabric] noneg : AUPRO0.05=0.8294  SegF1=0.2054  trần=0.2069   Δ=+0.0430
+    [fabric] method: AUPRO0.05=0.8444  SegF1=0.2188  trần=0.2260   Δ=+0.0579
+    [fabric] select: pick=method (oracle=method -> TRÚNG)  AUPRO0.05=0.8444  SegF1=0.2188  Δ=+0.0579
+  [rice] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [rice] bank=50000 C=1024 -> train adapter...
+      [rice a=0.1 lam_s=0.0] ep0: tail=34.535 sep=0.000 var=0.126 std(z)=0.874 contrast=0.00
+      [rice a=0.1 lam_s=0.0] ep59: tail=15.591 sep=0.000 var=0.589 std(z)=0.411 contrast=0.00
+      [rice a=0.1 lam_s=4.0] ep0: tail=34.992 sep=15.079 var=0.113 std(z)=0.887 contrast=0.99
+      [rice a=0.1 lam_s=4.0] ep59: tail=16.682 sep=0.069 var=0.561 std(z)=0.439 contrast=3.38
+      [synthval raw   ] rec@FPR5=0.338 auroc=0.763 (pos=48652 neg=678907)
+      [synthval noneg ] rec@FPR5=0.515 auroc=0.856 (pos=48652 neg=678907)
+      [synthval method] rec@FPR5=0.491 auroc=0.845 (pos=48652 neg=678907)
+    [rice] raw   : AUPRO0.05=0.6672  SegF1=0.6497  trần=0.6550
+    [rice] noneg : AUPRO0.05=0.7057  SegF1=0.6178  trần=0.7465   Δ=+0.0386
+    [rice] method: AUPRO0.05=0.6986  SegF1=0.6202  trần=0.7422   Δ=+0.0315
+    [rice] select: pick=noneg (oracle=noneg -> TRÚNG)  AUPRO0.05=0.7057  SegF1=0.6178  Δ=+0.0386
+  [walnuts] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [walnuts] bank=50000 C=1024 -> train adapter...
+      [walnuts a=0.1 lam_s=0.0] ep0: tail=37.073 sep=0.000 var=0.107 std(z)=0.893 contrast=0.00
+      [walnuts a=0.1 lam_s=0.0] ep59: tail=15.195 sep=0.000 var=0.593 std(z)=0.407 contrast=0.00
+      [walnuts a=0.1 lam_s=4.0] ep0: tail=37.544 sep=14.304 var=0.095 std(z)=0.905 contrast=1.00
+      [walnuts a=0.1 lam_s=4.0] ep59: tail=15.633 sep=0.074 var=0.582 std(z)=0.418 contrast=3.56
+      [synthval raw   ] rec@FPR5=0.444 auroc=0.827 (pos=35174 neg=693789)
+      [synthval noneg ] rec@FPR5=0.597 auroc=0.875 (pos=35174 neg=693789)
+      [synthval method] rec@FPR5=0.591 auroc=0.875 (pos=35174 neg=693789)
+    [walnuts] raw   : AUPRO0.05=0.7364  SegF1=0.0000  trần=0.6350
+    [walnuts] noneg : AUPRO0.05=0.7279  SegF1=0.3298  trần=0.5457   Δ=-0.0085
+    [walnuts] method: AUPRO0.05=0.7549  SegF1=0.2223  trần=0.5812   Δ=+0.0184
+    [walnuts] select: pick=noneg (oracle=method -> TRẬT)  AUPRO0.05=0.7279  SegF1=0.3298  Δ=-0.0085
+  [can] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [can] bank=50000 C=1024 -> train adapter...
+      [can a=0.1 lam_s=0.0] ep0: tail=36.433 sep=0.000 var=0.085 std(z)=0.917 contrast=0.00
+      [can a=0.1 lam_s=0.0] ep59: tail=10.388 sep=0.000 var=0.708 std(z)=0.292 contrast=0.00
+      [can a=0.1 lam_s=4.0] ep0: tail=36.529 sep=11.773 var=0.082 std(z)=0.920 contrast=1.00
+      [can a=0.1 lam_s=4.0] ep59: tail=15.221 sep=0.138 var=0.557 std(z)=0.443 contrast=4.96
+      [synthval raw   ] rec@FPR5=0.583 auroc=0.825 (pos=25677 neg=704202)
+      [synthval noneg ] rec@FPR5=0.668 auroc=0.848 (pos=25677 neg=704202)
+      [synthval method] rec@FPR5=0.674 auroc=0.850 (pos=25677 neg=704202)
+    [can] raw   : AUPRO0.05=0.1741  SegF1=0.0000  trần=0.0036
+    [can] noneg : AUPRO0.05=0.1224  SegF1=0.0000  trần=0.0009   Δ=-0.0517
+    [can] method: AUPRO0.05=0.2166  SegF1=0.0000  trần=0.0023   Δ=+0.0425
+    [can] select: pick=method (oracle=method -> TRÚNG)  AUPRO0.05=0.2166  SegF1=0.0000  Δ=+0.0425
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 alpha=0.1
+    [fruit_jelly] bank=50000 C=1024 -> train adapter...
+      [fruit_jelly a=0.1 lam_s=0.0] ep0: tail=43.017 sep=0.000 var=0.097 std(z)=0.905 contrast=0.00
+      [fruit_jelly a=0.1 lam_s=0.0] ep59: tail=10.671 sep=0.000 var=0.696 std(z)=0.304 contrast=0.00
+      [fruit_jelly a=0.1 lam_s=4.0] ep0: tail=43.043 sep=10.225 var=0.096 std(z)=0.907 contrast=1.00
+      [fruit_jelly a=0.1 lam_s=4.0] ep59: tail=27.591 sep=0.082 var=0.441 std(z)=0.559 contrast=3.20
+      [synthval raw   ] rec@FPR5=0.546 auroc=0.836 (pos=38588 neg=688778)
+      [synthval noneg ] rec@FPR5=0.635 auroc=0.886 (pos=38588 neg=688778)
+      [synthval method] rec@FPR5=0.482 auroc=0.832 (pos=38588 neg=688778)
+    [fruit_jelly] raw   : AUPRO0.05=0.4223  SegF1=0.0000  trần=0.2100
+    [fruit_jelly] noneg : AUPRO0.05=0.4603  SegF1=0.0000  trần=0.2463   Δ=+0.0380
+    [fruit_jelly] method: AUPRO0.05=0.4339  SegF1=0.0000  trần=0.3309   Δ=+0.0115
+    [fruit_jelly] select: pick=noneg (oracle=noneg -> TRÚNG)  AUPRO0.05=0.4603  SegF1=0.0000  Δ=+0.0380
+
+====================================================================================
+===== MEAN (AUPRO0.05 / SegF1 / trần) — raw=baseline =====
+  raw   : AUPRO0.05=0.5790  SegF1=0.0924  trần=0.3165
+  noneg : AUPRO0.05=0.5450  SegF1=0.1883  trần=0.3209   Δ=-0.0340
+  method: AUPRO0.05=0.5615  SegF1=0.1821  trần=0.3436   Δ=-0.0175
+  select: AUPRO0.05=0.5557  SegF1=0.1900  trần=0.3229   Δ=-0.0232
+
+  Per-cat (oracle-best theo AUPRO0.05 vs select):
+    [vial       ] oracle=raw    AUPRO0.05=0.7995 (raw=0.800)  SegF1=0.0000  | pick=noneg  TRẬT
+    [wallplugs  ] oracle=raw    AUPRO0.05=0.5891 (raw=0.589)  SegF1=0.0138  | pick=method TRẬT
+    [sheet_metal] oracle=noneg  AUPRO0.05=0.5874 (raw=0.457)  SegF1=0.3493  | pick=noneg  TRÚNG
+    [fabric     ] oracle=method AUPRO0.05=0.8444 (raw=0.786)  SegF1=0.2188  | pick=method TRÚNG
+    [rice       ] oracle=noneg  AUPRO0.05=0.7057 (raw=0.667)  SegF1=0.6178  | pick=noneg  TRÚNG
+    [walnuts    ] oracle=method AUPRO0.05=0.7549 (raw=0.736)  SegF1=0.2223  | pick=noneg  TRẬT
+    [can        ] oracle=method AUPRO0.05=0.2166 (raw=0.174)  SegF1=0.0000  | pick=method TRÚNG
+    [fruit_jelly] oracle=noneg  AUPRO0.05=0.4603 (raw=0.422)  SegF1=0.0000  | pick=noneg  TRÚNG
+
+  selector TRÚNG oracle 5/8 cat
+
+ĐỌC: select TRÚNG >=6/8 + mean(select) ~ mean(oracle-best) >> raw -> adapter+synth-select SỐNG. TRẬT vial/wallplugs (chọn nhánh sụp) -> synth mức ảnh không phản ánh defect thật -> kill selector.

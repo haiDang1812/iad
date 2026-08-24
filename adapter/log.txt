@@ -1,0 +1,188 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 alpha=0.1 epochs=60 lam_v=1.0 lam_c=1.0 k=4.5
+  FAIR: bank & adapter CHỈ train/good; GT chỉ để chấm. raw=baseline (NN feature gốc).
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 alpha=0.1
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 alpha=0.1 epochs=60 lam_v=1.0 lam_c=1.0 k=4.5
+  FAIR: bank & adapter CHỈ train/good; GT chỉ để chấm. raw=baseline (NN feature gốc).
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 alpha=0.1
+    [sheet_metal] bank=50000 C=1024 -> train adapter...
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 alpha=0.1 epochs=60 lam_v=1.0 lam_c=1.0 k=4.5
+  FAIR: bank & adapter CHỈ train/good; GT chỉ để chấm. raw=baseline (NN feature gốc).
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 alpha=0.1
+    [sheet_metal] bank=50000 C=1024 -> train adapter...
+      [sheet_metal a=1.0] ep0: tail=28.806 var=0.118 cov=4.515 std(z)=0.882
+      [sheet_metal a=1.0] ep59: tail=12.923 var=0.621 cov=0.046 std(z)=0.379
+      [sheet_metal a=0.1] ep0: tail=36.244 var=0.118 cov=4.503 std(z)=0.882
+      [sheet_metal a=0.1] ep59: tail=13.417 var=0.636 cov=0.022 std(z)=0.364
+    [sheet_metal] raw   : AUPRO0.05=0.5186  SegF1=0.0000  trần=0.2573
+    [sheet_metal] std   : AUPRO0.05=0.4410  SegF1=0.0000  trần=0.1972   Δ=-0.0777
+    [sheet_metal] adapt1: AUPRO0.05=0.5330  SegF1=0.4100  trần=0.4922   Δ=+0.0144
+    [sheet_metal] adaptA: AUPRO0.05=0.6422  SegF1=0.4242  trần=0.4850   Δ=+0.1236
+  [can] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [can] bank=50000 C=1024 -> train adapter...
+      [can a=1.0] ep0: tail=23.473 var=0.081 cov=11.278 std(z)=0.922
+      [can a=1.0] ep59: tail=8.815 var=0.701 cov=0.041 std(z)=0.299
+      [can a=0.1] ep0: tail=36.428 var=0.084 cov=10.822 std(z)=0.918
+      [can a=0.1] ep59: tail=10.712 var=0.701 cov=0.028 std(z)=0.299
+    [can] raw   : AUPRO0.05=0.1050  SegF1=0.0000  trần=0.0022
+    [can] std   : AUPRO0.05=0.0746  SegF1=0.0000  trần=0.0023   Δ=-0.0304
+    [can] adapt1: AUPRO0.05=0.1132  SegF1=0.0000  trần=0.0011   Δ=+0.0081
+    [can] adaptA: AUPRO0.05=0.1020  SegF1=0.0000  trần=0.0007   Δ=-0.0031
+  [vial] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [vial] bank=50000 C=1024 -> train adapter...
+      [vial a=1.0] ep0: tail=18.492 var=0.102 cov=21.068 std(z)=0.900
+      [vial a=1.0] ep59: tail=8.499 var=0.672 cov=0.015 std(z)=0.328
+      [vial a=0.1] ep0: tail=40.225 var=0.108 cov=18.849 std(z)=0.894
+      [vial a=0.1] ep59: tail=13.097 var=0.640 cov=0.146 std(z)=0.360
+    [vial] raw   : AUPRO0.05=0.8026  SegF1=0.0000  trần=0.3996
+    [vial] std   : AUPRO0.05=0.7706  SegF1=0.0000  trần=0.3728   Δ=-0.0320
+    [vial] adapt1: AUPRO0.05=0.6931  SegF1=0.0000  trần=0.3136   Δ=-0.1094
+    [vial] adaptA: AUPRO0.05=0.6263  SegF1=0.0000  trần=0.2666   Δ=-0.1763
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [wallplugs] bank=50000 C=1024 -> train adapter...
+      [wallplugs a=1.0] ep0: tail=27.552 var=0.094 cov=7.168 std(z)=0.907
+      [wallplugs a=1.0] ep59: tail=12.570 var=0.628 cov=0.037 std(z)=0.372
+      [wallplugs a=0.1] ep0: tail=36.226 var=0.095 cov=7.077 std(z)=0.906
+      [wallplugs a=0.1] ep59: tail=15.460 var=0.594 cov=0.103 std(z)=0.406
+    [wallplugs] raw   : AUPRO0.05=0.5622  SegF1=0.0056  trần=0.0802
+    [wallplugs] std   : AUPRO0.05=0.5181  SegF1=0.0070  trần=0.0745   Δ=-0.0441
+    [wallplugs] adapt1: AUPRO0.05=0.3866  SegF1=0.0000  trần=0.0189   Δ=-0.1756
+    [wallplugs] adaptA: AUPRO0.05=0.1258  SegF1=0.0000  trần=0.0073   Δ=-0.4364
+  [walnuts] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [walnuts] bank=50000 C=1024 -> train adapter...
+      [walnuts a=1.0] ep0: tail=28.206 var=0.108 cov=4.788 std(z)=0.892
+      [walnuts a=1.0] ep59: tail=11.711 var=0.651 cov=0.025 std(z)=0.349
+      [walnuts a=0.1] ep0: tail=37.096 var=0.107 cov=4.916 std(z)=0.894
+      [walnuts a=0.1] ep59: tail=14.879 var=0.599 cov=0.070 std(z)=0.401
+    [walnuts] raw   : AUPRO0.05=0.7207  SegF1=0.0000  trần=0.6246
+    [walnuts] std   : AUPRO0.05=0.7043  SegF1=0.0000  trần=0.6146   Δ=-0.0163
+    [walnuts] adapt1: AUPRO0.05=0.7654  SegF1=0.0374  trần=0.5884   Δ=+0.0447
+    [walnuts] adaptA: AUPRO0.05=0.7231  SegF1=0.2962  trần=0.5551   Δ=+0.0025
+  [fabric] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [fabric] bank=50000 C=1024 -> train adapter...
+      [fabric a=1.0] ep0: tail=27.751 var=0.122 cov=6.209 std(z)=0.878
+      [fabric a=1.0] ep59: tail=13.052 var=0.623 cov=0.055 std(z)=0.377
+      [fabric a=0.1] ep0: tail=34.733 var=0.122 cov=6.216 std(z)=0.878
+      [fabric a=0.1] ep59: tail=14.473 var=0.613 cov=0.045 std(z)=0.387
+    [fabric] raw   : AUPRO0.05=0.7129  SegF1=0.0451  trần=0.1352
+    [fabric] std   : AUPRO0.05=0.6475  SegF1=0.0270  trần=0.1249   Δ=-0.0653
+    [fabric] adapt1: AUPRO0.05=0.7504  SegF1=0.1236  trần=0.1727   Δ=+0.0375
+    [fabric] adaptA: AUPRO0.05=0.7433  SegF1=0.1816  trần=0.1927   Δ=+0.0304
+  [rice] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [rice] bank=50000 C=1024 -> train adapter...
+      [rice a=1.0] ep0: tail=29.397 var=0.126 cov=4.867 std(z)=0.875
+      [rice a=1.0] ep59: tail=14.974 var=0.574 cov=0.123 std(z)=0.426
+      [rice a=0.1] ep0: tail=34.466 var=0.129 cov=4.759 std(z)=0.871
+      [rice a=0.1] ep59: tail=16.137 var=0.582 cov=0.096 std(z)=0.418
+    [rice] raw   : AUPRO0.05=0.6223  SegF1=0.6384  trần=0.6684
+    [rice] std   : AUPRO0.05=0.6154  SegF1=0.6778  trần=0.6843   Δ=-0.0069
+    [rice] adapt1: AUPRO0.05=0.6215  SegF1=0.5459  trần=0.6930   Δ=-0.0008
+    [rice] adaptA: AUPRO0.05=0.6481  SegF1=0.5882  trần=0.7243   Δ=+0.0258
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 alpha=0.1
+    [fruit_jelly] bank=50000 C=1024 -> train adapter...
+      [fruit_jelly a=1.0] ep0: tail=20.304 var=0.089 cov=11.750 std(z)=0.913
+      [fruit_jelly a=1.0] ep59: tail=7.206 var=0.730 cov=0.015 std(z)=0.270
+      [fruit_jelly a=0.1] ep0: tail=42.968 var=0.098 cov=10.434 std(z)=0.904
+      [fruit_jelly a=0.1] ep59: tail=10.270 var=0.704 cov=0.063 std(z)=0.296
+    [fruit_jelly] raw   : AUPRO0.05=0.4223  SegF1=0.0000  trần=0.2100
+    [fruit_jelly] std   : AUPRO0.05=0.4183  SegF1=0.0000  trần=0.1901   Δ=-0.0040
+    [fruit_jelly] adapt1: AUPRO0.05=0.4518  SegF1=0.0000  trần=0.1958   Δ=+0.0295
+    [fruit_jelly] adaptA: AUPRO0.05=0.4807  SegF1=0.0000  trần=0.2797   Δ=+0.0583
+
+====================================================================================
+===== MEAN (AUPRO0.05 / SegF1 / trần) — raw=baseline =====
+  raw   : AUPRO0.05=0.5583  SegF1=0.0861  trần=0.2972
+  std   : AUPRO0.05=0.5237  SegF1=0.0890  trần=0.2826   Δ=-0.0346
+  adapt1: AUPRO0.05=0.5394  SegF1=0.1396  trần=0.3095   Δ=-0.0190
+  adaptA: AUPRO0.05=0.5114  SegF1=0.1863  trần=0.3139   Δ=-0.0469
+
+  Per-cat (biến thể tốt nhất theo AUPRO0.05):
+    [sheet_metal] best=adaptA AUPRO0.05=0.6422 (raw=0.519)  SegF1=0.4242
+    [can        ] best=adapt1 AUPRO0.05=0.1132 (raw=0.105)  SegF1=0.0000
+    [vial       ] best=raw    AUPRO0.05=0.8026 (raw=0.803)  SegF1=0.0000
+    [wallplugs  ] best=raw    AUPRO0.05=0.5622 (raw=0.562)  SegF1=0.0056
+    [walnuts    ] best=adapt1 AUPRO0.05=0.7654 (raw=0.721)  SegF1=0.0374
+    [fabric     ] best=adapt1 AUPRO0.05=0.7504 (raw=0.713)  SegF1=0.1236
+    [rice       ] best=adaptA AUPRO0.05=0.6481 (raw=0.622)  SegF1=0.5882
+    [fruit_jelly] best=adaptA AUPRO0.05=0.4807 (raw=0.422)  SegF1=0.0000
+
+ĐỌC: adaptA>std (adapter ăn tiền) VÀ adaptA>adapt1 (nhắm-đuôi = novelty). ~std -> kill.
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 alpha=0.1 epochs=60 lam_v=1.0 lam_c=1.0 k=4.5
+  FAIR: bank & adapter CHỈ train/good; GT chỉ để chấm. raw=baseline (NN feature gốc).
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 alpha=0.1
+    [sheet_metal] bank=50000 C=1024 -> train adapter...
+      [sheet_metal a=1.0] ep0: tail=29.793 var=0.040 cov=10.060 std(z)=0.960 anc=5.772
+      [sheet_metal a=1.0] ep59: tail=28.600 var=0.065 cov=9.135 std(z)=0.935 anc=6.651
+      [sheet_metal a=0.1] ep0: tail=37.864 var=0.042 cov=9.969 std(z)=0.958 anc=6.046
+      [sheet_metal a=0.1] ep59: tail=34.464 var=0.073 cov=9.076 std(z)=0.927 anc=8.997
+    [sheet_metal] raw   : AUPRO0.05=0.5186  SegF1=0.0000  trần=0.2573
+    [sheet_metal] std   : AUPRO0.05=0.4410  SegF1=0.0000  trần=0.1972   Δ=-0.0777
+    [sheet_metal] adapt1: AUPRO0.05=0.4281  SegF1=0.0000  trần=0.1873   Δ=-0.0905
+    [sheet_metal] adaptA: AUPRO0.05=0.5307  SegF1=0.0000  trần=0.3240   Δ=+0.0120
+  [can] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [can] bank=50000 C=1024 -> train adapter...
+      [can a=1.0] ep0: tail=23.642 var=0.048 cov=17.562 std(z)=0.952 anc=25.596
+      [can a=1.0] ep59: tail=22.799 var=0.077 cov=12.908 std(z)=0.923 anc=15.003
+      [can a=0.1] ep0: tail=36.906 var=0.049 cov=17.504 std(z)=0.951 anc=24.784
+      [can a=0.1] ep59: tail=33.596 var=0.092 cov=12.819 std(z)=0.908 anc=17.624
+    [can] raw   : AUPRO0.05=0.1050  SegF1=0.0000  trần=0.0022
+    [can] std   : AUPRO0.05=0.0746  SegF1=0.0000  trần=0.0023   Δ=-0.0304
+    [can] adapt1: AUPRO0.05=0.0820  SegF1=0.0000  trần=0.0025   Δ=-0.0231
+    [can] adaptA: AUPRO0.05=0.0986  SegF1=0.0000  trần=0.0011   Δ=-0.0065
+  [vial] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [vial] bank=50000 C=1024 -> train adapter...
+      [vial a=1.0] ep0: tail=18.608 var=0.069 cov=25.722 std(z)=0.932 anc=35.995
+      [vial a=1.0] ep59: tail=17.909 var=0.100 cov=18.361 std(z)=0.900 anc=23.033
+      [vial a=0.1] ep0: tail=40.591 var=0.068 cov=25.717 std(z)=0.932 anc=36.314
+      [vial a=0.1] ep59: tail=34.199 var=0.121 cov=18.275 std(z)=0.879 anc=28.687
+    [vial] raw   : AUPRO0.05=0.8026  SegF1=0.0000  trần=0.3996
+    [vial] std   : AUPRO0.05=0.7706  SegF1=0.0000  trần=0.3728   Δ=-0.0320
+    [vial] adapt1: AUPRO0.05=0.7657  SegF1=0.0000  trần=0.3665   Δ=-0.0368
+    [vial] adaptA: AUPRO0.05=0.7198  SegF1=0.0000  trần=0.3577   Δ=-0.0827
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [wallplugs] bank=50000 C=1024 -> train adapter...
+      [wallplugs a=1.0] ep0: tail=27.817 var=0.043 cov=13.290 std(z)=0.957 anc=9.619
+      [wallplugs a=1.0] ep59: tail=26.676 var=0.072 cov=11.067 std(z)=0.928 anc=10.039
+      [wallplugs a=0.1] ep0: tail=36.648 var=0.044 cov=13.242 std(z)=0.956 anc=9.845
+      [wallplugs a=0.1] ep59: tail=32.385 var=0.082 cov=10.998 std(z)=0.918 anc=13.158
+    [wallplugs] raw   : AUPRO0.05=0.5622  SegF1=0.0056  trần=0.0802
+    [wallplugs] std   : AUPRO0.05=0.5181  SegF1=0.0070  trần=0.0745   Δ=-0.0441
+    [wallplugs] adapt1: AUPRO0.05=0.5211  SegF1=0.0067  trần=0.0731   Δ=-0.0411
+    [wallplugs] adaptA: AUPRO0.05=0.4744  SegF1=0.0046  trần=0.0636   Δ=-0.0878
+  [walnuts] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [walnuts] bank=50000 C=1024 -> train adapter...
+      [walnuts a=1.0] ep0: tail=28.865 var=0.040 cov=10.332 std(z)=0.960 anc=6.692
+      [walnuts a=1.0] ep59: tail=27.706 var=0.065 cov=9.285 std(z)=0.935 anc=7.109
+      [walnuts a=0.1] ep0: tail=38.261 var=0.040 cov=10.585 std(z)=0.961 anc=6.752
+      [walnuts a=0.1] ep59: tail=33.963 var=0.075 cov=9.264 std(z)=0.925 anc=10.241
+    [walnuts] raw   : AUPRO0.05=0.7207  SegF1=0.0000  trần=0.6246
+    [walnuts] std   : AUPRO0.05=0.7043  SegF1=0.0000  trần=0.6146   Δ=-0.0163
+    [walnuts] adapt1: AUPRO0.05=0.6962  SegF1=0.0000  trần=0.5813   Δ=-0.0245
+    [walnuts] adaptA: AUPRO0.05=0.7210  SegF1=0.0000  trần=0.6675   Δ=+0.0003
+  [fabric] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [fabric] bank=50000 C=1024 -> train adapter...
+      [fabric a=1.0] ep0: tail=28.268 var=0.047 cov=13.513 std(z)=0.954 anc=10.133
+      [fabric a=1.0] ep59: tail=27.030 var=0.076 cov=11.743 std(z)=0.924 anc=9.494
+      [fabric a=0.1] ep0: tail=35.382 var=0.048 cov=13.433 std(z)=0.952 anc=9.313
+      [fabric a=0.1] ep59: tail=31.858 var=0.083 cov=11.692 std(z)=0.917 anc=11.736
+    [fabric] raw   : AUPRO0.05=0.7129  SegF1=0.0451  trần=0.1352
+    [fabric] std   : AUPRO0.05=0.6475  SegF1=0.0270  trần=0.1249   Δ=-0.0653
+    [fabric] adapt1: AUPRO0.05=0.6361  SegF1=0.0253  trần=0.1189   Δ=-0.0768
+    [fabric] adaptA: AUPRO0.05=0.7231  SegF1=0.0408  trần=0.1795   Δ=+0.0102
+  [rice] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [rice] bank=50000 C=1024 -> train adapter...
+      [rice a=1.0] ep0: tail=30.486 var=0.044 cov=10.340 std(z)=0.956 anc=5.955
+      [rice a=1.0] ep59: tail=29.344 var=0.068 cov=9.471 std(z)=0.932 anc=6.674
+      [rice a=0.1] ep0: tail=35.902 var=0.044 cov=10.456 std(z)=0.957 anc=6.355
+      [rice a=0.1] ep59: tail=32.987 var=0.072 cov=9.428 std(z)=0.928 anc=8.424
+    [rice] raw   : AUPRO0.05=0.6223  SegF1=0.6384  trần=0.6684
+    [rice] std   : AUPRO0.05=0.6154  SegF1=0.6778  trần=0.6843   Δ=-0.0069
+    [rice] adapt1: AUPRO0.05=0.6040  SegF1=0.6679  trần=0.6708   Δ=-0.0183
+    [rice] adaptA: AUPRO0.05=0.6347  SegF1=0.7356  trần=0.7360   Δ=+0.0124
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 alpha=0.1
+    [fruit_jelly] bank=50000 C=1024 -> train adapter...
+      [fruit_jelly a=1.0] ep0: tail=20.548 var=0.048 cov=19.040 std(z)=0.953 anc=20.516
+      [fruit_jelly a=1.0] ep59: tail=19.821 var=0.079 cov=13.871 std(z)=0.921 anc=14.816
+      [fruit_jelly a=0.1] ep0: tail=44.123 var=0.050 cov=18.867 std(z)=0.951 anc=21.365
+      [fruit_jelly a=0.1] ep59: tail=38.521 var=0.101 cov=13.707 std(z)=0.899 anc=19.463
+    [fruit_jelly] raw   : AUPRO0.05=0.4223  SegF1=0.0000  trần=0.2100
+    [fruit_jelly] std   : AUPRO0.05=0.4183  SegF1=0.0000  trần=0.1901   Δ=-0.0040

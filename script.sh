@@ -114,5 +114,12 @@
 # A4 — MVTec AD generalize (cần data MVTec-AD ở ../data_mvtec)
 # CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_generalize.py --dataset mvtec --data_path ../data_mvtec --out_dir ./gen_mvtec
 
-CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_nrs_ablation.py --data_path ../data
-  --out_dir ./abl_grid2 --grids 8 12 --seeds 0
+# CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python eval_nrs_ablation.py --data_path ../data
+#   --out_dir ./abl_grid2 --grids 8 12 --seeds 0
+
+# python eval_adapter.py --data_path ../data --out_dir ./adapter3 --max_eval 30 \
+#     --neg_mode adv --lam_s 4 --beta_lo 0.5 --beta_hi 1.5 --margin 1.5 \
+#     --categories vial wallplugs sheet_metal fabric rice walnuts can fruit_jelly
+
+python eval_fairthr.py --data_path ../data --out_dir ./fairthr192 --max_eval 30 --tiles 4 \
+      --categories vial wallplugs sheet_metal fabric rice walnuts can fruit_jelly

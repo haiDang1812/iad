@@ -1,0 +1,63 @@
+device=cuda:0 eff_grid=144 bank=50000 cand=200000 heldout=16 | RULE ĐÓNG BĂNG p=95.0 gain=1.15 morph=CÓ
+  variants: rand1 (=baseline fairthr) | rand3 | core1 | core3. FAIR toàn bộ, không per-cat.
+  [vial] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [vial] cand=200000 -> bank rand=50000 core=50000
+    [vial] rand1: AUPRO0.05=0.8433  trần=0.4549  F1@rule=0.4104
+    [vial] rand3: AUPRO0.05=0.8358  trần=0.4439  F1@rule=0.4318
+    [vial] core1: AUPRO0.05=0.8505  trần=0.4610  F1@rule=0.3845
+    [vial] core3: AUPRO0.05=0.8506  trần=0.4597  F1@rule=0.4030
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [wallplugs] cand=200000 -> bank rand=50000 core=50000
+    [wallplugs] rand1: AUPRO0.05=0.6212  trần=0.1112  F1@rule=0.0702
+    [wallplugs] rand3: AUPRO0.05=0.6018  trần=0.1043  F1@rule=0.0770
+    [wallplugs] core1: AUPRO0.05=0.6432  trần=0.1292  F1@rule=0.0775
+    [wallplugs] core3: AUPRO0.05=0.6418  trần=0.1246  F1@rule=0.0964
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 heldout=16
+    [sheet_metal] cand=200000 -> bank rand=50000 core=50000
+    [sheet_metal] rand1: AUPRO0.05=0.4796  trần=0.2384  F1@rule=0.2279
+    [sheet_metal] rand3: AUPRO0.05=0.4808  trần=0.2397  F1@rule=0.2267
+    [sheet_metal] core1: AUPRO0.05=0.5428  trần=0.3115  F1@rule=0.2730
+    [sheet_metal] core3: AUPRO0.05=0.5432  trần=0.3337  F1@rule=0.2823
+  [fabric] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [fabric] cand=200000 -> bank rand=50000 core=50000
+    [fabric] rand1: AUPRO0.05=0.8573  trần=0.5021  F1@rule=0.2647
+    [fabric] rand3: AUPRO0.05=0.8574  trần=0.5037  F1@rule=0.3172
+    [fabric] core1: AUPRO0.05=0.8756  trần=0.4984  F1@rule=0.2927
+    [fabric] core3: AUPRO0.05=0.8919  trần=0.4984  F1@rule=0.3345
+  [rice] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [rice] cand=200000 -> bank rand=50000 core=50000
+    [rice] rand1: AUPRO0.05=0.5869  trần=0.6871  F1@rule=0.6801
+    [rice] rand3: AUPRO0.05=0.5747  trần=0.6738  F1@rule=0.6715
+    [rice] core1: AUPRO0.05=0.6147  trần=0.7341  F1@rule=0.7409
+    [rice] core3: AUPRO0.05=0.6062  trần=0.7277  F1@rule=0.7329
+  [walnuts] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [walnuts] cand=200000 -> bank rand=50000 core=50000
+    [walnuts] rand1: AUPRO0.05=0.7143  trần=0.6142  F1@rule=0.5739
+    [walnuts] rand3: AUPRO0.05=0.7169  trần=0.5923  F1@rule=0.5339
+    [walnuts] core1: AUPRO0.05=0.7278  trần=0.6672  F1@rule=0.6165
+    [walnuts] core3: AUPRO0.05=0.7360  trần=0.6535  F1@rule=0.5843
+  [can] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [can] cand=200000 -> bank rand=50000 core=50000
+    [can] rand1: AUPRO0.05=0.1050  trần=0.0015  F1@rule=0.0010
+    [can] rand3: AUPRO0.05=0.1288  trần=0.0016  F1@rule=0.0012
+    [can] core1: AUPRO0.05=0.1594  trần=0.0015  F1@rule=0.0010
+    [can] core3: AUPRO0.05=0.1817  trần=0.0018  F1@rule=0.0014
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 heldout=16
+    [fruit_jelly] cand=200000 -> bank rand=50000 core=50000
+    [fruit_jelly] rand1: AUPRO0.05=0.5698  trần=0.2371  F1@rule=0.2334
+    [fruit_jelly] rand3: AUPRO0.05=0.5750  trần=0.2294  F1@rule=0.2229
+    [fruit_jelly] core1: AUPRO0.05=0.5775  trần=0.2560  F1@rule=0.2521
+    [fruit_jelly] core3: AUPRO0.05=0.5870  trần=0.2521  F1@rule=0.2444
+
+====================================================================================
+===== MEAN theo variant =====
+  rand1: AUPRO0.05=0.5972  trần=0.3558  F1@rule=0.3077
+  rand3: AUPRO0.05=0.5964  trần=0.3486  F1@rule=0.3103
+  core1: AUPRO0.05=0.6240  trần=0.3824  F1@rule=0.3298
+  core3: AUPRO0.05=0.6298  trần=0.3815  F1@rule=0.3349
+
+  Δ TRỤC BANK  (core-rand): AUPRO+0.0301  trần+0.0297  F1+0.0234
+  Δ TRỤC SCORE (knn3-1nn) : AUPRO+0.0025  trần-0.0041  F1+0.0039
+  variant tốt nhất theo AUPRO: core3 (0.6298)
+
+ĐỌC (pre-registered): trục vào config nền nếu ΔAUPRO>=+0.010 hoặc Δtrần>=+0.020. Cả hai ~0/âm -> trục bank/score chết ở quick harness -> còn overlap-averaging + guided upsampling.

@@ -1,0 +1,60 @@
+device=cuda:0 eff_grid=144 bank=50000(coreset,overlap) cand=200000 heldout=16 | RULE p=95.0 g=1.15 morph=CÓ | eps=g0.001 gate=[t0,p95heldout -> t1=t0x1.15]
+  variants: base | guided (=g0.001) | gated (guided chỉ nơi map nóng, nền giữ base). FAIR, không per-cat.
+  [vial] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [vial] bank(coreset,overlap)=50000 tu cand=200000
+    [vial] gate: t0=34.3336 t1=39.4837 (p95 heldout x 1.15)
+    [vial] base  : AUPRO0.05=0.8559  trần=0.4585  F1@rule=0.4149
+    [vial] guided: AUPRO0.05=0.8709  trần=0.4776  F1@rule=0.4355
+    [vial] gated : AUPRO0.05=0.8695  trần=0.4776  F1@rule=0.4439
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [wallplugs] bank(coreset,overlap)=50000 tu cand=200000
+    [wallplugs] gate: t0=34.6228 t1=39.8163 (p95 heldout x 1.15)
+    [wallplugs] base  : AUPRO0.05=0.6529  trần=0.1434  F1@rule=0.0764
+    [wallplugs] guided: AUPRO0.05=0.6142  trần=0.1494  F1@rule=0.0821
+    [wallplugs] gated : AUPRO0.05=0.6140  trần=0.1494  F1@rule=0.0905
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 heldout=16
+    [sheet_metal] bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] gate: t0=35.2635 t1=40.5530 (p95 heldout x 1.15)
+    [sheet_metal] base  : AUPRO0.05=0.5341  trần=0.3122  F1@rule=0.2862
+    [sheet_metal] guided: AUPRO0.05=0.5183  trần=0.3238  F1@rule=0.2929
+    [sheet_metal] gated : AUPRO0.05=0.5420  trần=0.3218  F1@rule=0.2866
+  [fabric] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [fabric] bank(coreset,overlap)=50000 tu cand=200000
+    [fabric] gate: t0=33.3420 t1=38.3433 (p95 heldout x 1.15)
+    [fabric] base  : AUPRO0.05=0.9128  trần=0.4975  F1@rule=0.3095
+    [fabric] guided: AUPRO0.05=0.8756  trần=0.5321  F1@rule=0.3217
+    [fabric] gated : AUPRO0.05=0.8917  trần=0.5145  F1@rule=0.3485
+  [rice] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [rice] bank(coreset,overlap)=50000 tu cand=200000
+    [rice] gate: t0=35.0274 t1=40.2815 (p95 heldout x 1.15)
+    [rice] base  : AUPRO0.05=0.6443  trần=0.7360  F1@rule=0.7383
+    [rice] guided: AUPRO0.05=0.6599  trần=0.7497  F1@rule=0.7500
+    [rice] gated : AUPRO0.05=0.6548  trần=0.7490  F1@rule=0.7482
+  [walnuts] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [walnuts] bank(coreset,overlap)=50000 tu cand=200000
+    [walnuts] gate: t0=37.6363 t1=43.2818 (p95 heldout x 1.15)
+    [walnuts] base  : AUPRO0.05=0.7671  trần=0.6974  F1@rule=0.6375
+    [walnuts] guided: AUPRO0.05=0.7469  trần=0.7198  F1@rule=0.6478
+    [walnuts] gated : AUPRO0.05=0.7604  trần=0.7154  F1@rule=0.6306
+  [can] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [can] bank(coreset,overlap)=50000 tu cand=200000
+    [can] gate: t0=35.5740 t1=40.9101 (p95 heldout x 1.15)
+    [can] base  : AUPRO0.05=0.1766  trần=0.0016  F1@rule=0.0011
+    [can] guided: AUPRO0.05=0.1037  trần=0.0013  F1@rule=0.0009
+    [can] gated : AUPRO0.05=0.1234  trần=0.0013  F1@rule=0.0009
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 heldout=16
+    [fruit_jelly] bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] gate: t0=36.6259 t1=42.1198 (p95 heldout x 1.15)
+    [fruit_jelly] base  : AUPRO0.05=0.6319  trần=0.2894  F1@rule=0.2657
+    [fruit_jelly] guided: AUPRO0.05=0.6141  trần=0.3102  F1@rule=0.2727
+    [fruit_jelly] gated : AUPRO0.05=0.6211  trần=0.3060  F1@rule=0.2603
+
+====================================================================================
+===== MEAN theo variant =====
+  base  : AUPRO0.05=0.6469  trần=0.3920  F1@rule=0.3412
+  guided: AUPRO0.05=0.6255  trần=0.4080  F1@rule=0.3505
+  gated : AUPRO0.05=0.6346  trần=0.4044  F1@rule=0.3512
+
+  Δ GATED (gated - base): AUPRO-0.0123  trần+0.0124  F1+0.0100
+
+ĐỌC (pre-registered): Δtrần>=+0.015 VÀ ΔAUPRO>=-0.003 -> GATED VÀO NỀN (1 map cho cả 2 metric). Fail -> fallback per-metric split (AUPRO=base, SegF1=guided) đã khai trước từ guidedup.

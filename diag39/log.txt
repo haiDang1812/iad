@@ -1,0 +1,90 @@
+device=cuda:0 DIAG coverage vành hố lo @ r/2r/3r (GT chỉ dán nhãn thật/rởm). ĐỌC: cần vực >=5x với lề rộng thì mới có gate v3 đóng băng; không thì ĐÓNG dòng lofill.
+  [fabric] 36 hố >= 10000px:
+    THẬT 000_underexposed.png: 568k  cov r=0.001  2r=0.056  3r=0.324
+    THẬT 000_shift_1.png: 567k  cov r=0.001  2r=0.054  3r=0.338
+    THẬT 000_regular.png: 554k  cov r=0.001  2r=0.049  3r=0.314
+    THẬT 000_overexposed.png: 529k  cov r=0.001  2r=0.046  3r=0.285
+    THẬT 000_shift_2.png: 459k  cov r=0.000  2r=0.013  3r=0.110
+    THẬT 000_shift_3.png: 445k  cov r=0.000  2r=0.015  3r=0.104
+    rởm  009_underexposed.png: 45k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  009_regular.png: 42k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  009_shift_1.png: 42k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  009_overexposed.png: 38k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  003_shift_1.png: 26k  cov r=0.000  2r=0.004  3r=0.045
+    rởm  003_overexposed.png: 26k  cov r=0.000  2r=0.004  3r=0.047
+    rởm  003_shift_3.png: 25k  cov r=0.000  2r=0.001  3r=0.041
+    rởm  003_shift_2.png: 23k  cov r=0.000  2r=0.001  3r=0.042
+    rởm  009_shift_2.png: 21k  cov r=0.000  2r=0.000  3r=0.010
+    rởm  003_underexposed.png: 21k  cov r=0.000  2r=0.002  3r=0.046
+    rởm  003_shift_1.png: 21k  cov r=0.000  2r=0.001  3r=0.044
+    rởm  001_shift_3.png: 20k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  003_regular.png: 20k  cov r=0.000  2r=0.001  3r=0.042
+    rởm  003_overexposed.png: 19k  cov r=0.000  2r=0.000  3r=0.034
+    == THẬT: n=8  mean cov r=0.001  2r=0.029  3r=0.189
+    == rởm : n=28  mean cov r=0.000  2r=0.001  3r=0.017
+  [wallplugs] 392 hố >= 10000px:
+    rởm  002_shift_3.png: 857k  cov r=0.000  2r=0.000  3r=0.003
+    rởm  012_shift_2.png: 498k  cov r=0.000  2r=0.001  3r=0.002
+    rởm  004_shift_2.png: 446k  cov r=0.000  2r=0.001  3r=0.020
+    rởm  009_shift_2.png: 389k  cov r=0.000  2r=0.000  3r=0.016
+    rởm  014_shift_2.png: 365k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  001_shift_2.png: 336k  cov r=0.000  2r=0.000  3r=0.004
+    rởm  008_shift_1.png: 295k  cov r=0.000  2r=0.000  3r=0.004
+    rởm  008_shift_3.png: 266k  cov r=0.000  2r=0.000  3r=0.009
+    rởm  008_shift_3.png: 236k  cov r=0.000  2r=0.000  3r=0.008
+    rởm  008_shift_2.png: 235k  cov r=0.000  2r=0.003  3r=0.047
+    rởm  007_shift_2.png: 234k  cov r=0.000  2r=0.011  3r=0.055
+    rởm  003_shift_2.png: 226k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  008_shift_2.png: 220k  cov r=0.000  2r=0.013  3r=0.066
+    rởm  007_shift_3.png: 206k  cov r=0.000  2r=0.000  3r=0.007
+    rởm  000_shift_2.png: 206k  cov r=0.000  2r=0.001  3r=0.041
+    rởm  002_shift_1.png: 205k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  011_shift_2.png: 193k  cov r=0.000  2r=0.000  3r=0.015
+    rởm  013_shift_2.png: 193k  cov r=0.000  2r=0.028  3r=0.137
+    rởm  001_shift_2.png: 192k  cov r=0.000  2r=0.000  3r=0.017
+    rởm  003_shift_3.png: 178k  cov r=0.000  2r=0.000  3r=0.005
+    == rởm : n=392  mean cov r=0.000  2r=0.002  3r=0.012
+  [sheet_metal] 52 hố >= 10000px:
+    rởm  008_shift_2.png: 78k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  003_shift_3.png: 33k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  002_shift_3.png: 29k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  002_shift_1.png: 28k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  002_shift_2.png: 26k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  000_shift_3.png: 21k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  000_shift_3.png: 20k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  011_shift_2.png: 19k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  000_shift_1.png: 18k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  011_shift_2.png: 18k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  003_shift_1.png: 18k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  000_shift_1.png: 18k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  000_shift_1.png: 17k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  001_shift_3.png: 17k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  012_shift_2.png: 17k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  001_shift_2.png: 16k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  000_shift_2.png: 16k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  003_shift_2.png: 16k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  003_shift_2.png: 16k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  014_shift_1.png: 15k  cov r=0.000  2r=0.000  3r=0.000
+    == rởm : n=52  mean cov r=0.000  2r=0.000  3r=0.000
+  [vial] 32 hố >= 10000px:
+    rởm  009_regular.png: 26k  cov r=0.008  2r=0.183  3r=0.418
+    rởm  009_shift_3.png: 26k  cov r=0.016  2r=0.250  3r=0.494
+    rởm  009_shift_2.png: 25k  cov r=0.007  2r=0.183  3r=0.418
+    rởm  009_underexposed.png: 24k  cov r=0.007  2r=0.174  3r=0.405
+    rởm  009_shift_4.png: 23k  cov r=0.005  2r=0.246  3r=0.493
+    rởm  011_shift_2.png: 22k  cov r=0.000  2r=0.000  3r=0.025
+    rởm  011_underexposed.png: 21k  cov r=0.000  2r=0.000  3r=0.020
+    rởm  011_shift_3.png: 21k  cov r=0.000  2r=0.000  3r=0.007
+    rởm  011_regular.png: 21k  cov r=0.000  2r=0.000  3r=0.004
+    rởm  000_shift_2.png: 20k  cov r=0.000  2r=0.000  3r=0.000
+    rởm  009_shift_1.png: 20k  cov r=0.004  2r=0.148  3r=0.368
+    rởm  000_shift_3.png: 20k  cov r=0.000  2r=0.000  3r=0.016
+    rởm  000_overexposed.png: 20k  cov r=0.000  2r=0.000  3r=0.016
+    rởm  011_overexposed.png: 19k  cov r=0.000  2r=0.000  3r=0.006
+    rởm  009_overexposed.png: 19k  cov r=0.004  2r=0.125  3r=0.369
+    rởm  011_shift_1.png: 19k  cov r=0.000  2r=0.000  3r=0.042
+    rởm  006_underexposed.png: 18k  cov r=0.000  2r=0.013  3r=0.070
+    rởm  011_shift_4.png: 18k  cov r=0.000  2r=0.000  3r=0.034
+    rởm  006_shift_2.png: 18k  cov r=0.000  2r=0.016  3r=0.076
+    rởm  006_regular.png: 18k  cov r=0.000  2r=0.011  3r=0.067
+    == rởm : n=32  mean cov r=0.002  2r=0.066  3r=0.146

@@ -1,0 +1,26 @@
+device=cuda:0 | V0 control(=0.3748) | V1 MEBin 1-nguong/anh theo so vung | V2 SSE 1-nguong/VUNG theo on dinh dien tich, neo dinh >= thr. Hang so dong bang: Z_UP=2.0 Z_DOWN=4.0 Z_STEP=0.25 D=2 MIN_AREA=100 MAX_FRAC=0.35. Khong GT, khong per-cat.
+  [fabric] n=156 thr=39.691 sd=2.584 | 25 muc, i_thr=8
+    [fabric] V0=0.3623  V1=0.0328  V1g=0.0746  V2(SSE)=0.6638  | tran=0.2135 khoang=-0.1489  lay lai V2=-203%
+  [wallplugs] n=150 thr=41.086 sd=2.681 | 25 muc, i_thr=8
+    [wallplugs] V0=0.1884  V1=0.0066  V1g=0.0068  V2(SSE)=0.0789  | tran=0.3137 khoang=+0.1254  lay lai V2=-87%
+  [vial] n=140 thr=40.218 sd=5.638 | 25 muc, i_thr=8
+    [vial] V0=0.4111  V1=0.1154  V1g=0.1182  V2(SSE)=0.1997  | tran=0.4111 khoang=+0.0000  lay lai V2=-917158%
+  [sheet_metal] n=114 thr=41.152 sd=3.314 | 25 muc, i_thr=8
+    [sheet_metal] V0=0.3075  V1=0.0074  V1g=0.0094  V2(SSE)=0.2006  | tran=0.3223 khoang=+0.0148  lay lai V2=-723%
+  [fruit_jelly] n=80 thr=42.460 sd=5.325 | 25 muc, i_thr=8
+    [fruit_jelly] V0=0.3075  V1=0.0345  V1g=0.0368  V2(SSE)=0.0745  | tran=0.3734 khoang=+0.0659  lay lai V2=-354%
+  [rice] n=132 thr=41.067 sd=2.070 | 25 muc, i_thr=8
+    [rice] V0=0.7399  V1=0.0353  V1g=0.7291  V2(SSE)=0.6726  | tran=0.7517 khoang=+0.0118  lay lai V2=-570%
+  [walnuts] n=150 thr=43.976 sd=3.415 | 25 muc, i_thr=8
+    [walnuts] V0=0.6775  V1=0.1347  V1g=0.3273  V2(SSE)=0.3016  | tran=0.7231 khoang=+0.0456  lay lai V2=-824%
+  [can] n=162 thr=42.039 sd=4.752 | 25 muc, i_thr=8
+    [can] V0=0.0038  V1=0.0002  V1g=0.0002  V2(SSE)=0.0004  | tran=0.0048 khoang=+0.0010  lay lai V2=-332%
+
+========================================================================================
+===== MEAN (FULL test_public, offline cache) =====
+  V0=0.3748  V1(MEBin nguyen ban)=0.0459  V1g(MEBin+cong)=0.1628  V2(SSE)=0.2740  tran=0.3892
+  d(V1g-V0)=-0.2120  d(V2-V0)=-0.1007  NOVELTY d(V2-V1g)=+0.1112  (moi thu khac giong het nhau)
+  tong tang=+0.3015  tong tut=-1.1073  (luat khoi luong: tut phai < 0.1508)
+  per-cat d(V2-V0): [('fabric', 0.3015), ('can', -0.0034), ('rice', -0.0673), ('sheet_metal', -0.1069), ('wallplugs', -0.1094), ('vial', -0.2114), ('fruit_jelly', -0.233), ('walnuts', -0.3758)]
+
+DOC (pre-registered): V0 phai=0.3748. V2 VAO NEN neu mean >= V0+0.060 VA tut < 1/2 tang.  => TRUOT -- khong tune hang so, doc lai co che per-cat

@@ -1,0 +1,24 @@
+device=cuda:0 P2 = P0 | hố-lo có vành phủ >= 0.5 bởi mask rule (dilation r). Zero constant mới ngoài RING_COV=0.5 đóng băng. Không GT, không per-cat.
+  [fabric] cache n=156 thr=39.691
+    [fabric] F1@rule P0=0.3623  P2=0.3623  Δ=+0.0000
+  [wallplugs] cache n=150 thr=41.086
+    [wallplugs] F1@rule P0=0.1884  P2=0.1884  Δ=+0.0000
+  [sheet_metal] cache n=114 thr=41.152
+    [sheet_metal] F1@rule P0=0.3075  P2=0.3075  Δ=+0.0000
+  [can] cache n=162 thr=42.039
+    [can] F1@rule P0=0.0038  P2=0.0038  Δ=+0.0000
+  [fruit_jelly] cache n=80 thr=42.460
+    [fruit_jelly] F1@rule P0=0.3075  P2=0.3075  Δ=+0.0000
+  [vial] cache n=140 thr=40.218
+    [vial] F1@rule P0=0.4111  P2=0.4111  Δ=+0.0000
+  [rice] cache n=132 thr=41.067
+    [rice] F1@rule P0=0.7399  P2=0.7399  Δ=+0.0000
+  [walnuts] cache n=150 thr=43.976
+    [walnuts] F1@rule P0=0.6775  P2=0.6775  Δ=+0.0000
+
+====================================================================================
+===== MEAN (FULL test_public, offline cache) =====
+  F1@rule: P0=0.3748  P2=0.3748  Δ=+0.0000
+  cat tụt >0.02: KHÔNG
+
+ĐỌC (pre-registered): (0) P0=0.3748. (1) P2 VÀO nếu Δmean>=+0.010 VÀ không cat tụt>0.02. (2) Van: fabric P2>=0.60 VÀ wallplugs Δ>=-0.005. KHÔNG tune trong run.

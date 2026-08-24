@@ -1,0 +1,27 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] knn=10 bank=50000 aupro_res=512 k=4.5
+  FAIR: rarity-calibration CHỈ từ bank train/good; GT chỉ để chấm. raw=baseline.
+  [can] eval bad=30 good=30 | eff_grid=144 k=10
+    [can] bank=50000 iso mean=26.856 (thưa cao=rare-normal nhiều)
+    [can] raw     : AUPRO0.05=0.2273  SegF1=0.0000  trần=0.0046
+    [can] ratio   : AUPRO0.05=-0.0000  SegF1=0.0000  trần=0.0002   Δaupro=-0.2273
+    [can] zcal    : AUPRO0.05=0.0099  SegF1=0.0000  trần=0.0002   Δaupro=-0.2174
+    [can] reweight: AUPRO0.05=0.1108  SegF1=0.0000  trần=0.0008   Δaupro=-0.1165
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 k=10
+    [sheet_metal] bank=50000 iso mean=31.623 (thưa cao=rare-normal nhiều)
+    [sheet_metal] raw     : AUPRO0.05=0.4996  SegF1=0.0000  trần=0.2376
+    [sheet_metal] ratio   : AUPRO0.05=0.3210  SegF1=0.2827  trần=0.4762   Δaupro=-0.1786
+    [sheet_metal] zcal    : AUPRO0.05=0.5253  SegF1=0.2921  trần=0.5758   Δaupro=+0.0257
+    [sheet_metal] reweight: AUPRO0.05=0.0972  SegF1=0.0113  trần=0.2234   Δaupro=-0.4024
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 k=10
+    [fruit_jelly] bank=50000 iso mean=19.479 (thưa cao=rare-normal nhiều)
+    [fruit_jelly] raw     : AUPRO0.05=0.4382  SegF1=0.0000  trần=0.1863
+    [fruit_jelly] ratio   : AUPRO0.05=0.0086  SegF1=0.0000  trần=0.0518   Δaupro=-0.4296
+    [fruit_jelly] zcal    : AUPRO0.05=0.3008  SegF1=0.0199  trần=0.1664   Δaupro=-0.1374
+    [fruit_jelly] reweight: AUPRO0.05=0.1629  SegF1=0.0050  trần=0.1081   Δaupro=-0.2754
+  [vial] eval bad=30 good=30 | eff_grid=144 k=10
+    [vial] bank=50000 iso mean=18.066 (thưa cao=rare-normal nhiều)
+    [vial] raw     : AUPRO0.05=0.8261  SegF1=0.0000  trần=0.4440
+    [vial] ratio   : AUPRO0.05=0.0005  SegF1=0.0000  trần=0.0446   Δaupro=-0.8256
+    [vial] zcal    : AUPRO0.05=0.0995  SegF1=0.0511  trần=0.0615   Δaupro=-0.7266
+    [vial] reweight: AUPRO0.05=0.1169  SegF1=0.0548  trần=0.0645   Δaupro=-0.7093
+  [fabric] eval bad=30 good=30 | eff_grid=144 k=10

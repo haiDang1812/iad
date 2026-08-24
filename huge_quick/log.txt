@@ -1,0 +1,32 @@
+device=cuda:0 FULL-SCALE: max_train=60 max_eval=30 scales=[(3, 48), (2, 36)] bank=50000x2 cand=200000 | RULE p=95.0 g=1.15 morph=CÓ | guided eps=0.001 (đóng băng)
+  variants: base(3:48) | maxz(two-scale) | gmaxz(guided trên maxz). FAIR, không per-cat, không GT.
+  [can] eval bad=30 good=30 | train_bank=60 heldout=16
+    [can] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [can] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [can] z-stats: fine mu=122.052 sd=20.309 | ctx mu=107.944 sd=21.208
+    [can] base  : AUPRO0.05=0.2359  trần=0.0038  F1@rule=0.0033
+    [can] maxz  : AUPRO0.05=0.2141  trần=0.0052  F1@rule=0.0040
+    [can] gmaxz : AUPRO0.05=0.2004  trần=0.0047  F1@rule=0.0040
+  [sheet_metal] eval bad=30 good=24 | train_bank=60 heldout=16
+    [sheet_metal] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] z-stats: fine mu=143.127 sd=16.332 | ctx mu=139.113 sd=17.217
+    [sheet_metal] base  : AUPRO0.05=0.5838  trần=0.3414  F1@rule=0.3120
+    [sheet_metal] maxz  : AUPRO0.05=0.6352  trần=0.3322  F1@rule=0.3180
+    [sheet_metal] gmaxz : AUPRO0.05=0.6208  trần=0.3406  F1@rule=0.3224
+  [fruit_jelly] eval bad=30 good=20 | train_bank=60 heldout=16
+    [fruit_jelly] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] z-stats: fine mu=115.057 sd=25.764 | ctx mu=106.561 sd=27.835
+    [fruit_jelly] base  : AUPRO0.05=0.6116  trần=0.2683  F1@rule=0.2562
+    [fruit_jelly] maxz  : AUPRO0.05=0.6322  trần=0.3138  F1@rule=0.2974
+    [fruit_jelly] gmaxz : AUPRO0.05=0.6176  trần=0.3328  F1@rule=0.3081
+  [vial] eval bad=30 good=30 | train_bank=60 heldout=16
+    [vial] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [vial] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [vial] z-stats: fine mu=95.202 sd=26.206 | ctx mu=91.943 sd=26.482
+    [vial] base  : AUPRO0.05=0.8390  trần=0.4462  F1@rule=0.4161
+    [vial] maxz  : AUPRO0.05=0.8792  trần=0.4783  F1@rule=0.4493
+    [vial] gmaxz : AUPRO0.05=0.8951  trần=0.4982  F1@rule=0.4724
+  [fabric] eval bad=30 good=30 | train_bank=60 heldout=16
+    [fabric] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000

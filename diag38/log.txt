@@ -1,0 +1,34 @@
+device=cuda:0 viz map gmaxz (chain fullscale). Panel: [gốc | heatmap | pred ĐỎ vs GT XANH].
+  [fabric] bad=90 good=66 | train_bank=200
+device=cuda:0 viz map gmaxz (chain fullscale). Panel: [gốc | heatmap | pred ĐỎ vs GT XANH].
+  [fabric] bad=90 good=66 | train_bank=200
+    [fabric] trần=0.2135 t*=38.019
+    [fabric] lưu 000_underexposed (bad) area=920977 rec=0.14 fp=159720
+    [fabric] lưu 000_overexposed (bad) area=920977 rec=0.14 fp=161443
+    [fabric] lưu 000_shift_3 (bad) area=920977 rec=0.19 fp=199356
+    [fabric] lưu 000_shift_1 (bad) area=920977 rec=0.14 fp=157540
+    [fabric] lưu 000_shift_2 (bad) area=920977 rec=0.19 fp=217202
+    [fabric] lưu 000_regular (bad) area=920977 rec=0.14 fp=158880
+    [fabric] lưu 009_shift_1 (good) area=0 rec=0.00 fp=20732
+    [fabric] lưu 009_shift_2 (good) area=0 rec=0.00 fp=183998
+    [fabric] lưu 009_shift_3 (good) area=0 rec=0.00 fp=153069
+  [wallplugs] bad=90 good=60 | train_bank=200
+    [wallplugs] trần=0.3137 t*=43.199
+    [wallplugs] lưu 012_overexposed (bad) area=73859 rec=0.20 fp=0
+    [wallplugs] lưu 012_underexposed (bad) area=73859 rec=0.21 fp=0
+    [wallplugs] lưu 010_shift_1 (bad) area=69140 rec=0.35 fp=2557
+    [wallplugs] lưu 012_shift_2 (bad) area=73859 rec=0.66 fp=3693
+    [wallplugs] lưu 010_shift_3 (bad) area=69140 rec=0.23 fp=2170
+    [wallplugs] lưu 010_underexposed (bad) area=69140 rec=0.13 fp=0
+    [wallplugs] lưu 004_shift_3 (bad) area=631 rec=0.00 fp=26869
+    [wallplugs] lưu 012_regular (bad) area=73859 rec=0.22 fp=0
+    [wallplugs] lưu 012_shift_1 (bad) area=73859 rec=0.63 fp=4438
+    [wallplugs] lưu 012_shift_3 (bad) area=73859 rec=0.67 fp=3290
+    [wallplugs] lưu 010_overexposed (bad) area=69140 rec=0.13 fp=0
+    [wallplugs] lưu 010_regular (bad) area=69140 rec=0.13 fp=0
+    [wallplugs] lưu 010_shift_2 (bad) area=69140 rec=0.31 fp=10023
+    [wallplugs] lưu 007_shift_1 (good) area=0 rec=0.00 fp=27936
+    [wallplugs] lưu 008_shift_1 (good) area=0 rec=0.00 fp=62277
+    [wallplugs] lưu 007_shift_3 (good) area=0 rec=0.00 fp=26234
+    [wallplugs] lưu 000_shift_2 (good) area=0 rec=0.00 fp=26351
+    [wallplugs] lưu 008_shift_2 (good) area=0 rec=0.00 fp=48069

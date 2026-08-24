@@ -1,0 +1,168 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] K=[8, 16] bank=50000 aupro_res=512 k=4.5
+  FAIR: bank CHỈ train/good; GT chỉ để chấm. nn=baseline (NN-distance = cả leaderboard AD2).
+  [can] eval bad=90 good=72 | eff_grid=144 K=[8, 16]
+    [can] bank=50000
+    [can] nn    : AUPRO0.05=0.1651  SegF1=0.0000  trần=0.0048
+    [can] aff8  : AUPRO0.05=0.1807  SegF1=0.0000  trần=0.0025   Δaupro=+0.0156
+    [can] aff16 : AUPRO0.05=0.1753  SegF1=0.0000  trần=0.0024   Δaupro=+0.0101
+    [can] gap   : AUPRO0.05=0.0936  SegF1=0.0000  trần=0.0079   Δaupro=-0.0715
+  [sheet_metal] eval bad=90 good=24 | eff_grid=144 K=[8, 16]
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] K=[8, 16] bank=50000 aupro_res=512 k=4.5
+  FAIR: bank CHỈ train/good; GT chỉ để chấm. nn=baseline (NN-distance = cả leaderboard AD2).
+  [sheet_metal] eval bad=90 good=24 | eff_grid=144 K=[8, 16]
+    [sheet_metal] bank=50000
+    [sheet_metal] nn    : AUPRO0.05=0.4677  SegF1=0.0000  trần=0.2652
+    [sheet_metal] aff8  : AUPRO0.05=0.5272  SegF1=0.0663  trần=0.3684   Δaupro=+0.0595
+    [sheet_metal] aff16 : AUPRO0.05=0.5369  SegF1=0.0581  trần=0.3611   Δaupro=+0.0693
+    [sheet_metal] gap   : AUPRO0.05=0.0240  SegF1=0.0000  trần=0.0092   Δaupro=-0.4437
+  [fruit_jelly] eval bad=60 good=20 | eff_grid=144 K=[8, 16]
+    [fruit_jelly] bank=50000
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] K=[8, 16] bank=50000 aupro_res=512 k=4.5
+  FAIR: bank CHỈ train/good; GT chỉ để chấm. nn=baseline (NN-distance = cả leaderboard AD2).
+  [sheet_metal] eval bad=90 good=24 | eff_grid=144 K=[8, 16]
+    [sheet_metal] bank=50000
+    [sheet_metal] nn    : AUPRO0.05=0.4677  SegF1=0.0000  trần=0.2652
+    [sheet_metal] aff8  : AUPRO0.05=0.5272  SegF1=0.0663  trần=0.3684   Δaupro=+0.0595
+    [sheet_metal] aff16 : AUPRO0.05=0.5368  SegF1=0.0585  trần=0.3612   Δaupro=+0.0692
+    [sheet_metal] gap   : AUPRO0.05=0.0240  SegF1=0.0000  trần=0.0092   Δaupro=-0.4436
+  [fruit_jelly] eval bad=60 good=20 | eff_grid=144 K=[8, 16]
+    [fruit_jelly] bank=50000
+    [fruit_jelly] nn    : AUPRO0.05=0.4953  SegF1=0.0000  trần=0.2272
+    [fruit_jelly] aff8  : AUPRO0.05=0.5387  SegF1=0.0000  trần=0.3077   Δaupro=+0.0434
+    [fruit_jelly] aff16 : AUPRO0.05=0.5387  SegF1=0.0000  trần=0.3133   Δaupro=+0.0435
+    [fruit_jelly] gap   : AUPRO0.05=0.2552  SegF1=0.0000  trần=0.0634   Δaupro=-0.2401
+  [vial] eval bad=105 good=35 | eff_grid=144 K=[8, 16]
+    [vial] bank=50000
+    [vial] nn    : AUPRO0.05=0.7750  SegF1=0.0000  trần=0.3855
+    [vial] aff8  : AUPRO0.05=0.7756  SegF1=0.0000  trần=0.3937   Δaupro=+0.0006
+    [vial] aff16 : AUPRO0.05=0.7826  SegF1=0.0000  trần=0.3909   Δaupro=+0.0076
+    [vial] gap   : AUPRO0.05=0.4563  SegF1=0.0000  trần=0.2463   Δaupro=-0.3187
+  [fabric] eval bad=90 good=66 | eff_grid=144 K=[8, 16]
+    [fabric] bank=50000
+    [fabric] nn    : AUPRO0.05=0.7698  SegF1=0.0442  trần=0.1366
+    [fabric] aff8  : AUPRO0.05=0.8146  SegF1=0.1158  trần=0.1752   Δaupro=+0.0448
+    [fabric] aff16 : AUPRO0.05=0.8076  SegF1=0.1191  trần=0.1771   Δaupro=+0.0378
+    [fabric] gap   : AUPRO0.05=0.1012  SegF1=0.0000  trần=0.0145   Δaupro=-0.6686
+  [rice] eval bad=90 good=42 | eff_grid=144 K=[8, 16]
+    [rice] bank=50000
+    [rice] nn    : AUPRO0.05=0.6323  SegF1=0.6861  trần=0.6920
+    [rice] aff8  : AUPRO0.05=0.6753  SegF1=0.7076  trần=0.7444   Δaupro=+0.0430
+    [rice] aff16 : AUPRO0.05=0.6753  SegF1=0.7071  trần=0.7471   Δaupro=+0.0430
+    [rice] gap   : AUPRO0.05=0.0095  SegF1=0.0000  trần=0.0036   Δaupro=-0.6228
+  [wallplugs] eval bad=90 good=60 | eff_grid=144 K=[8, 16]
+    [wallplugs] bank=50000
+    [wallplugs] nn    : AUPRO0.05=0.5756  SegF1=0.0145  trần=0.1535
+    [wallplugs] aff8  : AUPRO0.05=0.5529  SegF1=0.0130  trần=0.1391   Δaupro=-0.0228
+    [wallplugs] aff16 : AUPRO0.05=0.5473  SegF1=0.0131  trần=0.1259   Δaupro=-0.0284
+    [wallplugs] gap   : AUPRO0.05=0.2027  SegF1=0.0000  trần=0.0123   Δaupro=-0.3730
+  [walnuts] eval bad=90 good=60 | eff_grid=144 K=[8, 16]
+    [walnuts] bank=50000
+    [walnuts] nn    : AUPRO0.05=0.7013  SegF1=0.0000  trần=0.5876
+    [walnuts] aff8  : AUPRO0.05=0.7572  SegF1=0.0233  trần=0.6624   Δaupro=+0.0560
+    [walnuts] aff16 : AUPRO0.05=0.7542  SegF1=0.0282  trần=0.6643   Δaupro=+0.0530
+    [walnuts] gap   : AUPRO0.05=0.0701  SegF1=0.0000  trần=0.0518   Δaupro=-0.6311
+
+====================================================================================
+===== MEAN (AUPRO0.05 / SegF1 / trần) — nn=baseline =====
+  nn    : AUPRO0.05=0.6310  SegF1=0.1064  trần=0.3497
+  aff8  : AUPRO0.05=0.6631  SegF1=0.1323  trần=0.3987   Δ=+0.0321
+  aff16 : AUPRO0.05=0.6632  SegF1=0.1323  trần=0.3971   Δ=+0.0322
+  gap   : AUPRO0.05=0.1599  SegF1=0.0000  trần=0.0573   Δ=-0.4711
+
+  Per-cat (biến thể tốt nhất theo AUPRO0.05):
+    [sheet_metal] best=aff16  AUPRO0.05=0.5368 (nn=0.468)  SegF1=0.0585
+    [fruit_jelly] best=aff16  AUPRO0.05=0.5387 (nn=0.495)  SegF1=0.0000
+    [vial       ] best=aff16  AUPRO0.05=0.7826 (nn=0.775)  SegF1=0.0000
+    [fabric     ] best=aff8   AUPRO0.05=0.8146 (nn=0.770)  SegF1=0.1158
+    [rice       ] best=aff8   AUPRO0.05=0.6753 (nn=0.632)  SegF1=0.7076
+    [wallplugs  ] best=nn     AUPRO0.05=0.5756 (nn=0.576)  SegF1=0.0145
+    [walnuts    ] best=aff8   AUPRO0.05=0.7572 (nn=0.701)  SegF1=0.0233
+
+ĐỌC: aff{k}>nn rõ -> cơ chế ngoài-manifold ĐÚNG = novelty. ~nn -> loại dứt.
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] K=[8, 16] bank=50000 aupro_res=512 k=4.5
+  FAIR: bank CHỈ train/good; GT chỉ để chấm. nn=baseline (NN-distance = cả leaderboard AD2).
+  [can] eval bad=90 good=72 | eff_grid=144 K=[8, 16]
+    [can] bank=50000
+    [can] nn    : AUPRO0.05=0.1651  SegF1=0.0000  trần=0.0048
+    [can] aff8  : AUPRO0.05=0.1807  SegF1=0.0000  trần=0.0025   Δaupro=+0.0156
+    [can] aff16 : AUPRO0.05=0.1753  SegF1=0.0000  trần=0.0024   Δaupro=+0.0102
+    [can] cvx8  : AUPRO0.05=0.1809  SegF1=0.0000  trần=0.0026   Δaupro=+0.0158
+    [can] cvx16 : AUPRO0.05=0.1819  SegF1=0.0000  trần=0.0026   Δaupro=+0.0168
+    [can] gap   : AUPRO0.05=0.0937  SegF1=0.0000  trần=0.0079   Δaupro=-0.0714
+  [sheet_metal] eval bad=90 good=24 | eff_grid=144 K=[8, 16]
+    [sheet_metal] bank=50000
+    [sheet_metal] nn    : AUPRO0.05=0.4677  SegF1=0.0000  trần=0.2652
+    [sheet_metal] aff8  : AUPRO0.05=0.5272  SegF1=0.0663  trần=0.3684   Δaupro=+0.0595
+    [sheet_metal] aff16 : AUPRO0.05=0.5368  SegF1=0.0585  trần=0.3612   Δaupro=+0.0692
+    [sheet_metal] cvx8  : AUPRO0.05=0.5352  SegF1=0.0724  trần=0.3730   Δaupro=+0.0675
+    [sheet_metal] cvx16 : AUPRO0.05=0.5386  SegF1=0.0754  trần=0.3758   Δaupro=+0.0710
+    [sheet_metal] gap   : AUPRO0.05=0.0240  SegF1=0.0000  trần=0.0092   Δaupro=-0.4436
+  [fruit_jelly] eval bad=60 good=20 | eff_grid=144 K=[8, 16]
+    [fruit_jelly] bank=50000
+    [fruit_jelly] nn    : AUPRO0.05=0.4953  SegF1=0.0000  trần=0.2272
+    [fruit_jelly] aff8  : AUPRO0.05=0.5387  SegF1=0.0000  trần=0.3077   Δaupro=+0.0434
+    [fruit_jelly] aff16 : AUPRO0.05=0.5387  SegF1=0.0000  trần=0.3133   Δaupro=+0.0435
+    [fruit_jelly] cvx8  : AUPRO0.05=0.5397  SegF1=0.0000  trần=0.3078   Δaupro=+0.0444
+    [fruit_jelly] cvx16 : AUPRO0.05=0.5465  SegF1=0.0000  trần=0.3142   Δaupro=+0.0512
+    [fruit_jelly] gap   : AUPRO0.05=0.2552  SegF1=0.0000  trần=0.0634   Δaupro=-0.2401
+  [vial] eval bad=105 good=35 | eff_grid=144 K=[8, 16]
+    [vial] bank=50000
+    [vial] nn    : AUPRO0.05=0.7750  SegF1=0.0000  trần=0.3855
+    [vial] aff8  : AUPRO0.05=0.7756  SegF1=0.0000  trần=0.3937   Δaupro=+0.0006
+    [vial] aff16 : AUPRO0.05=0.7826  SegF1=0.0000  trần=0.3909   Δaupro=+0.0076
+    [vial] cvx8  : AUPRO0.05=0.7759  SegF1=0.0000  trần=0.3935   Δaupro=+0.0008
+    [vial] cvx16 : AUPRO0.05=0.7777  SegF1=0.0000  trần=0.3904   Δaupro=+0.0027
+    [vial] gap   : AUPRO0.05=0.4563  SegF1=0.0000  trần=0.2463   Δaupro=-0.3187
+  [fabric] eval bad=90 good=66 | eff_grid=144 K=[8, 16]
+    [fabric] bank=50000
+    [fabric] nn    : AUPRO0.05=0.7698  SegF1=0.0442  trần=0.1366
+    [fabric] aff8  : AUPRO0.05=0.8146  SegF1=0.1158  trần=0.1752   Δaupro=+0.0448
+    [fabric] aff16 : AUPRO0.05=0.8076  SegF1=0.1191  trần=0.1771   Δaupro=+0.0378
+    [fabric] cvx8  : AUPRO0.05=0.8147  SegF1=0.1158  trần=0.1750   Δaupro=+0.0449
+    [fabric] cvx16 : AUPRO0.05=0.8058  SegF1=0.1188  trần=0.1767   Δaupro=+0.0361
+    [fabric] gap   : AUPRO0.05=0.1012  SegF1=0.0000  trần=0.0145   Δaupro=-0.6686
+  [rice] eval bad=90 good=42 | eff_grid=144 K=[8, 16]
+    [rice] bank=50000
+    [rice] nn    : AUPRO0.05=0.6323  SegF1=0.6861  trần=0.6920
+    [rice] aff8  : AUPRO0.05=0.6753  SegF1=0.7076  trần=0.7444   Δaupro=+0.0430
+    [rice] aff16 : AUPRO0.05=0.6753  SegF1=0.7071  trần=0.7471   Δaupro=+0.0430
+    [rice] cvx8  : AUPRO0.05=0.6757  SegF1=0.7072  trần=0.7441   Δaupro=+0.0434
+    [rice] cvx16 : AUPRO0.05=0.6800  SegF1=0.7067  trần=0.7454   Δaupro=+0.0477
+    [rice] gap   : AUPRO0.05=0.0095  SegF1=0.0000  trần=0.0036   Δaupro=-0.6228
+  [wallplugs] eval bad=90 good=60 | eff_grid=144 K=[8, 16]
+    [wallplugs] bank=50000
+    [wallplugs] nn    : AUPRO0.05=0.5756  SegF1=0.0145  trần=0.1535
+    [wallplugs] aff8  : AUPRO0.05=0.5529  SegF1=0.0130  trần=0.1391   Δaupro=-0.0228
+    [wallplugs] aff16 : AUPRO0.05=0.5473  SegF1=0.0131  trần=0.1259   Δaupro=-0.0284
+    [wallplugs] cvx8  : AUPRO0.05=0.5579  SegF1=0.0119  trần=0.1390   Δaupro=-0.0177
+    [wallplugs] cvx16 : AUPRO0.05=0.5503  SegF1=0.0100  trần=0.1249   Δaupro=-0.0254
+    [wallplugs] gap   : AUPRO0.05=0.2027  SegF1=0.0000  trần=0.0123   Δaupro=-0.3730
+  [walnuts] eval bad=90 good=60 | eff_grid=144 K=[8, 16]
+    [walnuts] bank=50000
+    [walnuts] nn    : AUPRO0.05=0.7013  SegF1=0.0000  trần=0.5876
+    [walnuts] aff8  : AUPRO0.05=0.7572  SegF1=0.0233  trần=0.6624   Δaupro=+0.0560
+    [walnuts] aff16 : AUPRO0.05=0.7542  SegF1=0.0282  trần=0.6643   Δaupro=+0.0530
+    [walnuts] cvx8  : AUPRO0.05=0.7581  SegF1=0.0234  trần=0.6610   Δaupro=+0.0569
+    [walnuts] cvx16 : AUPRO0.05=0.7575  SegF1=0.0272  trần=0.6592   Δaupro=+0.0563
+    [walnuts] gap   : AUPRO0.05=0.0701  SegF1=0.0000  trần=0.0518   Δaupro=-0.6311
+
+====================================================================================
+===== MEAN (AUPRO0.05 / SegF1 / trần) — nn=baseline =====
+  nn    : AUPRO0.05=0.5727  SegF1=0.0931  trần=0.3065
+  aff8  : AUPRO0.05=0.6028  SegF1=0.1158  trần=0.3492   Δ=+0.0300
+  aff16 : AUPRO0.05=0.6022  SegF1=0.1157  trần=0.3478   Δ=+0.0295
+  cvx8  : AUPRO0.05=0.6047  SegF1=0.1163  trần=0.3495   Δ=+0.0320
+  cvx16 : AUPRO0.05=0.6048  SegF1=0.1172  trần=0.3486   Δ=+0.0320
+  gap   : AUPRO0.05=0.1516  SegF1=0.0000  trần=0.0511   Δ=-0.4212
+
+  Per-cat (biến thể tốt nhất theo AUPRO0.05):
+    [can        ] best=cvx16  AUPRO0.05=0.1819 (nn=0.165)  SegF1=0.0000
+    [sheet_metal] best=cvx16  AUPRO0.05=0.5386 (nn=0.468)  SegF1=0.0754
+    [fruit_jelly] best=cvx16  AUPRO0.05=0.5465 (nn=0.495)  SegF1=0.0000
+    [vial       ] best=aff16  AUPRO0.05=0.7826 (nn=0.775)  SegF1=0.0000
+    [fabric     ] best=cvx8   AUPRO0.05=0.8147 (nn=0.770)  SegF1=0.1158
+    [rice       ] best=cvx16  AUPRO0.05=0.6800 (nn=0.632)  SegF1=0.7067
+    [wallplugs  ] best=nn     AUPRO0.05=0.5756 (nn=0.576)  SegF1=0.0145
+    [walnuts    ] best=cvx8   AUPRO0.05=0.7581 (nn=0.701)  SegF1=0.0234
+
+ĐỌC: aff{k}>nn rõ -> cơ chế ngoài-manifold ĐÚNG = novelty. ~nn -> loại dứt.

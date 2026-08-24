@@ -1,0 +1,92 @@
+device=cuda:0 eff_grid=144 layers=[4, 6, 8, 10, 12, 14, 16, 18] bank=50000 alpha=0.1 epochs=60 lam_s=1.0 beta=[1.0,3.0] margin=2.0 k=4.5
+  FAIR: bank & adapter CHỈ train/good; GT chỉ để chấm. raw=baseline (NN feature gốc).
+  [vial] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [vial] bank=50000 C=1024 -> train adapter...
+      [vial a=0.1 lam_s=0.0] ep0: tail=40.262 sep=0.000 var=0.105 std(z)=0.897 contrast=0.00
+      [vial a=0.1 lam_s=0.0] ep59: tail=12.373 sep=0.000 var=0.675 std(z)=0.325 contrast=0.00
+      [vial a=0.1 lam_s=1.0] ep0: tail=40.193 sep=4.620 var=0.106 std(z)=0.896 contrast=2.00
+      [vial a=0.1 lam_s=1.0] ep59: tail=30.614 sep=2.777 var=0.353 std(z)=0.651 contrast=2.32
+    [vial] raw   : AUPRO0.05=0.7995  SegF1=0.0000  trần=0.4387
+    [vial] noneg : AUPRO0.05=0.6579  SegF1=0.0000  trần=0.3357   Δ=-0.1416
+    [vial] method: AUPRO0.05=0.6687  SegF1=0.0000  trần=0.3470   Δ=-0.1308
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [wallplugs] bank=50000 C=1024 -> train adapter...
+      [wallplugs a=0.1 lam_s=0.0] ep0: tail=36.195 sep=0.000 var=0.096 std(z)=0.905 contrast=0.00
+      [wallplugs a=0.1 lam_s=0.0] ep59: tail=15.230 sep=0.000 var=0.597 std(z)=0.403 contrast=0.00
+      [wallplugs a=0.1 lam_s=1.0] ep0: tail=36.170 sep=6.946 var=0.097 std(z)=0.904 contrast=2.00
+      [wallplugs a=0.1 lam_s=1.0] ep59: tail=23.759 sep=3.332 var=0.390 std(z)=0.611 contrast=2.48
+    [wallplugs] raw   : AUPRO0.05=0.5891  SegF1=0.0138  trần=0.1914
+    [wallplugs] noneg : AUPRO0.05=0.2691  SegF1=0.0037  trần=0.0283   Δ=-0.3200
+    [wallplugs] method: AUPRO0.05=0.4126  SegF1=0.0203  trần=0.0800   Δ=-0.1765
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 alpha=0.1
+    [sheet_metal] bank=50000 C=1024 -> train adapter...
+      [sheet_metal a=0.1 lam_s=0.0] ep0: tail=36.222 sep=0.000 var=0.118 std(z)=0.883 contrast=0.00
+      [sheet_metal a=0.1 lam_s=0.0] ep59: tail=14.703 sep=0.000 var=0.613 std(z)=0.387 contrast=0.00
+      [sheet_metal a=0.1 lam_s=1.0] ep0: tail=36.290 sep=7.299 var=0.117 std(z)=0.883 contrast=1.99
+      [sheet_metal a=0.1 lam_s=1.0] ep59: tail=21.768 sep=1.830 var=0.408 std(z)=0.604 contrast=3.90
+    [sheet_metal] raw   : AUPRO0.05=0.4569  SegF1=0.0000  trần=0.2396
+    [sheet_metal] noneg : AUPRO0.05=0.5874  SegF1=0.3493  trần=0.4568   Δ=+0.1305
+    [sheet_metal] method: AUPRO0.05=0.5798  SegF1=0.1581  trần=0.3903   Δ=+0.1229
+  [fabric] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [fabric] bank=50000 C=1024 -> train adapter...
+      [fabric a=0.1 lam_s=0.0] ep0: tail=34.717 sep=0.000 var=0.121 std(z)=0.879 contrast=0.00
+      [fabric a=0.1 lam_s=0.0] ep59: tail=14.970 sep=0.000 var=0.605 std(z)=0.395 contrast=0.00
+      [fabric a=0.1 lam_s=1.0] ep0: tail=34.798 sep=6.958 var=0.121 std(z)=0.880 contrast=2.00
+      [fabric a=0.1 lam_s=1.0] ep59: tail=22.544 sep=3.670 var=0.395 std(z)=0.605 contrast=2.31
+    [fabric] raw   : AUPRO0.05=0.7864  SegF1=0.0755  trần=0.1585
+    [fabric] noneg : AUPRO0.05=0.8294  SegF1=0.2054  trần=0.2069   Δ=+0.0430
+    [fabric] method: AUPRO0.05=0.8231  SegF1=0.1747  trần=0.2131   Δ=+0.0366
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 alpha=0.1
+    [fruit_jelly] bank=50000 C=1024 -> train adapter...
+      [fruit_jelly a=0.1 lam_s=0.0] ep0: tail=43.057 sep=0.000 var=0.095 std(z)=0.907 contrast=0.00
+      [fruit_jelly a=0.1 lam_s=0.0] ep59: tail=11.097 sep=0.000 var=0.691 std(z)=0.309 contrast=0.00
+      [fruit_jelly a=0.1 lam_s=1.0] ep0: tail=43.047 sep=5.038 var=0.095 std(z)=0.906 contrast=2.01
+      [fruit_jelly a=0.1 lam_s=1.0] ep59: tail=23.999 sep=1.933 var=0.453 std(z)=0.560 contrast=2.81
+    [fruit_jelly] raw   : AUPRO0.05=0.4093  SegF1=0.0000  trần=0.2149
+    [fruit_jelly] noneg : AUPRO0.05=0.4464  SegF1=0.0000  trần=0.2959   Δ=+0.0371
+    [fruit_jelly] method: AUPRO0.05=0.4332  SegF1=0.0000  trần=0.2671   Δ=+0.0239
+  [rice] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [rice] bank=50000 C=1024 -> train adapter...
+      [rice a=0.1 lam_s=0.0] ep0: tail=34.500 sep=0.000 var=0.127 std(z)=0.874 contrast=0.00
+      [rice a=0.1 lam_s=0.0] ep59: tail=16.255 sep=0.000 var=0.578 std(z)=0.422 contrast=0.00
+      [rice a=0.1 lam_s=1.0] ep0: tail=34.568 sep=7.367 var=0.125 std(z)=0.876 contrast=2.00
+      [rice a=0.1 lam_s=1.0] ep59: tail=22.884 sep=4.040 var=0.393 std(z)=0.607 contrast=2.23
+    [rice] raw   : AUPRO0.05=0.6690  SegF1=0.6759  trần=0.6955
+    [rice] noneg : AUPRO0.05=0.6976  SegF1=0.6122  trần=0.7602   Δ=+0.0286
+    [rice] method: AUPRO0.05=0.7074  SegF1=0.6711  trần=0.7491   Δ=+0.0384
+  [walnuts] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [walnuts] bank=50000 C=1024 -> train adapter...
+      [walnuts a=0.1 lam_s=0.0] ep0: tail=37.056 sep=0.000 var=0.109 std(z)=0.891 contrast=0.00
+      [walnuts a=0.1 lam_s=0.0] ep59: tail=15.286 sep=0.000 var=0.596 std(z)=0.404 contrast=0.00
+      [walnuts a=0.1 lam_s=1.0] ep0: tail=37.200 sep=7.120 var=0.105 std(z)=0.896 contrast=2.00
+      [walnuts a=0.1 lam_s=1.0] ep59: tail=27.256 sep=2.937 var=0.300 std(z)=0.708 contrast=2.71
+    [walnuts] raw   : AUPRO0.05=0.7444  SegF1=0.0000  trần=0.6306
+    [walnuts] noneg : AUPRO0.05=0.7362  SegF1=0.4476  trần=0.5468   Δ=-0.0082
+    [walnuts] method: AUPRO0.05=0.7693  SegF1=0.0357  trần=0.6123   Δ=+0.0249
+  [can] eval bad=30 good=30 | eff_grid=144 alpha=0.1
+    [can] bank=50000 C=1024 -> train adapter...
+      [can a=0.1 lam_s=0.0] ep0: tail=36.481 sep=0.000 var=0.085 std(z)=0.917 contrast=0.00
+      [can a=0.1 lam_s=0.0] ep59: tail=10.625 sep=0.000 var=0.705 std(z)=0.295 contrast=0.00
+      [can a=0.1 lam_s=1.0] ep0: tail=36.540 sep=5.805 var=0.082 std(z)=0.920 contrast=2.00
+      [can a=0.1 lam_s=1.0] ep59: tail=28.848 sep=3.616 var=0.274 std(z)=0.738 contrast=2.31
+    [can] raw   : AUPRO0.05=0.1166  SegF1=0.0000  trần=0.0024
+    [can] noneg : AUPRO0.05=0.0794  SegF1=0.0000  trần=0.0006   Δ=-0.0371
+    [can] method: AUPRO0.05=0.1509  SegF1=0.0000  trần=0.0014   Δ=+0.0344
+
+====================================================================================
+===== MEAN (AUPRO0.05 / SegF1 / trần) — raw=baseline =====
+  raw   : AUPRO0.05=0.5714  SegF1=0.0956  trần=0.3214
+  noneg : AUPRO0.05=0.5379  SegF1=0.2023  trần=0.3289   Δ=-0.0335
+  method: AUPRO0.05=0.5681  SegF1=0.1325  trần=0.3325   Δ=-0.0033
+
+  Per-cat (biến thể tốt nhất theo AUPRO0.05):
+    [vial       ] best=raw    AUPRO0.05=0.7995 (raw=0.800)  SegF1=0.0000
+    [wallplugs  ] best=raw    AUPRO0.05=0.5891 (raw=0.589)  SegF1=0.0138
+    [sheet_metal] best=noneg  AUPRO0.05=0.5874 (raw=0.457)  SegF1=0.3493
+    [fabric     ] best=noneg  AUPRO0.05=0.8294 (raw=0.786)  SegF1=0.2054
+    [fruit_jelly] best=noneg  AUPRO0.05=0.4464 (raw=0.409)  SegF1=0.0000
+    [rice       ] best=method AUPRO0.05=0.7074 (raw=0.669)  SegF1=0.6711
+    [walnuts    ] best=method AUPRO0.05=0.7693 (raw=0.744)  SegF1=0.0357
+    [can        ] best=method AUPRO0.05=0.1509 (raw=0.117)  SegF1=0.0000
+
+ĐỌC: method>=raw MỌI cat (vial/wallplugs HẾT sụp) + giữ gain sheet_metal/fabric/fruit_jelly -> SỐNG. method~noneg -> negative vô dụng.

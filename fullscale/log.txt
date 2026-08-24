@@ -1,0 +1,75 @@
+device=cuda:0 FULL-SCALE: max_train=200 max_eval=FULL scales=[(3, 48), (2, 36)] bank=50000x2 cand=200000 | RULE p=95.0 g=1.15 morph=CÓ | guided eps=0.001 (đóng băng)
+  variants: base(3:48) | maxz(two-scale) | gmaxz(guided trên maxz). FAIR, không per-cat, không GT.
+  [can] eval bad=90 good=72 | train_bank=200 heldout=16
+    [can] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [can] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [can] z-stats: fine mu=28.153 sd=4.752 | ctx mu=25.746 sd=4.756
+device=cuda:0 FULL-SCALE: max_train=200 max_eval=FULL scales=[(3, 48), (2, 36)] bank=50000x2 cand=200000 | RULE p=95.0 g=1.15 morph=CÓ | guided eps=0.001 (đóng băng)
+  variants: base(3:48) | maxz(two-scale) | gmaxz(guided trên maxz). FAIR, không per-cat, không GT.
+  [can] eval bad=90 good=72 | train_bank=200 heldout=16
+    [can] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [can] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [can] z-stats: fine mu=28.153 sd=4.752 | ctx mu=25.746 sd=4.756
+    [can] base  : AUPRO0.05=0.1821  trần=0.0037  F1@rule=0.0028
+    [can] maxz  : AUPRO0.05=0.2039  trần=0.0053  F1@rule=0.0040
+    [can] gmaxz : AUPRO0.05=0.1687  trần=0.0048  F1@rule=0.0038
+  [sheet_metal] eval bad=90 good=24 | train_bank=121 heldout=16
+    [sheet_metal] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] z-stats: fine mu=32.060 sd=3.314 | ctx mu=31.203 sd=3.639
+    [sheet_metal] base  : AUPRO0.05=0.5279  trần=0.3454  F1@rule=0.3222
+    [sheet_metal] maxz  : AUPRO0.05=0.5703  trần=0.3162  F1@rule=0.3037
+    [sheet_metal] gmaxz : AUPRO0.05=0.5506  trần=0.3223  F1@rule=0.3075
+  [fruit_jelly] eval bad=60 good=20 | train_bank=200 heldout=16
+    [fruit_jelly] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] z-stats: fine mu=27.177 sd=5.325 | ctx mu=26.858 sd=5.737
+    [fruit_jelly] base  : AUPRO0.05=0.5597  trần=0.3085  F1@rule=0.2772
+    [fruit_jelly] maxz  : AUPRO0.05=0.5909  trần=0.3492  F1@rule=0.3000
+    [fruit_jelly] gmaxz : AUPRO0.05=0.5719  trần=0.3734  F1@rule=0.3075
+  [vial] eval bad=105 good=35 | train_bank=200 heldout=16
+    [vial] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [vial] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [vial] z-stats: fine mu=22.255 sd=5.638 | ctx mu=22.721 sd=5.414
+    [vial] base  : AUPRO0.05=0.7957  trần=0.3863  F1@rule=0.3836
+    [vial] maxz  : AUPRO0.05=0.8191  trần=0.4027  F1@rule=0.4010
+    [vial] gmaxz : AUPRO0.05=0.8275  trần=0.4111  F1@rule=0.4076
+  [fabric] eval bad=90 good=66 | train_bank=200 heldout=16
+    [fabric] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [fabric] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [fabric] z-stats: fine mu=30.973 sd=2.584 | ctx mu=31.471 sd=2.646
+    [fabric] base  : AUPRO0.05=0.8292  trần=0.1725  F1@rule=0.1551
+    [fabric] maxz  : AUPRO0.05=0.8579  trần=0.2017  F1@rule=0.1915
+    [fabric] gmaxz : AUPRO0.05=0.8219  trần=0.2135  F1@rule=0.2005
+  [rice] eval bad=90 good=42 | train_bank=200 heldout=16
+    [rice] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [rice] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [rice] z-stats: fine mu=33.335 sd=2.070 | ctx mu=33.404 sd=2.047
+    [rice] base  : AUPRO0.05=0.7080  trần=0.7299  F1@rule=0.7346
+    [rice] maxz  : AUPRO0.05=0.7160  trần=0.7459  F1@rule=0.7342
+    [rice] gmaxz : AUPRO0.05=0.7315  trần=0.7517  F1@rule=0.7399
+  [wallplugs] eval bad=90 good=60 | train_bank=200 heldout=16
+    [wallplugs] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [wallplugs] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [wallplugs] z-stats: fine mu=31.416 sd=2.681 | ctx mu=30.911 sd=2.886
+    [wallplugs] base  : AUPRO0.05=0.6238  trần=0.2167  F1@rule=0.1336
+    [wallplugs] maxz  : AUPRO0.05=0.6468  trần=0.2870  F1@rule=0.1689
+    [wallplugs] gmaxz : AUPRO0.05=0.6108  trần=0.3137  F1@rule=0.1884
+  [walnuts] eval bad=90 good=60 | train_bank=200 heldout=16
+    [walnuts] scale 3:48 bank(coreset,overlap)=50000 tu cand=200000
+    [walnuts] scale 2:36 bank(coreset,overlap)=50000 tu cand=200000
+    [walnuts] z-stats: fine mu=32.003 sd=3.415 | ctx mu=30.797 sd=3.890
+    [walnuts] base  : AUPRO0.05=0.7708  trần=0.6823  F1@rule=0.6248
+    [walnuts] maxz  : AUPRO0.05=0.7842  trần=0.7079  F1@rule=0.6602
+    [walnuts] gmaxz : AUPRO0.05=0.7589  trần=0.7231  F1@rule=0.6717
+
+====================================================================================
+===== MEAN theo variant (FULL test_public) =====
+  base  : AUPRO0.05=0.6246  trần=0.3557  F1@rule=0.3293
+  maxz  : AUPRO0.05=0.6486  trần=0.3770  F1@rule=0.3454
+  gmaxz : AUPRO0.05=0.6302  trần=0.3892  F1@rule=0.3534
+
+  Transfer Δ(maxz-base) AUPRO = +0.0240  (kỳ vọng >= +0.010; < +0.005 -> mong manh)
+  Nhánh PNG: ΔF1@rule(gmaxz-maxz) = +0.0079 -> png = gmaxz (tiêu chí đóng băng >= +0.005)
+
+ĐỌC (pre-registered): tiff = maxz (luôn). png = gmaxz nếu ΔF1@rule >= +0.005, ngược lại maxz. Số MEAN của cặp thắng = số fair chính thức test_public -> sang script submit. KHÔNG tune trong run.

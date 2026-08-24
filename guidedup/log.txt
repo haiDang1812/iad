@@ -1,0 +1,62 @@
+device=cuda:0 eff_grid=144 bank=50000(coreset,overlap) cand=200000 heldout=16 | RULE ĐÓNG BĂNG p=95.0 gain=1.15 morph=CÓ | eps=[0.001, 0.01, 0.1] r=1 cell
+  variants: base (=ov overlapmap, bilinear) | g<eps> (guided filter, guide=ảnh native). FAIR, không per-cat.
+  [vial] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [vial] bank(coreset,overlap)=50000 tu cand=200000
+    [vial] base  : AUPRO0.05=0.8559  trần=0.4585  F1@rule=0.4149
+    [vial] g0.001: AUPRO0.05=0.8709  trần=0.4776  F1@rule=0.4355
+    [vial] g0.01 : AUPRO0.05=0.8728  trần=0.4790  F1@rule=0.4394
+    [vial] g0.1  : AUPRO0.05=0.8721  trần=0.4784  F1@rule=0.4388
+  [wallplugs] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [wallplugs] bank(coreset,overlap)=50000 tu cand=200000
+    [wallplugs] base  : AUPRO0.05=0.6529  trần=0.1434  F1@rule=0.0764
+    [wallplugs] g0.001: AUPRO0.05=0.6142  trần=0.1494  F1@rule=0.0821
+    [wallplugs] g0.01 : AUPRO0.05=0.6111  trần=0.1500  F1@rule=0.0833
+    [wallplugs] g0.1  : AUPRO0.05=0.6098  trần=0.1488  F1@rule=0.0826
+  [sheet_metal] eval bad=30 good=24 | eff_grid=144 heldout=16
+    [sheet_metal] bank(coreset,overlap)=50000 tu cand=200000
+    [sheet_metal] base  : AUPRO0.05=0.5341  trần=0.3122  F1@rule=0.2862
+    [sheet_metal] g0.001: AUPRO0.05=0.5183  trần=0.3238  F1@rule=0.2929
+    [sheet_metal] g0.01 : AUPRO0.05=0.5048  trần=0.3242  F1@rule=0.2927
+    [sheet_metal] g0.1  : AUPRO0.05=0.4954  trần=0.3236  F1@rule=0.2909
+  [fabric] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [fabric] bank(coreset,overlap)=50000 tu cand=200000
+    [fabric] base  : AUPRO0.05=0.9128  trần=0.4975  F1@rule=0.3095
+    [fabric] g0.001: AUPRO0.05=0.8756  trần=0.5321  F1@rule=0.3217
+    [fabric] g0.01 : AUPRO0.05=0.8323  trần=0.5313  F1@rule=0.3244
+    [fabric] g0.1  : AUPRO0.05=0.8107  trần=0.5291  F1@rule=0.3231
+  [rice] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [rice] bank(coreset,overlap)=50000 tu cand=200000
+    [rice] base  : AUPRO0.05=0.6443  trần=0.7360  F1@rule=0.7383
+    [rice] g0.001: AUPRO0.05=0.6599  trần=0.7497  F1@rule=0.7500
+    [rice] g0.01 : AUPRO0.05=0.6659  trần=0.7495  F1@rule=0.7504
+    [rice] g0.1  : AUPRO0.05=0.6661  trần=0.7483  F1@rule=0.7493
+  [walnuts] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [walnuts] bank(coreset,overlap)=50000 tu cand=200000
+    [walnuts] base  : AUPRO0.05=0.7671  trần=0.6974  F1@rule=0.6375
+    [walnuts] g0.001: AUPRO0.05=0.7469  trần=0.7198  F1@rule=0.6478
+    [walnuts] g0.01 : AUPRO0.05=0.7403  trần=0.7168  F1@rule=0.6398
+    [walnuts] g0.1  : AUPRO0.05=0.7338  trần=0.7103  F1@rule=0.6313
+  [can] eval bad=30 good=30 | eff_grid=144 heldout=16
+    [can] bank(coreset,overlap)=50000 tu cand=200000
+    [can] base  : AUPRO0.05=0.1766  trần=0.0016  F1@rule=0.0011
+    [can] g0.001: AUPRO0.05=0.1037  trần=0.0013  F1@rule=0.0009
+    [can] g0.01 : AUPRO0.05=0.0931  trần=0.0012  F1@rule=0.0009
+    [can] g0.1  : AUPRO0.05=0.0710  trần=0.0011  F1@rule=0.0008
+  [fruit_jelly] eval bad=30 good=20 | eff_grid=144 heldout=16
+    [fruit_jelly] bank(coreset,overlap)=50000 tu cand=200000
+    [fruit_jelly] base  : AUPRO0.05=0.6319  trần=0.2894  F1@rule=0.2657
+    [fruit_jelly] g0.001: AUPRO0.05=0.6141  trần=0.3102  F1@rule=0.2727
+    [fruit_jelly] g0.01 : AUPRO0.05=0.6010  trần=0.3091  F1@rule=0.2670
+    [fruit_jelly] g0.1  : AUPRO0.05=0.5898  trần=0.3080  F1@rule=0.2653
+
+====================================================================================
+===== MEAN theo variant =====
+  base  : AUPRO0.05=0.6469  trần=0.3920  F1@rule=0.3412
+  g0.001: AUPRO0.05=0.6255  trần=0.4080  F1@rule=0.3505
+  g0.01 : AUPRO0.05=0.6152  trần=0.4076  F1@rule=0.3497
+  g0.1  : AUPRO0.05=0.6061  trần=0.4059  F1@rule=0.3478
+
+  guided tốt nhất theo trần: g0.001
+  Δ GUIDED (g0.001 - base): AUPRO-0.0215  trần+0.0160  F1+0.0093
+
+ĐỌC (pre-registered): Δtrần>=+0.020 hoặc ΔAUPRO>=+0.010 -> GUIDED VÀO nền, eps đóng băng theo argmax trần. ~0/âm toàn dải eps -> premise guided chết ở quick harness.
